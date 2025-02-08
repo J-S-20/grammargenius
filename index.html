@@ -1,53 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Website Title</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        header, footer {
-            background-color: #f8f8f8;
-            padding: 10px 20px;
-        }
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .dashboard {
-            font-size: 18px;
-            font-weight: bold;
-        }
-        .login {
-            font-size: 18px;
-        }
-        .content {
-            padding: 20px;
-        }
-        footer {
-            text-align: center;
-            padding: 10px;
-            border-top: 1px solid #e7e7e7;
-        }
-    </style>
+    <title>Grammar Genius</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 <body>
     <header>
-        <div class="dashboard">Dashboard</div>
-        <div class="login"><a href="#">Login</a></div>
+        <h1>Welcome to Grammar Genius</h1>
+        <nav>
+            <ul>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+            </ul>
+        </nav>
     </header>
-
-    <div class="content">
-        <h2>About This Website</h2>
-        <p>Welcome to our educational website! Here, you will find resources to enhance your understanding of various English grammar topics.</p>
-        
-        <div class="topics">
-            <h3>Topics you will learn:</h3>
+    <main>
+        <section>
+            <h2>About Grammar Genius</h2>
+            <p>Grammar Genius is your go-to platform for mastering English grammar. Explore our comprehensive lessons and take quizzes to test your knowledge.</p>
+        </section>
+        <section>
+            <h2>Grammar Topics</h2>
             <ul>
                 <li><a href="parts_of_speech.html">Parts of Speech</a></li>
                 <li><a href="tenses.html">Tenses</a></li>
@@ -60,11 +33,10 @@
                 <li><a href="sentence_structure.html">Sentence Structure</a></li>
                 <li><a href="common_errors.html">Common Errors in English</a></li>
             </ul>
-        </div>
-    </div>
-
+        </section>
+    </main>
     <footer>
-        &copy; 2025 Your Website Name. All rights reserved.
+        <p>&copy; 2025 Grammar Genius. All rights reserved.</p>
     </footer>
 </body>
 </html>
