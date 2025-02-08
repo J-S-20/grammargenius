@@ -1,0 +1,15 @@
+<!-- dashboard.php -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+    <h2>Welcome, <?php echo $_SESSION['username']; ?></h2>
+    <div id="progress-bar">
+        <label>Progress: </label>
+        <progress value="<?php echo $user_progress; ?>" max="100"></progress>
+    </div>
+    <!-- Display completed topics and quiz scores here -->
+</body>
+</html>

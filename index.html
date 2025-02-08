@@ -3,37 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grammar Genius</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>Your Website Title</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header, footer {
+            background-color: #f8f8f8;
+            padding: 10px 20px;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .dashboard {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .login {
+            font-size: 18px;
+        }
+        .content {
+            padding: 20px;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            border-top: 1px solid #e7e7e7;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>Grammar Genius</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="php/dashboard.php">Dashboard</a></li>
-                <li><a href="php/login.php">Login</a></li>
-            </ul>
-        </nav>
+        <div class="dashboard">Dashboard</div>
+        <div class="login"><a href="#">Login</a></div>
     </header>
-    <main>
-        <section class="welcome">
-            <h2>Welcome to Grammar Genius</h2>
-            <p>Improve your grammar skills with comprehensive explanations and interactive quizzes.</p>
-        </section>
-        <section class="contents">
-            <h2>Contents</h2>
+
+    <div class="content">
+        <h2>About This Website</h2>
+        <p>Welcome to our educational website! Here, you will find resources to enhance your understanding of various English grammar topics.</p>
+        
+        <div class="topics">
+            <h3>Topics you will learn:</h3>
             <ul>
+                <li><a href="parts_of_speech.html">Parts of Speech</a></li>
+                <li><a href="tenses.html">Tenses</a></li>
+                <li><a href="subject_verb_agreement.html">Subject-Verb Agreement</a></li>
                 <li><a href="active_passive_voice.html">Active and Passive Voice</a></li>
-                <li><a href="articles.html">Articles</a></li>
-                <!-- Add more topics here -->
+                <li><a href="direct_indirect_speech.html">Direct and Indirect Speech</a></li>
+                <li><a href="articles.html">Articles (a, an, the)</a></li>
+                <li><a href="prepositions.html">Prepositions</a></li>
+                <li><a href="punctuation.html">Punctuation</a></li>
+                <li><a href="sentence_structure.html">Sentence Structure</a></li>
+                <li><a href="common_errors.html">Common Errors in English</a></li>
             </ul>
-        </section>
-    </main>
+        </div>
+    </div>
+
     <footer>
-        <p>&copy; 2025 Grammar Genius</p>
+        &copy; 2025 Your Website Name. All rights reserved.
     </footer>
-    <script src="js/script.js"></script>
 </body>
 </html>
