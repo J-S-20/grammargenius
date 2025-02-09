@@ -1,20 +1,20 @@
-<!-- login.php -->
 <?php
-session_start();
-$conn = new mysqli('localhost', 'root', '', 'grammar_website');
+include 'database.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $sql = "SELECT * FROM users WHERE username='$username' AND password='$password'";
-    $result = $conn->query($sql);
+    $sql = "SELECT * FROM users WHERE username='$username'";
+    $result = mysqli_query($conn, $sql);
+    $user = mysqli_fetch_assoc($result);
 
-    if ($result->num_rows > 0) {
-        $_SESSION['username'] = $username;
-        header("Location: dashboard.php");
+    if ($user && password_verify($password, $user['password'])) {
+        echo "Login successful!";
     } else {
-        echo "Invalid username or password";
+        echo "Invalid username or password.";
     }
+
+    mysqli_close($conn);
 }
 ?>
