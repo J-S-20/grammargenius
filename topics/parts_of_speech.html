@@ -9,10 +9,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #3498db; /* Blue */
-            --light-gray: #f4f4f4;
-            --dark-gray: #333;
-            --box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            --primary-color: #3498db; /* Light Blue */
+            --light-bg: #e6f2ff; /* Very Light Blue Background */
+            --dark-text: #333;
+            --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             --border-radius: 8px;
         }
 
@@ -20,77 +20,84 @@
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: var(--light-gray);
-            color: var(--dark-gray);
-            line-height: 1.7; /* Improved line height */
+            background-color: var(--light-bg); /* Use light blue background */
+            color: var(--dark-text);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align to top on larger screens */
+            min-height: 100vh;
         }
 
         .container {
             max-width: 960px;
-            margin: 30px auto; /* Increased margin */
-            padding: 30px; /* Increased padding */
+            width: 100%; /* Full width within flex container */
+            margin: 30px auto;
+            padding: 30px;
             background-color: #fff;
             box-shadow: var(--box-shadow);
             border-radius: var(--border-radius);
+            flex: 1; /* Allow container to grow */
         }
 
         h1 {
             color: var(--primary-color);
             text-align: center;
-            margin-bottom: 30px; /* Increased margin */
+            margin-bottom: 30px;
         }
 
         .part-of-speech {
-            margin-bottom: 40px; /* Increased spacing */
-            padding-bottom: 25px; /* Add padding to the bottom */
+            margin-bottom: 40px;
+            padding-bottom: 25px;
             border-bottom: 1px solid #eee;
         }
 
         h2 {
             color: var(--primary-color);
-            margin-bottom: 15px; /* Increased margin */
+            margin-bottom: 15px;
         }
 
         .definition {
             font-style: italic;
             color: #7f8c8d;
-            margin-bottom: 20px; /* Increased margin */
+            margin-bottom: 20px;
         }
 
         .types {
-            margin-bottom: 20px; /* Increased margin */
+            margin-bottom: 20px;
         }
 
         ul {
             list-style-type: disc;
-            padding-left: 25px; /* Increased padding */
+            padding-left: 25px;
         }
 
         li {
-            margin-bottom: 10px; /* Increased margin */
+            margin-bottom: 10px;
         }
 
         strong {
-            font-weight: 500; /* Slightly less bold */
+            font-weight: 500;
         }
 
         .quiz-button {
             display: block;
-            margin: 40px auto; /* Increased margin */
-            padding: 15px 30px; /* Increased padding */
+            margin: 40px auto;
+            padding: 15px 30px;
             background-color: var(--primary-color);
             color: white;
             border: none;
             border-radius: var(--border-radius);
             cursor: pointer;
             font-size: 18px;
-            font-weight: 500; /* Slightly less bold */
+            font-weight: 500;
             text-decoration: none;
             transition: background-color 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15); /* Button shadow */
         }
 
         .quiz-button:hover {
             background-color: #2980b9;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* More prominent hover shadow */
         }
 
         @media (max-width: 768px) {
@@ -100,15 +107,44 @@
                 padding: 20px;
             }
 
+            body {
+                align-items: flex-start; /* Align to top on mobile */
+            }
+
             h1 {
-                font-size: 1.8em; /* Slightly smaller heading on mobile */
+                font-size: 1.8em;
             }
 
             .quiz-button {
-                font-size: 16px; /* Slightly smaller button on mobile */
+                font-size: 16px;
                 padding: 12px 25px;
             }
         }
+
+        body {
+            /* ... (other body styles) ... */
+            flex-direction: column; /* Arrange items in a column */
+            min-height: 100vh;
+        }
+
+        .container {
+            /* ... (other container styles) ... */
+            flex: 1; /* Allow content to take up available space */
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #fff; /* Or a slightly different background */
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Shadow on top */
+        }
+
+        .quiz-button {
+            /* ... (your quiz button styles) ... */
+            margin: 0 auto; /* Center the button in the footer */
+        }
+
+
     </style>
 </head>
 <body>
@@ -129,8 +165,97 @@
                 </ul>
             </div>
         </div>
-         </div>
+    
+        <div class="part-of-speech">
+            <h2>Pronoun</h2>
+            <p class="definition">A word that replaces a noun.</p>
+            <div class="types">
+                <h3>Types</h3>
+                <ul>
+                    <li><strong>Personal:</strong> Refers to a person/thing (e.g., <strong>She</strong> went to the store.)</li>
+                    <li><strong>Possessive:</strong> Shows ownership (e.g., That book is <strong>mine</strong>.)</li>
+                    <li><strong>Demonstrative:</strong> Points out specifics (e.g., <strong>This</strong> is my favorite song.)</li>
+                    <li><strong>Interrogative:</strong> Asks questions (e.g., <strong>Who</strong> is at the door?)</li>
+                    <li><strong>Reflexive:</strong> Refers back to the subject (e.g., He hurt <strong>himself</strong>.)</li>
+                </ul>
+            </div>
+        </div>
+    
+        <div class="part-of-speech">
+            <h2>Verb</h2>
+            <p class="definition">A word that expresses action or being.</p>
+            <div class="types">
+                <h3>Types</h3>
+                <ul>
+                    <li><strong>Action:</strong> Shows an action (e.g., She <strong>runs</strong> every morning.)</li>
+                    <li><strong>Linking:</strong> Connects subject to description (e.g., He <strong>is</strong> a doctor.)</li>
+                    <li><strong>Auxiliary:</strong> Helps other verbs (e.g., I <strong>have</strong> finished my homework.)</li>
+                </ul>
+            </div>
+        </div>
+    
+        <div class="part-of-speech">
+            <h2>Adjective</h2>
+            <p class="definition">A word that describes a noun/pronoun.</p>
+            <div class="types">
+                <h3>Examples</h3>
+                <ul>
+                    <li>The <strong>red</strong> car is fast.</li>
+                    <li>She is a <strong>talented</strong> musician.</li>
+                </ul>
+            </div>
+        </div>
+    
+        <div class="part-of-speech">
+            <h2>Adverb</h2>
+            <p class="definition">A word that modifies a verb, adjective, or adverb.</p>
+            <div class="types">
+                <h3>Examples</h3>
+                <ul>
+                    <li>He ran <strong>quickly</strong>.</li>
+                    <li>She is <strong>very</strong> tall.</li>
+                </ul>
+            </div>
+        </div>
+    
+        <div class="part-of-speech">
+            <h2>Preposition</h2>
+            <p class="definition">A word showing relationship between words.</p>
+            <div class="types">
+                <h3>Examples</h3>
+                <ul>
+                    <li>The book is <strong>on</strong> the table.</li>
+                    <li>She went <strong>to</strong> the store.</li>
+                </ul>
+            </div>
+        </div>
+    
+        <div class="part-of-speech">
+            <h2>Conjunction</h2>
+            <p class="definition">A word that connects words, phrases, or clauses.</p>
+            <div class="types">
+                <h3>Types</h3>
+                <ul>
+                    <li><strong>Coordinating:</strong> Connects equal parts (e.g., I like apples <strong>and</strong> oranges.)</li>
+                    <li><strong>Subordinating:</strong> Connects dependent clause (e.g., He studied hard <strong>because</strong> he wanted to pass.)</li>
+                </ul>
+            </div>
+        </div>
+    
+        <div class="part-of-speech">
+            <h2>Interjection</h2>
+            <p class="definition">A word expressing strong emotion.</p>
+            <div class="types">
+                <h3>Examples</h3>
+                <ul>
+                    <li><strong>Ouch!</strong> That hurts.</li>
+                    <li><strong>Wow!</strong> That's amazing.</li>
+                </ul>
+            </div>
+        </div>
+        </div>
 
+        </div>
         <a href="partsofspeechquiz.html" class="quiz-button">Take the Quiz!</a>
     </div>
 
