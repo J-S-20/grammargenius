@@ -1,46 +1,105 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Parts of Speech Quiz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            padding: 20px;
-            background-color: #f4f4f4;
+        :root {
+            --primary-color: #3498db; /* Light Blue */
+            --light-bg: #e6f2ff; /* Very Light Blue Background */
+            --dark-text: #333;
+            --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
         }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
         .container {
             max-width: 800px;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            margin: auto;
+            width: 100%;
+            margin: 30px auto;
+            padding: 30px;
+            background-color: #fff;
+            box-shadow: var(--box-shadow);
+            border-radius: var(--border-radius);
+            flex: 1;
         }
+
+        h2 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
         .question {
             font-size: 18px;
-            margin-bottom: 10px;
+            margin-bottom: 15px; /* Increased margin */
+            padding-bottom: 10px; /* Added padding */
+            border-bottom: 1px solid #eee; /* Added border */
         }
+
         .options label {
             display: block;
-            margin: 5px 0;
+            margin: 8px 0; /* Increased margin */
         }
+
         button {
-            margin-top: 20px;
-            padding: 10px 15px;
-            background: #28a745;
+            margin-top: 25px; /* Increased margin */
+            padding: 12px 20px; /* Increased padding */
+            background: var(--primary-color);
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: var(--border-radius);
             cursor: pointer;
+            transition: background-color 0.3s ease; /* Added transition */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
         }
-        #result {
-            font-weight: bold;
-            margin-top: 20px;
 
-            
+        button:hover {
+            background-color: #2980b9;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        #result {
+            font-weight: 500; /* Slightly less bold */
+            margin-top: 25px; /* Increased margin */
+            text-align: center; /* Centered result */
+            color: #27ae60; /* Green color for result */
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            .question {
+                font-size: 16px;
+            }
+
+            .options label {
+                margin: 6px 0;
+            }
+
+            button {
+                font-size: 16px;
+                padding: 10px 18px;
+            }
         }
     </style>
 </head>
@@ -55,6 +114,7 @@
     </div>
 
     <script>
+         
         const questions = [
             { q: "Which part of speech is the word 'happiness'?", options: ["Noun", "Verb", "Adjective", "Adverb"], answer: "Noun" },
             { q: "What is the function of a pronoun?", options: ["Replaces a noun", "Describes a noun", "Joins words", "Expresses action"], answer: "Replaces a noun" },
@@ -110,6 +170,7 @@
         }
 
         loadQuestions();
+   
     </script>
 </body>
 </html>
