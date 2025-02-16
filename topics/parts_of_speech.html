@@ -3,113 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Parts of Speech Quiz</title>
+    <title>Parts of Speech</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #3498db; /* Blue */
+            --light-gray: #f4f4f4;
+            --dark-gray: #333;
+            --box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            padding: 20px;
-            background-color: #f4f4f4;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            line-height: 1.7; /* Improved line height */
         }
+
         .container {
-            max-width: 800px;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            margin: auto;
+            max-width: 960px;
+            margin: 30px auto; /* Increased margin */
+            padding: 30px; /* Increased padding */
+            background-color: #fff;
+            box-shadow: var(--box-shadow);
+            border-radius: var(--border-radius);
         }
-        .question {
-            font-size: 18px;
-            margin-bottom: 10px;
+
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 30px; /* Increased margin */
         }
-        .options label {
+
+        .part-of-speech {
+            margin-bottom: 40px; /* Increased spacing */
+            padding-bottom: 25px; /* Add padding to the bottom */
+            border-bottom: 1px solid #eee;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px; /* Increased margin */
+        }
+
+        .definition {
+            font-style: italic;
+            color: #7f8c8d;
+            margin-bottom: 20px; /* Increased margin */
+        }
+
+        .types {
+            margin-bottom: 20px; /* Increased margin */
+        }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 25px; /* Increased padding */
+        }
+
+        li {
+            margin-bottom: 10px; /* Increased margin */
+        }
+
+        strong {
+            font-weight: 500; /* Slightly less bold */
+        }
+
+        .quiz-button {
             display: block;
-            margin: 5px 0;
-        }
-        button {
-            margin-top: 20px;
-            padding: 10px 15px;
-            background: #28a745;
+            margin: 40px auto; /* Increased margin */
+            padding: 15px 30px; /* Increased padding */
+            background-color: var(--primary-color);
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: var(--border-radius);
             cursor: pointer;
+            font-size: 18px;
+            font-weight: 500; /* Slightly less bold */
+            text-decoration: none;
+            transition: background-color 0.3s ease;
         }
-        #result {
-            font-weight: bold;
-            margin-top: 20px;
 
-            
+        .quiz-button:hover {
+            background-color: #2980b9;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                max-width: 95%;
+                margin: 20px auto;
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.8em; /* Slightly smaller heading on mobile */
+            }
+
+            .quiz-button {
+                font-size: 16px; /* Slightly smaller button on mobile */
+                padding: 12px 25px;
+            }
         }
     </style>
 </head>
 <body>
+
     <div class="container">
-        <h2>Interactive Parts of Speech Quiz</h2>
-        <form id="quizForm">
-            <div id="questionsContainer"></div>
-            <button type="button" onclick="submitQuiz()">Submit</button>
-        </form>
-        <p id="result"></p>
+        <h1>Parts of Speech</h1>
+
+        <div class="part-of-speech">
+            <h2>Noun</h2>
+            <p class="definition">A word that names a person, place, thing, or idea.</p>
+            <div class="types">
+                <h3>Types</h3>
+                <ul>
+                    <li><strong>Common Noun:</strong> A general name (e.g., The <strong>dog</strong> barked loudly.)</li>
+                    <li><strong>Proper Noun:</strong> A specific name (e.g., I live in <strong>London</strong>.)</li>
+                    <li><strong>Collective Noun:</strong> A group name (e.g., The <strong>team</strong> won the game.)</li>
+                    <li><strong>Abstract Noun:</strong> An idea or concept (e.g., <strong>Love</strong> is a powerful emotion.)</li>
+                </ul>
+            </div>
+        </div>
+         </div>
+
+        <a href="partsofspeechquiz.html" class="quiz-button">Take the Quiz!</a>
     </div>
 
-    <script>
-        const questions = [
-            { q: "Which part of speech is the word 'happiness'?", options: ["Noun", "Verb", "Adjective", "Adverb"], answer: "Noun" },
-            { q: "What is the function of a pronoun?", options: ["Replaces a noun", "Describes a noun", "Joins words", "Expresses action"], answer: "Replaces a noun" },
-            { q: "Identify the verb in this sentence: 'She runs every morning.'", options: ["She", "Runs", "Morning", "Every"], answer: "Runs" },
-            { q: "Which word is an adjective?", options: ["Quickly", "Smart", "Run", "Wow"], answer: "Smart" },
-            { q: "Choose the correct preposition: 'The book is __ the table.'", options: ["On", "Run", "And", "Ouch"], answer: "On" },
-            { q: "Which is an interjection?", options: ["Wow", "Run", "Slowly", "And"], answer: "Wow" },
-            { q: "Find the adverb: 'He runs quickly.'", options: ["He", "Runs", "Quickly", "The"], answer: "Quickly" },
-            { q: "Which is a conjunction?", options: ["And", "Tree", "Fast", "Him"], answer: "And" },
-            { q: "What type of noun is 'Paris'?", options: ["Common", "Proper", "Abstract", "Collective"], answer: "Proper" },
-            { q: "Which pronoun fits: 'This book is __.'", options: ["Mine", "Run", "Beautiful", "Wow"], answer: "Mine" },
-            { q: "Which verb is in the past tense?", options: ["Run", "Jumped", "Eat", "Go"], answer: "Jumped" },
-            { q: "Identify the preposition: 'She sat beside me.'", options: ["She", "Sat", "Beside", "Me"], answer: "Beside" },
-            { q: "Which word is an adverb?", options: ["Slowly", "Happy", "Tree", "Jump"], answer: "Slowly" },
-            { q: "Which is a collective noun?", options: ["Flock", "Fast", "Play", "Sing"], answer: "Flock" },
-            { q: "What type of conjunction is 'but'?", options: ["Coordinating", "Subordinating", "Correlative", "Interjection"], answer: "Coordinating" },
-            { q: "Which is an abstract noun?", options: ["Happiness", "Chair", "Dog", "Car"], answer: "Happiness" },
-            { q: "Identify the interjection: 'Wow! That was amazing.'", options: ["Wow", "That", "Was", "Amazing"], answer: "Wow" },
-            { q: "Which sentence contains a verb?", options: ["The cat sleeps.", "The big cat.", "A tall tree.", "Soft and warm."], answer: "The cat sleeps." },
-            { q: "Which is a possessive pronoun?", options: ["His", "He", "Him", "They"], answer: "His" },
-            { q: "Find the adjective: 'She has a beautiful dress.'", options: ["Beautiful", "Dress", "She", "Has"], answer: "Beautiful" },
-            { q: "Identify the preposition: 'The ball rolled under the table.'", options: ["The", "Rolled", "Under", "Table"], answer: "Under" },
-            { q: "Which verb is in the present tense?", options: ["Running", "Ran", "Jumped", "Gone"], answer: "Running" },
-            { q: "Which word is a common noun?", options: ["City", "Paris", "Tom", "Amazon"], answer: "City" },
-            { q: "Find the correct conjunction: 'I like tea __ coffee.'", options: ["And", "Jump", "Happy", "Fast"], answer: "And" },
-            { q: "Identify the interjection: 'Ouch! That hurt.'", options: ["Ouch", "That", "Hurt", "The"], answer: "Ouch" },
-            { q: "Which pronoun is plural?", options: ["They", "He", "She", "I"], answer: "They" },
-            { q: "Choose the correct verb: 'He __ to school daily.'", options: ["Goes", "Go", "Gone", "Going"], answer: "Goes" }
-        ];
-
-        function loadQuestions() {
-            const container = document.getElementById("questionsContainer");
-            questions.forEach((question, index) => {
-                const div = document.createElement("div");
-                div.classList.add("question");
-                div.innerHTML = `<p>${index + 1}. ${question.q}</p>`;
-                question.options.forEach(option => {
-                    div.innerHTML += `<label><input type="radio" name="q${index}" value="${option}"> ${option}</label>`;
-                });
-                container.appendChild(div);
-            });
-        }
-
-        function submitQuiz() {
-            let score = 0;
-            questions.forEach((question, index) => {
-                let selected = document.querySelector(`input[name="q${index}"]:checked`);
-                if (selected && selected.value === question.answer) {
-                    score++;
-                }
-            });
-            document.getElementById("result").innerText = `You scored ${score} out of ${questions.length}!`;
-        }
-
-        loadQuestions();
-    </script>
 </body>
 </html>
