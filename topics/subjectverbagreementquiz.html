@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subject-Verb Agreement Quiz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3498db; /* Light Blue */
+            --light-bg: #e6f2ff; /* Very Light Blue Background */
+            --dark-text: #333;
+            --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            margin: 30px auto;
+            padding: 30px;
+            background-color: #fff;
+            box-shadow: var(--box-shadow);
+            border-radius: var(--border-radius);
+            flex: 1;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            font-size: 18px;
+            margin-bottom: 15px; /* Increased margin */
+            padding-bottom: 10px; /* Added padding */
+            border-bottom: 1px solid #eee; /* Added border */
+        }
+
+        .options label {
+            display: block;
+            margin: 8px 0; /* Increased margin */
+        }
+
+        button {
+            margin-top: 25px; /* Increased margin */
+            padding: 12px 20px; /* Increased padding */
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: background-color 0.3s ease; /* Added transition */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+        }
+
+        button:hover {
+            background-color: #2980b9;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        #result {
+            font-weight: 500; /* Slightly less bold */
+            margin-top: 25px; /* Increased margin */
+            text-align: center; /* Centered result */
+            color: #27ae60; /* Green color for result */
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            .question {
+                font-size: 16px;
+            }
+
+            .options label {
+                margin: 6px 0;
+            }
+
+            button {
+                font-size: 16px;
+                padding: 10px 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Subject-Verb Agreement Quiz</h2>
+        <form id="quizForm">
+            <div id="questionsContainer"></div>
+            <button type="button" onclick="submitQuiz()">Submit</button>
+            <button type="button" onclick="window.location.href = 'subject_verb_agreement.html'">Cancel</button>
+        </form>
+        <p id="result"></p>
+    </div>
+
+    <script>
+         
+        const questions = [
+        { q: "Neither the cat nor the dogs ______ allowed on the couch.", options: ["is", "are", "am", "be"], answer: "are" },
+  { q: "Each of the students ______ responsible for their own project.", options: ["are", "is", "am", "were"], answer: "is" },
+  { q: "The team ______ practicing hard for the upcoming game.", options: ["is", "are", "am", "be"], answer: "is" },
+  { q: "My family ______ always been very supportive of my dreams.", options: ["has", "have", "am", "is"], answer: "has" },
+  { q: "There ______ several reasons why I can't go.", options: ["is", "are", "am", "be"], answer: "are" },
+  { q: "Either the manager or the employees ______ going to have to compromise.", options: ["is", "are", "am", "were"], answer: "is" },
+  { q: "The news about the accident ______ very upsetting.", options: ["were", "was", "am", "be"], answer: "was" },
+  { q: "Mathematics ______ my favorite subject in school.", options: ["are", "is", "am", "were"], answer: "is" },
+  { q: "Many of the books on the shelf ______ missing.", options: ["is", "are", "am", "be"], answer: "are" },
+  { q: "A number of students ______ absent today.", options: ["was", "were", "is", "am"], answer: "were" },
+  { q: "The committee ______ meeting next week to discuss the budget.", options: ["is", "are", "am", "be"], answer: "is" },
+  { q: "Everyone ______ excited about the upcoming holiday.", options: ["are", "is", "am", "were"], answer: "is" },
+  { q: "Neither the players nor the coach ______ happy with the referee's calls.", options: ["was", "were", "is", "am"], answer: "were" },
+  { q: "Some of the water in the bottle ______ evaporated.", options: ["has", "have", "am", "is"], answer: "has" },
+  { q: "There ______ a lot of traffic on the roads this morning.", options: ["was", "were", "is", "am"], answer: "was" },
+  { q: "The dog and the cat ______ playing together in the yard.", options: ["is", "are", "am", "be"], answer: "are" },
+  { q: "Each of the girls ______ a beautiful dress.", options: ["have", "has", "am", "is"], answer: "has" },
+  { q: "My brother, along with his friends, ______ going to the concert tonight.", options: ["is", "are", "am", "were"], answer: "is" },
+  { q: "The police ______ investigating the crime scene.", options: ["is", "are", "am", "be"], answer: "are" },
+  { q: "Few ______ the consequences of their actions.", options: ["understands", "understand", "am", "is"], answer: "understand" },
+  { q: "The data ______ inconclusive at this point.", options: ["is", "are", "am", "be"], answer: "are" },
+  { q: "Several of the paintings ______ been damaged in the fire.", options: ["has", "have", "am", "is"], answer: "have" },
+  { q: "Nobody ______ the answer to that question.", options: ["know", "knows", "am", "be"], answer: "knows" },
+  { q: "All of the food ______ delicious.", options: ["is", "are", "am", "were"], answer: "is" },
+  { q: "The majority of the students ______ passed the exam.", options: ["has", "have", "am", "is"], answer: "have" },
+  { q: "Either the students or the teacher ______ responsible for the mess.", options: ["is", "are", "am", "were"], answer: "is" },
+  { q: "Ten dollars ______ too much to pay for that shirt.", options: ["is", "are", "am", "be"], answer: "is" },
+  { q: "The band ______ playing at the local club tonight.", options: ["is", "are", "am", "were"], answer: "is" },
+  { q: "My favorite pair of jeans ______ torn at the knee.", options: ["is", "are", "am", "be"], answer: "are" },
+  { q: "A collection of rare stamps ______ been donated to the museum.", options: ["has", "have", "am", "is"], answer: "has" }
+];
+        function loadQuestions() {
+            const container = document.getElementById("questionsContainer");
+            questions.forEach((question, index) => {
+                const div = document.createElement("div");
+                div.classList.add("question");
+                div.innerHTML = `<p>${index + 1}. ${question.q}</p>`;
+                question.options.forEach(option => {
+                    div.innerHTML += `<label><input type="radio" name="q${index}" value="${option}"> ${option}</label>`;
+                });
+                container.appendChild(div);
+            });
+        }
+
+        function submitQuiz() {
+            let score = 0;
+            questions.forEach((question, index) => {
+                let selected = document.querySelector(`input[name="q${index}"]:checked`);
+                if (selected && selected.value === question.answer) {
+                    score++;
+                }
+            });
+            document.getElementById("result").innerText = `You scored ${score} out of ${questions.length}!`;
+        }
+
+        loadQuestions();
+   
+    </script>
+</body>
+</html>
