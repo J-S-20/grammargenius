@@ -1,0 +1,180 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tense quiz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3498db; /* Light Blue */
+            --light-bg: #e6f2ff; /* Very Light Blue Background */
+            --dark-text: #333;
+            --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            margin: 30px auto;
+            padding: 30px;
+            background-color: #fff;
+            box-shadow: var(--box-shadow);
+            border-radius: var(--border-radius);
+            flex: 1;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            font-size: 18px;
+            margin-bottom: 15px; /* Increased margin */
+            padding-bottom: 10px; /* Added padding */
+            border-bottom: 1px solid #eee; /* Added border */
+        }
+
+        .options label {
+            display: block;
+            margin: 8px 0; /* Increased margin */
+        }
+
+        button {
+            margin-top: 25px; /* Increased margin */
+            padding: 12px 20px; /* Increased padding */
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: background-color 0.3s ease; /* Added transition */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+        }
+
+        button:hover {
+            background-color: #2980b9;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        #result {
+            font-weight: 500; /* Slightly less bold */
+            margin-top: 25px; /* Increased margin */
+            text-align: center; /* Centered result */
+            color: #27ae60; /* Green color for result */
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            .question {
+                font-size: 16px;
+            }
+
+            .options label {
+                margin: 6px 0;
+            }
+
+            button {
+                font-size: 16px;
+                padding: 10px 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>TENSE QUIZ </h2>
+        <form id="quizForm">
+            <div id="questionsContainer"></div>
+            <button type="button" onclick="submitQuiz()">Submit</button>
+            <button type="button" onclick="window.location.href = 'tenses.html'">Cancel</button>
+        </form>
+        <p id="result"></p>
+    </div>
+
+    <script>
+         
+        const questions = [
+  { q: "I ______ (see) him yesterday.", options: ["see", "saw", "have seen", "am seeing"], answer: "saw" },
+  { q: "She ______ (work) on this project for three weeks.", options: ["works", "is working", "has worked", "worked"], answer: "has worked" },
+  { q: "They ______ (go) to the cinema tonight.", options: ["go", "are going", "went", "have gone"], answer: "are going" },
+  { q: "He ______ (live) in London for five years.", options: ["lives", "is living", "has lived", "lived"], answer: "has lived" },
+  { q: "I ______ (eat) breakfast when the phone rang.", options: ["eat", "am eating", "was eating", "ate"], answer: "was eating" },
+  { q: "She ______ (finish) her homework already?", options: ["finishes", "is finishing", "has finished", "finished"], answer: "has finished" },
+  { q: "We ______ (travel) to Italy next summer.", options: ["travel", "are traveling", "traveled", "have traveled"], answer: "are traveling" },
+  { q: "They ______ (build) a new house.", options: ["build", "are building", "have built", "built"], answer: "have built" },
+  { q: "He ______ (sleep) when I arrived.", options: ["sleeps", "is sleeping", "was sleeping", "slept"], answer: "was sleeping" },
+  { q: "I ______ (know) him for ten years.", options: ["know", "am knowing", "have known", "knew"], answer: "have known" },
+  { q: "She ______ (sing) beautifully.", options: ["sings", "is singing", "sang", "has sung"], answer: "sings" },
+  { q: "They ______ (play) football now.", options: ["play", "are playing", "played", "have played"], answer: "are playing" },
+  { q: "He ______ (visit) his grandparents every Sunday.", options: ["visits", "is visiting", "visited", "has visited"], answer: "visits" },
+  { q: "I ______ (learn) Spanish for two years.", options: ["learn", "am learning", "have learned", "learned"], answer: "have learned" },
+  { q: "She ______ (work) in a bank.", options: ["works", "is working", "worked", "has worked"], answer: "works" },
+  { q: "They ______ (eat) all the cake.", options: ["eat", "are eating", "have eaten", "ate"], answer: "have eaten" },
+  { q: "He ______ (run) a marathon next month.", options: ["runs", "is running", "ran", "will run"], answer: "will run" },
+  { q: "I ______ (read) this book twice.", options: ["read", "am reading", "have read", "readed"], answer: "have read" },
+  { q: "She ______ (talk) on the phone when I entered.", options: ["talks", "is talking", "was talking", "talked"], answer: "was talking" },
+  { q: "We ______ (live) here since 2010.", options: ["live", "are living", "have lived", "lived"], answer: "have lived" },
+  { q: "They ______ (go) to the beach every summer.", options: ["go", "are going", "went", "have gone"], answer: "go" },
+  { q: "He ______ (write) a letter.", options: ["writes", "is writing", "has written", "wrote"], answer: "has written" },
+  { q: "I ______ (wait) for the bus for an hour.", options: ["wait", "am waiting", "have been waiting", "waited"], answer: "have been waiting" },
+  { q: "She ______ (dance) at the party last night.", options: ["dances", "is dancing", "danced", "has danced"], answer: "danced" },
+  { q: "We ______ (see) that movie before.", options: ["see", "are seeing", "have seen", "saw"], answer: "have seen" },
+  { q: "They ______ (travel) around the world next year.", options: ["travel", "are traveling", "traveled", "will travel"], answer: "will travel" },
+  { q: "He ______ (study) hard for the exam.", options: ["studies", "is studying", "studied", "has studied"], answer: "is studying" },
+  { q: "I ______ (meet) him at the library yesterday.", options: ["meet", "am meeting", "met", "have met"], answer: "met" },
+  { q: "She ______ (cook) dinner when the guests arrived.", options: ["cooks", "is cooking", "was cooking", "cooked"], answer: "was cooking" },
+  { q: "We ______ (plan) a surprise party for him.", options: ["plan", "are planning", "have planned", "planned"], answer: "are planning" }
+];
+
+        function loadQuestions() {
+            const container = document.getElementById("questionsContainer");
+            questions.forEach((question, index) => {
+                const div = document.createElement("div");
+                div.classList.add("question");
+                div.innerHTML = `<p>${index + 1}. ${question.q}</p>`;
+                question.options.forEach(option => {
+                    div.innerHTML += `<label><input type="radio" name="q${index}" value="${option}"> ${option}</label>`;
+                });
+                container.appendChild(div);
+            });
+        }
+
+        function submitQuiz() {
+            let score = 0;
+            questions.forEach((question, index) => {
+                let selected = document.querySelector(`input[name="q${index}"]:checked`);
+                if (selected && selected.value === question.answer) {
+                    score++;
+                }
+            });
+            document.getElementById("result").innerText = `You scored ${score} out of ${questions.length}!`;
+        }
+
+        loadQuestions();
+   
+    </script>
+</body>
+</html>
