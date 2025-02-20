@@ -3,23 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/styles.css">
     <title>Login</title>
+    <style>
+        body {
+            background-color: #f4f4f4; /* Softer background */
+            font-family: 'Roboto', sans-serif; /* Modern font */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .login-container {
+            background-color: white;
+            padding: 40px; /* Increased padding */
+            border-radius: 8px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* More prominent shadow */
+            width: 400px; /* Adjusted width */
+        }
+
+        .login-header { /* New container for header elements */
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .login-title { /* Style for the main title */
+            color: #333;
+            font-size: 1.8rem; /* Larger title */
+            font-weight: 600; /* Semi-bold */
+            margin-bottom: 10px;
+        }
+
+        .login-subtitle { /* Style for the subtitle */
+            color: #6c757d; /* Grayish subtitle */
+            font-size: 1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500; /* Slightly bolder labels */
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: calc(100% - 16px);
+            padding: 12px; /* Increased padding */
+            margin-bottom: 20px; /* Increased margin */
+            border: 1px solid #ced4da;
+            border-radius: 6px; /* Slightly more rounded corners */
+            box-sizing: border-box;
+            font-size: 1rem; /* Larger font in inputs */
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            border-color: #80bdff;
+            outline: none;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 20px; /* Increased padding */
+            border: none;
+            border-radius: 6px; /* Slightly more rounded corners */
+            cursor: pointer;
+            font-size: 1rem; /* Larger font in buttons */
+            transition: background-color 0.15s ease-in-out;
+        }
+
+        .btn-primary:hover {
+            background-color: #0069d9;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d; /* Grayish secondary button */
+            color: white;
+            padding: 12px 20px; /* Increased padding */
+            border: none;
+            border-radius: 6px; /* Slightly more rounded corners */
+            cursor: pointer;
+            font-size: 1rem; /* Larger font in buttons */
+            margin-left: 10px;
+            transition: background-color 0.15s ease-in-out;
+        }
+
+        .btn-secondary:hover {
+            background-color: #565b60; /* Darker gray on hover */
+        }
+
+        .btn-register { /* Style for the Register button */
+            background-color: #28a745; /* Green */
+            color: white;
+            padding: 12px 20px; /* Increased padding */
+            border: none;
+            border-radius: 6px; /* Slightly more rounded corners */
+            cursor: pointer;
+            font-size: 1rem; /* Larger font in buttons */
+            margin-top: 20px; /* Space above the button */
+            transition: background-color 0.15s ease-in-out;
+            width: 100%; /* Make the button take full width */
+        }
+
+        .btn-register:hover {
+            background-color: #1e7e34; /* Darker green on hover */
+        }
+
+        .button-group {
+            text-align: center;
+            margin-top: 20px; /* Space above buttons */
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 15px; /* Increased margin */
+            text-align: center;
+            display: none;
+        }
+
+        /* Responsive adjustments (example) */
+        @media (max-width: 400px) {
+            .login-container {
+                width: 90%; /* Adjust width on smaller screens */
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
-<body>
-    <header>
-        <h1>Login</h1>
-    </header>
-    <main>
-        <form action="../php/login.php" method="POST">
+
+    <div class="login-container">
+        <div class="login-header">
+            <h2 class="login-title">Login</h2>
+            <p class="login-subtitle">Enter your credentials</p>
+        </div>
+
+        <form id="loginForm">
             <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required><br><br>
+            <input type="text" id="username" name="username" required>
+
             <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required><br>
-            <button type="submit">Login</button>
-            <button type="button" onclick="window.location.href = 'index.html'">Cancel</button>
+            <input type="password" id="password" name="password" required>
+
+            <div class="button-group">
+                <button type="submit" class="btn-primary">Login</button>
+                <button type="button" class="btn-secondary">Cancel</button>
+            </div>
         </form>
-    </main>
-    <script src="../js/script.js"></script>
+
+        <button class="btn-register">Create an Account</button>  </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // *** IMPORTANT: Replace this with your actual authentication logic ***
+            if (username === 'test' && password === 'password') { // Example check
+                // Redirect to home page
+                window.location.href = 'index.html'; // Or the URL of your home page
+            } else {
+                document.getElementById('errorMessage').style.display = 'block';
+                document.getElementById('errorMessage').textContent = 'Invalid username or password.';
+            }
+        });
+    </script>
+
 </body>
 </html>
