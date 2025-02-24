@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Parts of Speech Quiz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3498db; /* Light Blue */
+            --light-bg: #e6f2ff; /* Very Light Blue Background */
+            --dark-text: #333;
+            --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            margin: 30px auto;
+            padding: 30px;
+            background-color: #fff;
+            box-shadow: var(--box-shadow);
+            border-radius: var(--border-radius);
+            flex: 1;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            font-size: 18px;
+            margin-bottom: 15px; /* Increased margin */
+            padding-bottom: 10px; /* Added padding */
+            border-bottom: 1px solid #eee; /* Added border */
+        }
+
+        .options label {
+            display: block;
+            margin: 8px 0; /* Increased margin */
+        }
+
+        button {
+            margin-top: 25px; /* Increased margin */
+            padding: 12px 20px; /* Increased padding */
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: background-color 0.3s ease; /* Added transition */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+        }
+
+        button:hover {
+            background-color: #2980b9;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        #result {
+            font-weight: 500; /* Slightly less bold */
+            margin-top: 25px; /* Increased margin */
+            text-align: center; /* Centered result */
+            color: #27ae60; /* Green color for result */
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            .question {
+                font-size: 16px;
+            }
+
+            .options label {
+                margin: 6px 0;
+            }
+
+            button {
+                font-size: 16px;
+                padding: 10px 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Interactive Parts of Speech Quiz</h2>
+        <form id="quizForm">
+            <div id="questionsContainer"></div>
+            <button type="button" onclick="submitQuiz()">Submit</button>
+            <button type="button" onclick="window.location.href = 'parts_of_speech.html'">Cancel</button>
+        </form>
+        <p id="result"></p>
+    </div>
+
+    <script>
+    const questions = [
+        { q: "Which of the following sentences is in active voice?", options: ["The cake was baked by Sarah.", "The cat chased the mouse.", "The letter was written.", "The car was driven."], answer: "The cat chased the mouse." },
+        { q: "Which of the following sentences is in passive voice?", options: ["John painted the house.", "The ball was kicked by the boy.", "She read the book.", "They built the bridge."], answer: "The ball was kicked by the boy." },
+        { q: "In active voice, the subject of the sentence:", options: ["Receives the action.", "Performs the action.", "Is unknown.", "Is omitted."], answer: "Performs the action." },
+        { q: "In passive voice, the subject of the sentence:", options: ["Performs the action.", "Receives the action.", "Is always present.", "Is never present."], answer: "Receives the action." },
+        { q: "Which verb tense is used in the passive voice?", options: ["Present participle.", "Past participle.", "Infinitive.", "Simple present."], answer: "Past participle." },
+        { q: "Which auxiliary verb is always used in the passive voice?", options: ["Have", "Do", "Be", "Get"], answer: "Be" },
+        { q: '"The dog ate the bone." Change to passive voice:', options: ["The bone ate the dog.", "The bone was eaten by the dog.", "The dog was eaten by the bone.", "Eaten was the bone by the dog."], answer: "The bone was eaten by the dog." },
+        { q: '"They are building a new school." Change to passive voice:', options: ["A new school is building by them.", "A new school is being built by them.", "They are built a new school.", "Being built a new school."], answer: "A new school is being built by them." },
+        { q: '"Someone stole my wallet." Change to passive voice:', options: ["My wallet stole someone.", "My wallet was stolen.", "Someone was stolen my wallet.", "Stolen was my wallet."], answer: "My wallet was stolen." },
+        { q: '"She will write a letter." Change to passive voice:', options: ["A letter will write by her.", "A letter will be written by her.", "She will be written a letter.", "Written will be a letter."], answer: "A letter will be written by her." },
+        { q: "When changing from active to passive, the object of the active sentence becomes the:", options: ["Verb.", "Subject.", "Object.", "Adverb."], answer: "Subject." },
+        { q: "When changing from active to passive, the subject of the active sentence often becomes:", options: ["The verb.", "The object of the preposition 'by'.", "The adverb.", "Nothing."], answer: "The object of the preposition 'by'." },
+        { q: '"The teacher asked a question." Change to passive voice:', options: ["A question asked the teacher.", "A question was asked by the teacher.", "The teacher was asked a question.", "Asked was a question."], answer: "A question was asked by the teacher." },
+        { q: '"We must finish the project." Change to passive voice:', options: ["The project must we finish.", "The project must be finished by us.", "We must be finished the project.", "Must the project finished."], answer: "The project must be finished by us." },
+        { q: '"They have painted the walls." Change to passive voice:', options: ["The walls have painted by them.", "The walls have been painted by them.", "They have been painted the walls.", "Painted have been the walls."], answer: "The walls have been painted by them." },
+        { q: "Which sentence correctly uses the passive voice with a modal verb?", options: ["The report can wrote.", "The report can be written.", "Can the report be write.", "The report written can be."], answer: "The report can be written." },
+        { q: "Which sentence omits the 'by' phrase correctly in passive voice?", options: ["The car was driven by someone.", "The car was driven.", "Someone drove the car.", "Driven was the car by someone."], answer: "The car was driven." },
+        { q: '"He is reading a book." Change to passive voice:', options: ["A book is reading by him.", "A book is being read by him.", "He is being read a book.", "Read is being a book."], answer: "A book is being read by him." },
+        { q: '"Did she write the email?" Change to passive voice:', options: ["Did the email written by her?", "Was the email written by her?", "The email was written by her.", "Written was the email by her."], answer: "Was the email written by her?" },
+        { q: '"The storm damaged the house." Change to passive voice:', options: ["The house damaged the storm.", "The house was damaged by the storm.", "The storm was damaged by the house.", "Damaged was the house."], answer: "The house was damaged by the storm." },
+        { q: "Which voice is generally preferred for clarity and directness?", options: ["Passive voice.", "Active voice.", "Both are equal.", "Neither is preferred."], answer: "Active voice." },
+        { q: "When the doer is unknown, which voice is often used?", options: ["Active voice.", "Passive voice.", "Both equally.", "Neither."], answer: "Passive voice." },
+        { q: '"She has cleaned the room." Change to passive voice:', options: ["The room has cleaned by her.", "The room has been cleaned by her.", "She has been cleaned the room.", "Cleaned has been the room."], answer: "The room has been cleaned by her." },
+        { q: '"They sold the old furniture." Change to passive voice:', options: ["The old furniture sold by them.", "The old furniture was sold by them.", "They were sold the old furniture.", "Sold was the old furniture."], answer: "The old furniture was sold by them." },
+        { q: '"The teacher will give the test." Change to passive voice:', options: ["The test will give by the teacher.", "The test will be given by the teacher.", "The teacher will be given the test.", "Given will be the test."], answer: "The test will be given by the teacher." },
+        { q: "Which sentence is in the present perfect passive voice?", options: ["The food is cooked.", "The food was cooked.", "The food has been cooked.", "The food will be cooked."], answer: "The food has been cooked." },
+        { q: '"He wrote the report quickly." Change to passive voice:', options: ["The report wrote quickly by him.", "The report was written quickly by him.", "He was written the report quickly.", "Written was the report quickly."], answer: "The report was written quickly by him." },
+        { q: '"They are planting trees." Change to passive voice:', options: ["Trees are planting by them.", "Trees are being planted by them.", "They are being planted trees.", "Planted are being trees."], answer: "Trees are being planted by them." },
+        { q: '"Did you see the movie?" Change to passive voice:', options: ["Did the movie seen by you?", "Was the movie seen by you?", "The movie was seen by you.", "Seen was the movie by you."], answer: "Was the movie seen by you?" },
+        { q: '"The manager approved the plan." Change to passive voice:', options: ["The plan approved by the manager.", "The plan was approved by the manager.", "The manager was approved the plan.", "Approved was the plan."], answer: "The plan was approved by the manager." }
+    ];
+
+
+        function loadQuestions() {
+            const container = document.getElementById("questionsContainer");
+            questions.forEach((question, index) => {
+                const div = document.createElement("div");
+                div.classList.add("question");
+                div.innerHTML = `<p>${index + 1}. ${question.q}</p>`;
+                question.options.forEach(option => {
+                    div.innerHTML += `<label><input type="radio" name="q${index}" value="${option}"> ${option}</label>`;
+                });
+                container.appendChild(div);
+            });
+        }
+
+        function submitQuiz() {
+            let score = 0;
+            questions.forEach((question, index) => {
+                let selected = document.querySelector(`input[name="q${index}"]:checked`);
+                if (selected && selected.value === question.answer) {
+                    score++;
+                }
+            });
+            document.getElementById("result").innerText = `You scored ${score} out of ${questions.length}!`;
+        }
+
+        loadQuestions();
+   
+    </script>
+</body>
+</html>
