@@ -142,7 +142,7 @@
             <p class="login-subtitle">Enter your credentials</p>
         </div>
 
-        <form id="loginForm" action="login.php" me>
+        <form id="loginForm" action="../php/login.php" method="post">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>
 
@@ -151,7 +151,7 @@
 
             <div class="button-group">
                 <button type="submit" onclick="window.location.href = 'login.html'"class="btn-primary">Login</button>
-                <button type="button" onclick="window.location.href = 'index.html'"class="btn-secondary">Cancel</button>
+                <button type="cancel" onclick="window.location.href = 'index.html'"class="btn-secondary">Cancel</button>
             </div>
         </form>
 
