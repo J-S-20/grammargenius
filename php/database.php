@@ -1,8 +1,8 @@
 <?php
-$servername = "localhost";
-$username = "root"; // Default username for XAMPP/MAMP
-$password = ""; // Default password for XAMPP/MAMP
-$dbname = "grammar_genius";
+$servername = "sql301.infinityfree.com";
+$username = "if0_38272767"; // Default username for XAMPP/MAMP
+$password = "ftpproject123"; // Default password for XAMPP/MAMP
+$dbname = "if0_38272767_grammargenius";
 
 // Create connection
 $conn = mysqli_connect($servername, $username, $password, $dbname);
