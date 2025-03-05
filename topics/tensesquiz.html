@@ -149,31 +149,54 @@
   { q: "We ______ (plan) a surprise party for him.", options: ["plan", "are planning", "have planned", "planned"], answer: "are planning" }
 ];
 
-        function loadQuestions() {
-            const container = document.getElementById("questionsContainer");
-            questions.forEach((question, index) => {
-                const div = document.createElement("div");
-                div.classList.add("question");
-                div.innerHTML = `<p>${index + 1}. ${question.q}</p>`;
-                question.options.forEach(option => {
-                    div.innerHTML += `<label><input type="radio" name="q${index}" value="${option}"> ${option}</label>`;
-                });
-                container.appendChild(div);
-            });
-        }
+function loadQuestions() {
+        const container = document.getElementById("questionsContainer");
+        container.innerHTML = ""; // Clear previous content
+        questions.forEach((question, index) => {
+            const div = document.createElement("div");
+            div.classList.add("question");
+            div.innerHTML = `<p>${index + 1}. ${question.q}</p>`;
 
-        function submitQuiz() {
-            let score = 0;
-            questions.forEach((question, index) => {
-                let selected = document.querySelector(`input[name="q${index}"]:checked`);
-                if (selected && selected.value === question.answer) {
+            question.options.forEach(option => {
+                div.innerHTML += `
+                    <label>
+                        <input type="radio" name="q${index}" value="${option}"> ${option}
+                    </label>`;
+            });
+
+            // Add a feedback section without displaying the correct answer
+            div.innerHTML += `<p class="feedback" id="feedback${index}" style="font-weight:bold;"></p>`;
+
+            container.appendChild(div);
+        });
+    }
+
+    function submitQuiz() {
+        let score = 0;
+
+        questions.forEach((question, index) => {
+            let selected = document.querySelector(`input[name="q${index}"]:checked`);
+            let feedback = document.getElementById(`feedback${index}`);
+
+            if (selected) {
+                if (selected.value === question.answer) {
                     score++;
+                    feedback.innerHTML = "✅ Correct!";
+                    feedback.style.color = "green";
+                } else {
+                    feedback.innerHTML = "❌ Wrong!";
+                    feedback.style.color = "red";
                 }
-            });
-            document.getElementById("result").innerText = `You scored ${score} out of ${questions.length}!`;
-        }
+            } else {
+                feedback.innerHTML = "⚠️ No answer selected!";
+                feedback.style.color = "orange";
+            }
+        });
 
-        loadQuestions();
+        document.getElementById("result").innerText = `You scored ${score} out of ${questions.length}!`;
+    }
+
+    loadQuestions();
    
     </script>
 </body>
