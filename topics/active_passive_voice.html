@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Active and Passive Voice</title>
     <style>
         body {
@@ -12,6 +14,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            color: #34495e;
         }
 
         .content {
@@ -27,9 +30,10 @@
         h1 {
             color: #3366cc;
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             font-size: 2.5em;
             font-weight: 600;
+            padding-bottom: 15px;
         }
 
         h2 {
@@ -43,83 +47,198 @@
         }
 
         p {
-            color: #34495e;
             line-height: 1.7;
             margin-bottom: 25px;
             font-size: 1.1em;
         }
 
+        .example {
+            background-color: #f8f9fa;
+            border-left: 4px solid #3366cc;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .structure {
+            font-family: monospace;
+            background-color: #f1f5f9;
+            padding: 10px 15px;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+
         ul {
-            list-style-type: disc;
-            padding-left: 30px;
+            list-style-type: none;
+            padding-left: 10px;
             margin-bottom: 25px;
         }
 
-        li {
+        ul li {
             margin-bottom: 12px;
-            color: #34495e;
+            position: relative;
+            padding-left: 25px;
             font-size: 1.1em;
+        }
+
+        ul li::before {
+            content: "•";
+            color: #3366cc;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 1.2em;
+        }
+
+        ul ul {
+            margin-top: 10px;
         }
 
         strong {
             font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
         }
 
         .button {
             display: inline-block;
-            padding: 10px 20px;
-            margin: 0 10px;
-            background-color: #007bff; /* Blue button */
+            padding: 12px 24px;
+            background-color: #007bff;
             color: white;
             text-decoration: none;
             border-radius: 5px;
-            transition: background-color 0.3s ease; /* Smooth hover effect */
-        }
-
-        .buttons {
-            text-align: center;
-            margin-top: 20px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         .button:hover {
-            background-color: #0056b3; /* Darker blue on hover */
+            background-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
         }
 
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 12px 15px;
+            border: 1px solid #e1e4e8;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background-color: #f1f5f9;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .highlight {
+            background-color: #e6f0ff;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
     </style>
 </head>
 <body>
     <div class="content">
         <h1>Active and Passive Voice</h1>
 
-        <p>Understanding active and passive voice is crucial for clear and effective writing.</p>
+        <p>Understanding the difference between active and passive voice is essential for crafting clear, effective, and powerful writing. These two grammatical constructions serve different purposes and create distinct impressions on your readers.</p>
 
         <h2>Active Voice</h2>
-        <p>Definition: In active voice, the subject of the sentence performs the action. The subject is the "doer" of the verb. It generally creates a more direct, clear, and concise style.</p>
-        <p>Structure: Subject + Verb + Object (e.g., "The dog chased the ball.")</p>
-        <p>Example: "The chef cooked the meal." (The chef is the subject, and they performed the action of cooking.)</p>
+        <p>In active voice, the subject of the sentence performs the action. This creates a more direct, energetic, and concise style that engages readers.</p>
+        
+        <div class="structure">Structure: Subject + Verb + Object</div>
+        
+        <div class="example">
+            <strong>Example:</strong> "The chef cooked the meal."<br>
+            <em>Here, "the chef" (subject) performs the action "cooked" on "the meal" (object).</em>
+        </div>
 
         <h2>Passive Voice</h2>
-        <p>Definition: In passive voice, the subject of the sentence receives the action. The subject is the "receiver" of the verb. It can be useful when the action is more important than the actor, or when the actor is unknown.</p>
-        <p>Structure: Object + Verb (to be) + Past Participle + (by Subject) (e.g., "The ball was chased by the dog.")</p>
-        <p>Example: "The meal was cooked by the chef." (The meal is the subject, and it received the action of being cooked.)</p>
-        <p>Example: "The window was broken." (In this case, the actor is unknown.)</p>
+        <p>In passive voice, the subject of the sentence receives the action. This construction is useful when the action itself is more important than who performed it, or when the actor is unknown or irrelevant.</p>
+        
+        <div class="structure">Structure: Object + Verb (to be) + Past Participle + (by Subject)</div>
+        
+        <div class="example">
+            <strong>Example:</strong> "The meal was cooked by the chef."<br>
+            <em>Here, "the meal" (object) receives the action of being "cooked" by "the chef" (subject).</em>
+        </div>
+        
+        <div class="example">
+            <strong>Example with unknown actor:</strong> "The window was broken."<br>
+            <em>In this case, we don't know who broke the window, so the passive voice is appropriate.</em>
+        </div>
 
-        <h2>Key Differences and Rules</h2>
+        <h2>Comparing Active and Passive Voice</h2>
+        
+        <table class="comparison-table">
+            <tr>
+                <th>Aspect</th>
+                <th>Active Voice</th>
+                <th>Passive Voice</th>
+            </tr>
+            <tr>
+                <td>Emphasis</td>
+                <td>On the doer (subject)</td>
+                <td>On the action or receiver</td>
+            </tr>
+            <tr>
+                <td>Clarity</td>
+                <td>Usually more clear and direct</td>
+                <td>Can be less clear or more wordy</td>
+            </tr>
+            <tr>
+                <td>Word Count</td>
+                <td>Typically uses fewer words</td>
+                <td>Often requires more words</td>
+            </tr>
+            <tr>
+                <td>Appropriate Use</td>
+                <td>Most general writing, narratives</td>
+                <td>Scientific writing, when actor is unknown</td>
+            </tr>
+        </table>
+
+        <h2>When to Use Each Voice</h2>
         <ul>
-            <li><strong>Emphasis:</strong>
+            <li><strong>Use active voice when:</strong>
                 <ul>
-                    <li>Active voice emphasizes the doer.</li>
-                    <li>Passive voice emphasizes the action or the receiver.</li>
+                    <li>You want clear, direct, and concise writing</li>
+                    <li>The doer of the action is important</li>
+                    <li>You want to emphasize responsibility or agency</li>
                 </ul>
             </li>
-            <li><strong>"By" Phrase:</strong> Passive voice often includes a "by" phrase to indicate the doer, but it can also be omitted.</li>
+            <li><strong>Use passive voice when:</strong>
+                <ul>
+                    <li>The receiver of the action is more important than the doer</li>
+                    <li>The doer is unknown, irrelevant, or obvious</li>
+                    <li>You want to be deliberately vague about who performed an action</li>
+                    <li>Writing scientific or technical documents where objectivity is valued</li>
+                </ul>
+            </li>
         </ul>
 
-        <div class="buttons">
-            <a href="voice_quiz.html" class="button">Take Quiz</a>
-            <a href="index.html" class="button">Back to home </a>
+        <div class="button-container">
+            <a href="voice_quiz.html" class="button">Take the Quiz</a>
+            <a href="index.html" class="button">Back to Home</a>
         </div>
     </div>
-
 </body>
 </html>
