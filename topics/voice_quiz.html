@@ -3,218 +3,712 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Parts of Speech Quiz</title>
+    <title>Active and Passive Voice Quiz</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #3498db; /* Light Blue */
-            --light-bg: #e6f2ff; /* Very Light Blue Background */
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
+            --accent-color: #f72585;
+            --light-bg: #f8f9fa;
             --dark-text: #333;
-            --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            --border-radius: 8px;
+            --light-text: #fff;
+            --correct-color: #4cc9f0;
+            --wrong-color: #f72585;
+            --box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
         }
 
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: var(--light-bg);
+            background: linear-gradient(135deg, #4cc9f0 0%, #4361ee 100%);
             color: var(--dark-text);
+            min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: flex-start;
-            min-height: 100vh;
+            align-items: center;
         }
 
         .container {
-            max-width: 800px;
-            width: 100%;
+            max-width: 850px;
+            width: 95%;
             margin: 30px auto;
-            padding: 30px;
-            background-color: #fff;
+            padding: 35px;
+            background-color: var(--light-bg);
             box-shadow: var(--box-shadow);
             border-radius: var(--border-radius);
-            flex: 1;
         }
 
         h2 {
-            color: var(--primary-color);
+            color: var(--secondary-color);
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            font-size: 32px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--correct-color), var(--primary-color));
+            border-radius: 2px;
+        }
+
+        .quiz-info {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--secondary-color);
+            font-weight: 500;
         }
 
         .question {
-            font-size: 18px;
-            margin-bottom: 15px; /* Increased margin */
-            padding-bottom: 10px; /* Added padding */
-            border-bottom: 1px solid #eee; /* Added border */
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
         }
 
-        .options label {
-            display: block;
-            margin: 8px 0; /* Increased margin */
+        .question:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .question p {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .option-label:hover {
+            background-color: #e3e3e3;
+        }
+
+        .option-label input {
+            margin-right: 10px;
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            margin-bottom: 20px;
         }
 
         button {
-            margin-top: 25px; /* Increased margin */
-            padding: 12px 20px; /* Increased padding */
-            background: var(--primary-color);
-            color: white;
+            padding: 14px 30px;
+            font-size: 16px;
+            font-weight: 600;
             border: none;
-            border-radius: var(--border-radius);
+            border-radius: 30px;
             cursor: pointer;
-            transition: background-color 0.3s ease; /* Added transition */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+            transition: var(--transition);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        button:hover {
-            background-color: #2980b9;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        .submit-btn {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: var(--light-text);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .cancel-btn {
+            background-color: #e0e0e0;
+            color: var(--dark-text);
+        }
+
+        .cancel-btn:hover {
+            background-color: #d0d0d0;
         }
 
         #result {
-            font-weight: 500; /* Slightly less bold */
-            margin-top: 25px; /* Increased margin */
-            text-align: center; /* Centered result */
-            color: #27ae60; /* Green color for result */
+            margin-top: 30px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 600;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            display: none;
         }
 
-        /* Responsive Styles */
-        @media (max-width: 600px) {
+        .progress-container {
+            margin-top: 20px;
+            margin-bottom: 30px;
+            background-color: #e0e0e0;
+            border-radius: 20px;
+            height: 10px;
+            width: 100%;
+            overflow: hidden;
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(to right, var(--correct-color), var(--primary-color));
+            transition: width 0.5s ease;
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
             .container {
-                padding: 20px;
+                padding: 25px;
             }
 
-            .question {
-                font-size: 16px;
-            }
-
-            .options label {
-                margin: 6px 0;
+            .options {
+                grid-template-columns: 1fr;
             }
 
             button {
-                font-size: 16px;
-                padding: 10px 18px;
+                padding: 12px 25px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>VOICE QUIZ</h2>
+        <h2>Active and Passive Voice Quiz</h2>
+        <div class="quiz-info">Test your knowledge of converting between active and passive voice.</div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
         <form id="quizForm">
             <div id="questionsContainer"></div>
-            <button type="button" onclick="submitQuiz()">Submit</button>
-            <button type="button" onclick="window.location.href = 'active_passive_voice.html'">Cancel</button>
+            <div id="result"></div>
+            <div class="buttons">
+                <button type="button" class="submit-btn" onclick="submitQuiz()">Check Answers</button>
+                <button type="button" class="cancel-btn" onclick="window.location.href = 'active_passive_voice.html'">Back to Lessons</button>
+            </div>
         </form>
-        <p id="result"></p>
+    </div>
+    
+    <div class="scroll-to-top" onclick="scrollToTop()">
+        ↑
     </div>
 
     <script>
-    const questions = [
-        { q: "Which of the following sentences is in active voice?", options: ["The cake was baked by Sarah.", "The cat chased the mouse.", "The letter was written.", "The car was driven."], answer: "The cat chased the mouse." },
-        { q: "Which of the following sentences is in passive voice?", options: ["John painted the house.", "The ball was kicked by the boy.", "She read the book.", "They built the bridge."], answer: "The ball was kicked by the boy." },
-        { q: "In active voice, the subject of the sentence:", options: ["Receives the action.", "Performs the action.", "Is unknown.", "Is omitted."], answer: "Performs the action." },
-        { q: "In passive voice, the subject of the sentence:", options: ["Performs the action.", "Receives the action.", "Is always present.", "Is never present."], answer: "Receives the action." },
-        { q: "Which verb tense is used in the passive voice?", options: ["Present participle.", "Past participle.", "Infinitive.", "Simple present."], answer: "Past participle." },
-        { q: "Which auxiliary verb is always used in the passive voice?", options: ["Have", "Do", "Be", "Get"], answer: "Be" },
-        { q: '"The dog ate the bone." Change to passive voice:', options: ["The bone ate the dog.", "The bone was eaten by the dog.", "The dog was eaten by the bone.", "Eaten was the bone by the dog."], answer: "The bone was eaten by the dog." },
-        { q: '"They are building a new school." Change to passive voice:', options: ["A new school is building by them.", "A new school is being built by them.", "They are built a new school.", "Being built a new school."], answer: "A new school is being built by them." },
-        { q: '"Someone stole my wallet." Change to passive voice:', options: ["My wallet stole someone.", "My wallet was stolen.", "Someone was stolen my wallet.", "Stolen was my wallet."], answer: "My wallet was stolen." },
-        { q: '"She will write a letter." Change to passive voice:', options: ["A letter will write by her.", "A letter will be written by her.", "She will be written a letter.", "Written will be a letter."], answer: "A letter will be written by her." },
-        { q: "When changing from active to passive, the object of the active sentence becomes the:", options: ["Verb.", "Subject.", "Object.", "Adverb."], answer: "Subject." },
-        { q: "When changing from active to passive, the subject of the active sentence often becomes:", options: ["The verb.", "The object of the preposition 'by'.", "The adverb.", "Nothing."], answer: "The object of the preposition 'by'." },
-        { q: '"The teacher asked a question." Change to passive voice:', options: ["A question asked the teacher.", "A question was asked by the teacher.", "The teacher was asked a question.", "Asked was a question."], answer: "A question was asked by the teacher." },
-        { q: '"We must finish the project." Change to passive voice:', options: ["The project must we finish.", "The project must be finished by us.", "We must be finished the project.", "Must the project finished."], answer: "The project must be finished by us." },
-        { q: '"They have painted the walls." Change to passive voice:', options: ["The walls have painted by them.", "The walls have been painted by them.", "They have been painted the walls.", "Painted have been the walls."], answer: "The walls have been painted by them." },
-        { q: "Which sentence correctly uses the passive voice with a modal verb?", options: ["The report can wrote.", "The report can be written.", "Can the report be write.", "The report written can be."], answer: "The report can be written." },
-        { q: "Which sentence omits the 'by' phrase correctly in passive voice?", options: ["The car was driven by someone.", "The car was driven.", "Someone drove the car.", "Driven was the car by someone."], answer: "The car was driven." },
-        { q: '"He is reading a book." Change to passive voice:', options: ["A book is reading by him.", "A book is being read by him.", "He is being read a book.", "Read is being a book."], answer: "A book is being read by him." },
-        { q: '"Did she write the email?" Change to passive voice:', options: ["Did the email written by her?", "Was the email written by her?", "The email was written by her.", "Written was the email by her."], answer: "Was the email written by her?" },
-        { q: '"The storm damaged the house." Change to passive voice:', options: ["The house damaged the storm.", "The house was damaged by the storm.", "The storm was damaged by the house.", "Damaged was the house."], answer: "The house was damaged by the storm." },
-        { q: "Which voice is generally preferred for clarity and directness?", options: ["Passive voice.", "Active voice.", "Both are equal.", "Neither is preferred."], answer: "Active voice." },
-        { q: "When the doer is unknown, which voice is often used?", options: ["Active voice.", "Passive voice.", "Both equally.", "Neither."], answer: "Passive voice." },
-        { q: '"She has cleaned the room." Change to passive voice:', options: ["The room has cleaned by her.", "The room has been cleaned by her.", "She has been cleaned the room.", "Cleaned has been the room."], answer: "The room has been cleaned by her." },
-        { q: '"They sold the old furniture." Change to passive voice:', options: ["The old furniture sold by them.", "The old furniture was sold by them.", "They were sold the old furniture.", "Sold was the old furniture."], answer: "The old furniture was sold by them." },
-        { q: '"The teacher will give the test." Change to passive voice:', options: ["The test will give by the teacher.", "The test will be given by the teacher.", "The teacher will be given the test.", "Given will be the test."], answer: "The test will be given by the teacher." },
-        { q: "Which sentence is in the present perfect passive voice?", options: ["The food is cooked.", "The food was cooked.", "The food has been cooked.", "The food will be cooked."], answer: "The food has been cooked." },
-        { q: '"He wrote the report quickly." Change to passive voice:', options: ["The report wrote quickly by him.", "The report was written quickly by him.", "He was written the report quickly.", "Written was the report quickly."], answer: "The report was written quickly by him." },
-        { q: '"They are planting trees." Change to passive voice:', options: ["Trees are planting by them.", "Trees are being planted by them.", "They are being planted trees.", "Planted are being trees."], answer: "Trees are being planted by them." },
-        { q: '"Did you see the movie?" Change to passive voice:', options: ["Did the movie seen by you?", "Was the movie seen by you?", "The movie was seen by you.", "Seen was the movie by you."], answer: "Was the movie seen by you?" },
-        { q: '"The manager approved the plan." Change to passive voice:', options: ["The plan approved by the manager.", "The plan was approved by the manager.", "The manager was approved the plan.", "Approved was the plan."], answer: "The plan was approved by the manager." }
-    ];
-    function loadQuestions() {
-        const container = document.getElementById("questionsContainer");
-        container.innerHTML = ""; // Clear previous content
-        questions.forEach((question, index) => {
-            const div = document.createElement("div");
-            div.classList.add("question");
-            div.innerHTML = `<p>${index + 1}. ${question.q}</p>`;
-
-            question.options.forEach(option => {
-                div.innerHTML += `
-                    <label>
-                        <input type="radio" name="q${index}" value="${option}"> ${option}
-                    </label>`;
-            });
-
-            // Add space to display the result for each question
-            div.innerHTML += `<p class="feedback" id="feedback${index}" style="font-weight:bold;"></p>`;
-
-            container.appendChild(div);
-        });
+        const questions = 
+        [
+    {
+        q: "Convert to passive voice: \"The chef prepares delicious meals every day.\"",
+        options: [
+            "Delicious meals every day are prepared by the chef.",
+            "Delicious meals are prepared by the chef every day.",
+            "The chef is preparing delicious meals every day.",
+            "Every day, the chef is preparing delicious meals."
+        ],
+        answer: "Delicious meals are prepared by the chef every day.",
+        explanation: "In passive voice, the object of the active sentence (delicious meals) becomes the subject, and the verb changes to 'be + past participle' (are prepared). The original subject (chef) becomes part of a prepositional phrase with 'by'."
+    },
+    {
+        q: "Convert to active voice: \"The novel was written by Jane Austen in 1813.\"",
+        options: [
+            "Jane Austen has written the novel in 1813.",
+            "Jane Austen wrote the novel in 1813.",
+            "Jane Austen was writing the novel in 1813.",
+            "Jane Austen had written the novel in 1813."
+        ],
+        answer: "Jane Austen wrote the novel in 1813.",
+        explanation: "When converting from passive to active voice, the agent (Jane Austen) becomes the subject, and the verb changes from 'was written' to the simple past tense 'wrote'."
+    },
+    {
+        q: "Which sentence is in passive voice?",
+        options: [
+            "The students completed the project on time.",
+            "We are celebrating her birthday tomorrow.",
+            "The committee has elected a new president.",
+            "An error was detected by the system."
+        ],
+        answer: "An error was detected by the system.",
+        explanation: "The sentence is in passive voice because the subject (error) is receiving the action rather than performing it, and the sentence uses the structure 'was + past participle' (was detected)."
+    },
+    {
+        q: "Convert to passive voice: \"The company will announce the results next week.\"",
+        options: [
+            "The results will be announced by the company next week.",
+            "The results are being announced by the company next week.",
+            "The results will announce by the company next week.",
+            "Next week, the company will be announcing the results."
+        ],
+        answer: "The results will be announced by the company next week.",
+        explanation: "In passive voice with future tense, the structure is 'will be + past participle' (will be announced)."
+    },
+    {
+        q: "Convert to active voice: \"The window was broken by a ball.\"",
+        options: [
+            "The ball broke the window.",
+            "The ball has broken the window.",
+            "The ball had broken the window.",
+            "The ball was breaking the window."
+        ],
+        answer: "The ball broke the window.",
+        explanation: "When converting from passive to active voice, the agent (ball) becomes the subject, and the verb changes from 'was broken' to simple past tense 'broke'."
+    },
+    {
+        q: "Which sentence is already in active voice?",
+        options: [
+            "The painting is admired by many critics.",
+            "The test results were received by the students yesterday.",
+            "The mayor opened the new community center.",
+            "An announcement was made by the principal."
+        ],
+        answer: "The mayor opened the new community center.",
+        explanation: "This sentence is in active voice because the subject (mayor) performs the action (opened), and there's no 'be + past participle' structure."
+    },
+    {
+        q: "Convert to passive voice: \"Someone has stolen my bicycle.\"",
+        options: [
+            "My bicycle has been stolen.",
+            "My bicycle was stolen.",
+            "My bicycle has stolen.",
+            "My bicycle is being stolen."
+        ],
+        answer: "My bicycle has been stolen.",
+        explanation: "When the active voice uses present perfect tense (has stolen), the passive voice uses 'has been + past participle' (has been stolen). Since 'someone' is an indefinite subject, it's often omitted in the passive form."
+    },
+    {
+        q: "Convert to active voice: \"The children were taught by experienced teachers.\"",
+        options: [
+            "Experienced teachers teach the children.",
+            "Experienced teachers taught the children.",
+            "Experienced teachers have taught the children.",
+            "Experienced teachers are teaching the children."
+        ],
+        answer: "Experienced teachers taught the children.",
+        explanation: "When converting from passive to active voice with past tense, the agent (experienced teachers) becomes the subject, and the verb changes from 'were taught' to simple past 'taught'."
+    },
+    {
+        q: "Which of the following is in passive voice?",
+        options: [
+            "The team is winning the championship.",
+            "The audience applauded enthusiastically.",
+            "The decision has been approved by the board.",
+            "She quickly completed all her assignments."
+        ],
+        answer: "The decision has been approved by the board.",
+        explanation: "This sentence is in passive voice as it follows the structure 'has been + past participle' (has been approved) and the subject (decision) receives the action rather than performing it."
+    },
+    {
+        q: "Convert to passive voice: \"They are building a new shopping mall downtown.\"",
+        options: [
+            "A new shopping mall is built downtown.",
+            "A new shopping mall downtown is being built.",
+            "A new shopping mall is being built downtown.",
+            "They have been building a new shopping mall downtown."
+        ],
+        answer: "A new shopping mall is being built downtown.",
+        explanation: "When the active voice uses present continuous tense (are building), the passive voice uses 'is being + past participle' (is being built)."
+    },
+    {
+        q: "Convert to active voice: \"All tickets have been sold by the organizers.\"",
+        options: [
+            "The organizers sell all tickets.",
+            "The organizers sold all tickets.",
+            "The organizers have sold all tickets.",
+            "The organizers are selling all tickets."
+        ],
+        answer: "The organizers have sold all tickets.",
+        explanation: "When converting from passive voice with present perfect (have been sold) to active voice, we use present perfect tense (have sold)."
+    },
+    {
+        q: "Which of the following sentences contains a passive construction?",
+        options: [
+            "The flowers need watering every day.",
+            "The meeting lasted for three hours.",
+            "The rules must be followed by everyone.",
+            "She feels tired after the long journey."
+        ],
+        answer: "The rules must be followed by everyone.",
+        explanation: "This sentence contains a passive construction with the modal verb 'must' followed by 'be + past participle' (be followed)."
+    },
+    {
+        q: "Convert to passive voice: \"The police have arrested three suspects.\"",
+        options: [
+            "Three suspects are being arrested by the police.",
+            "Three suspects were arrested by the police.",
+            "Three suspects have been arrested by the police.",
+            "The police are arresting three suspects."
+        ],
+        answer: "Three suspects have been arrested by the police.",
+        explanation: "When the active voice uses present perfect tense (have arrested), the passive voice uses 'have been + past participle' (have been arrested)."
+    },
+    {
+        q: "Convert to active voice: \"A new solution is being developed by our research team.\"",
+        options: [
+            "Our research team is developing a new solution.",
+            "Our research team develops a new solution.",
+            "Our research team has developed a new solution.",
+            "Our research team developed a new solution."
+        ],
+        answer: "Our research team is developing a new solution.",
+        explanation: "When converting from passive voice with present continuous (is being developed) to active voice, we use present continuous tense (is developing)."
+    },
+    {
+        q: "Which sentence is correctly written in passive voice?",
+        options: [
+            "The manager fired ten employees yesterday.",
+            "Ten employees were fired by the manager yesterday.",
+            "Ten employees are fired by the manager yesterday.",
+            "The manager was firing ten employees yesterday."
+        ],
+        answer: "Ten employees were fired by the manager yesterday.",
+        explanation: "This is correctly written in passive voice, using the structure 'were + past participle' (were fired) and making the object of the active sentence (ten employees) the subject of the passive sentence."
+    },
+    {
+        q: "Convert to passive voice: \"You should submit the report by Friday.\"",
+        options: [
+            "The report should submitted by Friday.",
+            "The report should be submitted by Friday.",
+            "By Friday, you should be submitting the report.",
+            "By Friday, the report is submitted."
+        ],
+        answer: "The report should be submitted by Friday.",
+        explanation: "With modal verbs like 'should', the passive voice structure is 'modal + be + past participle' (should be submitted)."
+    },
+    {
+        q: "Convert to active voice: \"The cake was eaten by the children.\"",
+        options: [
+            "The children eat the cake.",
+            "The children ate the cake.",
+            "The children have eaten the cake.",
+            "The children are eating the cake."
+        ],
+        answer: "The children ate the cake.",
+        explanation: "When converting from passive voice with simple past (was eaten) to active voice, we use simple past tense (ate)."
+    },
+    {
+        q: "Identify the sentence in passive voice:",
+        options: [
+            "Everyone enjoyed the concert last night.",
+            "The storm damaged several buildings in the town.",
+            "The medicine must be taken three times a day.",
+            "She always keeps her promises."
+        ],
+        answer: "The medicine must be taken three times a day.",
+        explanation: "This sentence is in passive voice as it uses the structure 'must be + past participle' (must be taken) and the subject (medicine) receives the action rather than performing it."
+    },
+    {
+        q: "Convert to passive voice: \"They will complete the project by December.\"",
+        options: [
+            "The project will complete by December.",
+            "The project will be completed by December.",
+            "The project is being completed by December.",
+            "By December, they will be completing the project."
+        ],
+        answer: "The project will be completed by December.",
+        explanation: "In future tense, the passive voice uses 'will be + past participle' (will be completed)."
+    },
+    {
+        q: "Convert to active voice: \"English is spoken in many countries.\"",
+        options: [
+            "Many countries spoke English.",
+            "Many countries speak English.",
+            "Many countries are speaking English.",
+            "Many countries have spoken English."
+        ],
+        answer: "Many countries speak English.",
+        explanation: "When converting from passive voice with present simple (is spoken) to active voice, we use present simple tense (speak)."
+    },
+    {
+        q: "Which is NOT in passive voice?",
+        options: [
+            "The letter was posted yesterday.",
+            "The movie is directed by a famous filmmaker.",
+            "The company has been growing steadily.",
+            "Mistakes were made during the process."
+        ],
+        answer: "The company has been growing steadily.",
+        explanation: "This sentence is in active voice using present perfect continuous tense. There is no passive construction (no 'be + past participle' structure)."
+    },
+    {
+        q: "Convert to passive voice: \"Someone left the door open all night.\"",
+        options: [
+            "The door has been left open all night.",
+            "The door was left open all night.",
+            "The door is left open all night.",
+            "All night, the door is being left open."
+        ],
+        answer: "The door was left open all night.",
+        explanation: "When converting to passive voice with simple past tense (left), we use 'was + past participle' (was left). The indefinite subject 'someone' is typically omitted in passive voice."
+    },
+    {
+        q: "Convert to active voice: \"The essay is being written by Sarah.\"",
+        options: [
+            "Sarah writes the essay.",
+            "Sarah wrote the essay.",
+            "Sarah is writing the essay.",
+            "Sarah has written the essay."
+        ],
+        answer: "Sarah is writing the essay.",
+        explanation: "When converting from passive voice with present continuous (is being written) to active voice, we use present continuous tense (is writing)."
+    },
+    {
+        q: "Identify the passive voice construction:",
+        options: [
+            "They have lived in this house for twenty years.",
+            "The sun rises in the east.",
+            "Your application will be processed within 24 hours.",
+            "She is thinking about changing her job."
+        ],
+        answer: "Your application will be processed within 24 hours.",
+        explanation: "This sentence uses the passive voice structure 'will be + past participle' (will be processed)."
+    },
+    {
+        q: "Convert to passive voice: \"The storm destroyed the entire village.\"",
+        options: [
+            "The entire village has been destroyed by the storm.",
+            "The entire village was destroyed by the storm.",
+            "The entire village is destroyed by the storm.",
+            "The storm was destroying the entire village."
+        ],
+        answer: "The entire village was destroyed by the storm.",
+        explanation: "When converting to passive voice with simple past tense (destroyed), we use 'was + past participle' (was destroyed)."
+    },
+    {
+        q: "Convert to active voice: \"The ceremony was attended by hundreds of people.\"",
+        options: [
+            "Hundreds of people attend the ceremony.",
+            "Hundreds of people attended the ceremony.",
+            "Hundreds of people have attended the ceremony.",
+            "Hundreds of people are attending the ceremony."
+        ],
+        answer: "Hundreds of people attended the ceremony.",
+        explanation: "When converting from passive voice with simple past (was attended) to active voice, we use simple past tense (attended)."
+    },
+    {
+        q: "Which of the following is correctly written in passive voice?",
+        options: [
+            "The teacher is explaining the lesson.",
+            "The audience laughed at the comedian's jokes.",
+            "A detailed report must be submitted by each student.",
+            "We had already solved the problem."
+        ],
+        answer: "A detailed report must be submitted by each student.",
+        explanation: "This sentence is in passive voice using the structure 'must be + past participle' (must be submitted)."
+    },
+    {
+        q: "Convert to passive voice: \"The committee is discussing the proposal now.\"",
+        options: [
+            "The proposal is now discussed by the committee.",
+            "The proposal is being discussed by the committee now.",
+            "The proposal has been discussed by the committee now.",
+            "The proposal will be discussed by the committee now."
+        ],
+        answer: "The proposal is being discussed by the committee now.",
+        explanation: "When the active voice uses present continuous tense (is discussing), the passive voice uses 'is being + past participle' (is being discussed)."
+    },
+    {
+        q: "Convert to active voice: \"These buildings were designed by a famous architect.\"",
+        options: [
+            "A famous architect designs these buildings.",
+            "A famous architect designed these buildings.",
+            "A famous architect has designed these buildings.",
+            "A famous architect is designing these buildings."
+        ],
+        answer: "A famous architect designed these buildings.",
+        explanation: "When converting from passive voice with simple past (were designed) to active voice, we use simple past tense (designed)."
+    },
+    {
+        q: "Identify the sentence that uses passive voice:",
+        options: [
+            "The chef is preparing a special dish for tonight.",
+            "Our team won the championship last year.",
+            "Everyone enjoyed the performance.",
+            "Extensive damage was caused by the hurricane."
+        ],
+        answer: "Extensive damage was caused by the hurricane.",
+        explanation: "This sentence is in passive voice as it uses the structure 'was + past participle' (was caused) and the subject (extensive damage) receives the action rather than performing it."
+    },
+    {
+        q: "Convert to passive voice: \"My grandmother made this quilt.\"",
+        options: [
+            "This quilt has been made by my grandmother.",
+            "This quilt is made by my grandmother.",
+            "This quilt was made by my grandmother.",
+            "This quilt is being made by my grandmother."
+        ],
+        answer: "This quilt was made by my grandmother.",
+        explanation: "When converting to passive voice with simple past tense (made), we use 'was + past participle' (was made)."
     }
-    function loadQuestions() {
-        const container = document.getElementById("questionsContainer");
-        container.innerHTML = ""; // Clear previous content
-        questions.forEach((question, index) => {
-            const div = document.createElement("div");
-            div.classList.add("question");
-            div.innerHTML = `<p>${index + 1}. ${question.q}</p>`;
+];
 
-            question.options.forEach(option => {
-                div.innerHTML += `
-                    <label>
-                        <input type="radio" name="q${index}" value="${option}"> ${option}
-                    </label>`;
+
+
+        function loadQuestions() {
+            const container = document.getElementById("questionsContainer");
+            container.innerHTML = ""; // Clear previous content
+            
+            questions.forEach((question, index) => {
+                const div = document.createElement("div");
+                div.classList.add("question");
+                div.innerHTML = `
+                    <p>${index + 1}. ${question.q}</p>
+                    <div class="options">
+                        ${question.options.map(option => `
+                            <label class="option-label">
+                                <input type="radio" name="q${index}" value="${option}"> ${option}
+                            </label>
+                        `).join('')}
+                    </div>
+                    <div class="feedback" id="feedback${index}"></div>
+                `;
+                container.appendChild(div);
             });
+        }
 
-            // Add a feedback section without displaying the correct answer
-            div.innerHTML += `<p class="feedback" id="feedback${index}" style="font-weight:bold;"></p>`;
+        function updateProgressBar(score, total) {
+            const progressBar = document.getElementById("progressBar");
+            const percentage = (score / total) * 100;
+            progressBar.style.width = `${percentage}%`;
+        }
 
-            container.appendChild(div);
-        });
-    }
-
-    function submitQuiz() {
-        let score = 0;
-
-        questions.forEach((question, index) => {
-            let selected = document.querySelector(`input[name="q${index}"]:checked`);
-            let feedback = document.getElementById(`feedback${index}`);
-
-            if (selected) {
-                if (selected.value === question.answer) {
-                    score++;
-                    feedback.innerHTML = "✅ Correct answer";
-                    feedback.style.color = "green";
+        function submitQuiz() {
+            let score = 0;
+            const resultElement = document.getElementById("result");
+            
+            questions.forEach((question, index) => {
+                const selected = document.querySelector(`input[name="q${index}"]:checked`);
+                const feedback = document.getElementById(`feedback${index}`);
+                
+                if (selected) {
+                    if (selected.value === question.answer) {
+                        score++;
+                        feedback.innerHTML = `✓ Correct! ${question.explanation}`;
+                        feedback.style.backgroundColor = "#d7f9f8";
+                        feedback.style.color = "#0077b6";
+                    } else {
+                        feedback.innerHTML = `✗ The correct answer is "${question.answer}" <br>${question.explanation}`;
+                        feedback.style.backgroundColor = "#ffe3e3";
+                        feedback.style.color = "#d90429";
+                    }
                 } else {
-                    feedback.innerHTML = "❌ Wrong answer";
-                    feedback.style.color = "red";
+                    feedback.innerHTML = "⚠️ No answer selected!";
+                    feedback.style.backgroundColor = "#fff3cd";
+                    feedback.style.color = "#856404";
                 }
+            });
+            
+            updateProgressBar(score, questions.length);
+            
+            resultElement.style.display = "block";
+            const percentage = Math.round((score / questions.length) * 100);
+            
+            let message;
+            let color;
+            
+            if (percentage >= 90) {
+                message = "Excellent!";
+                color = "#4cc9f0";
+            } else if (percentage >= 70) {
+                message = "Good job!";
+                color = "#4361ee";
+            } else if (percentage >= 50) {
+                message = "Nice try!";
+                color = "#3a0ca3";
             } else {
-                feedback.innerHTML = "⚠️ No answer selected!";
-                feedback.style.color = "orange";
+                message = "Keep practicing!";
+                color = "#f72585";
             }
-        });
+            
+            resultElement.innerHTML = `
+                <div style="font-size: 20px; margin-bottom: 10px; color: ${color};">${message}</div>
+                <div>You scored ${score} out of ${questions.length} (${percentage}%)</div>
+            `;
+            resultElement.style.backgroundColor = "#f8f9fa";
+            resultElement.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.1)";
+            
+            // Scroll to results
+            resultElement.scrollIntoView({ behavior: 'smooth' });
+        }
 
-        document.getElementById("result").innerText = `You scored ${score} out of ${questions.length}!`;
-    }
+        // Show/hide scroll to top button
+        window.onscroll = function() {
+            const scrollButton = document.querySelector('.scroll-to-top');
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                scrollButton.classList.add('visible');
+            } else {
+                scrollButton.classList.remove('visible');
+            }
+        };
 
-    loadQuestions();
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        loadQuestions();
     </script>
 </body>
 </html>

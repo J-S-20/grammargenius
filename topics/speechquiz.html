@@ -4,1148 +4,700 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Direct and Indirect Speech Quiz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #2c7da0;
-            --primary-light: #a9d6e5;
-            --primary-lighter: #e1f2f7;
-            --primary-dark: #014f86;
-            --text: #012a4a;
-            --white: #ffffff;
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
+            --accent-color: #f72585;
+            --light-bg: #f8f9fa;
+            --dark-text: #333;
+            --light-text: #fff;
+            --correct-color: #4cc9f0;
+            --wrong-color: #f72585;
+            --box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
         }
-        
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--primary-lighter);
-            color: var(--text);
-            line-height: 1.6;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-        }
-        
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        header {
-            background-color: var(--primary);
-            color: var(--white);
-            padding: 20px;
-            border-radius: 8px 8px 0 0;
-            margin-bottom: 20px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        
-        h1 {
-            margin: 0;
-            font-size: 24px;
-        }
-        
-        .instructions {
-            background-color: var(--white);
-            border-left: 4px solid var(--primary);
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 0 8px 8px 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-        
-        .quiz-container {
-            background-color: var(--white);
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        
-        .question {
-            background-color: var(--primary-lighter);
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 8px;
-            border-left: 4px solid var(--primary);
-        }
-        
-        .question h3 {
-            margin-top: 0;
-            color: var(--primary-dark);
-        }
-        
-        .options {
-            margin-left: 20px;
-        }
-        
-        .option {
-            margin-bottom: 8px;
-        }
-        
-        .option label {
+            background: linear-gradient(135deg, #4cc9f0 0%, #4361ee 100%);
+            color: var(--dark-text);
+            min-height: 100vh;
             display: flex;
-            align-items: flex-start;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 850px;
+            width: 95%;
+            margin: 30px auto;
+            padding: 35px;
+            background-color: var(--light-bg);
+            box-shadow: var(--box-shadow);
+            border-radius: var(--border-radius);
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 32px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--correct-color), var(--primary-color));
+            border-radius: 2px;
+        }
+
+        .quiz-info {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--secondary-color);
+            font-weight: 500;
+        }
+
+        .question {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .question:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .question p {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
             cursor: pointer;
-            padding: 8px;
-            border-radius: 4px;
-            transition: background-color 0.2s;
+            transition: var(--transition);
         }
-        
-        .option label:hover {
-            background-color: var(--primary-lighter);
+
+        .option-label:hover {
+            background-color: #e3e3e3;
         }
-        
-        .option input {
+
+        .option-label input {
             margin-right: 10px;
-            margin-top: 3px;
         }
-        
-        .btn {
-            background-color: var(--primary);
-            color: var(--white);
-            border: none;
-            padding: 12px 24px;
-            font-size: 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            font-weight: bold;
+
+        .feedback {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
         }
-        
-        .btn:hover {
-            background-color: var(--primary-dark);
-        }
-        
-        .btn-container {
+
+        .buttons {
             display: flex;
             justify-content: center;
             gap: 20px;
-            margin: 20px 0;
-        }
-        
-        .result {
-            display: none;
-            background-color: var(--primary-light);
-            padding: 15px;
-            margin-top: 20px;
-            border-radius: 8px;
-            text-align: center;
-            font-weight: bold;
-            font-size: 18px;
-        }
-        
-        .correct {
-            background-color: #d4edda;
-            color: #155724;
-            border-left: 4px solid #28a745;
-        }
-        
-        .incorrect {
-            background-color: #f8d7da;
-            color: #721c24;
-            border-left: 4px solid #dc3545;
-        }
-        
-        .explanation {
-            display: none;
-            padding: 10px;
-            margin-top: 8px;
-            background-color: var(--primary-lighter);
-            border-radius: 4px;
-            font-size: 14px;
-        }
-        
-        footer {
-            text-align: center;
             margin-top: 30px;
-            font-size: 14px;
-            color: var(--primary-dark);
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 14px 30px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: var(--light-text);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .cancel-btn {
+            background-color: #e0e0e0;
+            color: var(--dark-text);
+        }
+
+        .cancel-btn:hover {
+            background-color: #d0d0d0;
+        }
+
+        #result {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 600;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            display: none;
+        }
+
+        .progress-container {
+            margin-top: 20px;
+            margin-bottom: 30px;
+            background-color: #e0e0e0;
+            border-radius: 20px;
+            height: 10px;
+            width: 100%;
+            overflow: hidden;
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(to right, var(--correct-color), var(--primary-color));
+            transition: width 0.5s ease;
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px;
+            }
+
+            .options {
+                grid-template-columns: 1fr;
+            }
+
+            button {
+                padding: 12px 25px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header id="top">
-            <h1>Direct and Indirect Speech Quiz</h1>
-        </header>
-        
-        <div class="instructions">
-            <h2>Instructions</h2>
-            <p>This quiz tests your knowledge of direct and indirect (reported) speech. Choose the correct option for each question. After completing all questions, click "Submit" to see your score.</p>
+        <h2>Direct and Indirect Speech Quiz</h2>
+        <div class="quiz-info">Test your knowledge of converting between direct and indirect speech.</div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
         </div>
-        
-        <div class="quiz-container">
-            <form id="quiz-form">
-                <div class="question" id="q1">
-                    <h3>Question 1</h3>
-                    <p>Convert to indirect speech: "I am reading a book," said John.</p>
-                    <div class="options">
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q1" value="a">
-                                John said I am reading a book.
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q1" value="b">
-                                John said that he was reading a book.
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q1" value="c">
-                                John said that he is reading a book.
-                            </label>
-                        </div>
-                    </div>
-                    <div class="explanation" id="exp1">
-                        <p><strong>Correct answer:</strong> John said that he was reading a book.</p>
-                        <p>When converting from direct to indirect speech, present tense ("am reading") changes to past tense ("was reading") and pronouns change from first person to third person ("I" becomes "he").</p>
-                    </div>
-                </div>
-                
-                <div class="question" id="q2">
-                    <h3>Question 2</h3>
-                    <p>Convert to direct speech: The teacher asked if we had completed our assignments.</p>
-                    <div class="options">
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q2" value="a">
-                                The teacher said, "Did you complete your assignments?"
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q2" value="b">
-                                The teacher said, "Have you completed your assignments?"
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q2" value="c">
-                                The teacher said, "You had completed your assignments."
-                            </label>
-                        </div>
-                    </div>
-                    <div class="explanation" id="exp2">
-                        <p><strong>Correct answer:</strong> The teacher said, "Have you completed your assignments?"</p>
-                        <p>When converting from indirect to direct speech, a reported question introduced by "if" or "whether" becomes a direct question. The past perfect "had completed" changes to present perfect "have completed".</p>
-                    </div>
-                </div>
-
-                <div class="question" id="q3">
-                    <h3>Question 3</h3>
-                    <p>Convert to indirect speech: She said, "I will visit Paris next summer."</p>
-                    <div class="options">
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q3" value="a">
-                                She said she would visit Paris next summer.
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q3" value="b">
-                                She said she will visit Paris next summer.
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q3" value="c">
-                                She said she would visit Paris the following summer.
-                            </label>
-                        </div>
-                    </div>
-                    <div class="explanation" id="exp3">
-                        <p><strong>Correct answer:</strong> She said she would visit Paris the following summer.</p>
-                        <p>When converting to indirect speech, future tense ("will visit") changes to conditional ("would visit") and time expressions change ("next summer" becomes "the following summer").</p>
-                    </div>
-                </div>
-                
-                <div class="question" id="q4">
-                    <h3>Question 4</h3>
-                    <p>Convert to direct speech: He told me that he had lost his wallet yesterday.</p>
-                    <div class="options">
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q4" value="a">
-                                He said, "I lost my wallet yesterday."
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q4" value="b">
-                                He said, "I have lost my wallet yesterday."
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q4" value="c">
-                                He said, "I had lost my wallet the day before."
-                            </label>
-                        </div>
-                    </div>
-                    <div class="explanation" id="exp4">
-                        <p><strong>Correct answer:</strong> He said, "I lost my wallet yesterday."</p>
-                        <p>When converting to direct speech, past perfect tense ("had lost") often reverts to simple past ("lost") when there's a specific time reference.</p>
-                    </div>
-                </div>
-                
-                <div class="question" id="q5">
-                    <h3>Question 5</h3>
-                    <p>Convert to indirect speech: "Don't touch the wire," the electrician warned.</p>
-                    <div class="options">
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q5" value="a">
-                                The electrician warned don't touch the wire.
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q5" value="b">
-                                The electrician warned not to touch the wire.
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q5" value="c">
-                                The electrician warned that we don't touch the wire.
-                            </label>
-                        </div>
-                    </div>
-                    <div class="explanation" id="exp5">
-                        <p><strong>Correct answer:</strong> The electrician warned not to touch the wire.</p>
-                        <p>When converting imperative sentences (commands) to indirect speech, we use "to" or "not to" + infinitive verb form.</p>
-                    </div>
-                </div>
-                
-                <div class="question" id="q6">
-                    <h3>Question 6</h3>
-                    <p>Which of the following correctly represents indirect speech?</p>
-                    <div class="options">
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q6" value="a">
-                                She said, "I can solve this problem."
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q6" value="b">
-                                She told that she can solve this problem.
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q6" value="c">
-                                She said that she could solve that problem.
-                            </label>
-                        </div>
-                    </div>
-                    <div class="explanation" id="exp6">
-                        <p><strong>Correct answer:</strong> She said that she could solve that problem.</p>
-                        <p>This is correct indirect speech because it uses "said that" to report, changes modal "can" to "could", and changes "this" to "that" (demonstrative pronouns often change in indirect speech).</p>
-                    </div>
-                </div>
-                
-                <div class="question" id="q7">
-                    <h3>Question 7</h3>
-                    <p>Convert to indirect speech: "Where do you live?" asked the stranger.</p>
-                    <div class="options">
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q7" value="a">
-                                The stranger asked where do I live.
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q7" value="b">
-                                The stranger asked where I lived.
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q7" value="c">
-                                The stranger asked where did I live.
-                            </label>
-                        </div>
-                    </div>
-                    <div class="explanation" id="exp7">
-                        <p><strong>Correct answer:</strong> The stranger asked where I lived.</p>
-                        <p>When converting direct questions to indirect speech, the question word order changes to statement word order (no auxiliary "do/does" required) and present tense ("do live") changes to past tense ("lived").</p>
-                    </div>
-                </div>
-                
-                <div class="question" id="q8">
-                    <h3>Question 8</h3>
-                    <p>Convert to direct speech: The doctor advised the patient to take rest.</p>
-                    <div class="options">
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q8" value="a">
-                                The doctor said, "You should take rest."
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q8" value="b">
-                                The doctor said, "Take rest."
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q8" value="c">
-                                The doctor said, "The patient should take rest."
-                            </label>
-                        </div>
-                    </div>
-                    <div class="explanation" id="exp8">
-                        <p><strong>Correct answer:</strong> The doctor said, "Take rest."</p>
-                        <p>When "advise" is used in indirect speech for giving instructions, it typically translates to an imperative sentence in direct speech.</p>
-                    </div>
-                </div>
-                
-                <div class="question" id="q9">
-                    <h3>Question 9</h3>
-                    <p>Convert to indirect speech: "I have finished my homework," she said.</p>
-                    <div class="options">
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q9" value="a">
-                                She said she has finished her homework.
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q9" value="b">
-                                She said she had finished her homework.
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q9" value="c">
-                                She said that she finished her homework.
-                            </label>
-                        </div>
-                    </div>
-                    <div class="explanation" id="exp9">
-                        <p><strong>Correct answer:</strong> She said she had finished her homework.</p>
-                        <p>When converting to indirect speech, present perfect tense ("have finished") changes to past perfect tense ("had finished").</p>
-                    </div>
-                </div>
-                
-                <div class="question" id="q10">
-                    <h3>Question 10</h3>
-                    <p>Convert to direct speech: My friend asked me if I was going to the party that night.</p>
-                    <div class="options">
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q10" value="a">
-                                My friend said, "Are you going to the party tonight?"
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q10" value="b">
-                                My friend said, "Were you going to the party that night?"
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q10" value="c">
-                                My friend said, "Will you go to the party tonight?"
-                            </label>
-                        </div>
-                    </div>
-                    <div class="explanation" id="exp10">
-                        <p><strong>Correct answer:</strong> My friend said, "Are you going to the party tonight?"</p>
-                        <p>When converting from indirect to direct speech, past tense ("was going") changes back to present tense ("are going") and "that night" changes to "tonight" for the immediate time reference.</p>
-                    </div>
-                </div>
-                
-                <div class="question" id="q11">
-                    <h3>Question 11</h3>
-                    <p>Convert to indirect speech: "I saw her yesterday," he told me.</p>
-                    <div class="options">
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q11" value="a">
-                                He told me that he saw her yesterday.
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q11" value="b">
-                                He told me that he had seen her yesterday.
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q11" value="c">
-                                He told me that he had seen her the day before.
-                            </label>
-                        </div>
-                    </div>
-                    <div class="explanation" id="exp11">
-                        <p><strong>Correct answer:</strong> He told me that he had seen her the day before.</p>
-                        <p>When converting to indirect speech, simple past tense ("saw") changes to past perfect ("had seen") and time references shift ("yesterday" becomes "the day before").</p>
-                    </div>
-                </div>
-                
-                <div class="question" id="q12">
-                    <h3>Question 12</h3>
-                    <p>Convert to direct speech: She asked me how long I had been living in Paris.</p>
-                    <div class="options">
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q12" value="a">
-                                She said, "How long have you been living in Paris?"
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q12" value="b">
-                                She said, "How long you have been living in Paris?"
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q12" value="c">
-                                She said, "How long had you been living in Paris?"
-                            </label>
-                        </div>
-                    </div>
-                    <div class="explanation" id="exp12">
-                        <p><strong>Correct answer:</strong> She said, "How long have you been living in Paris?"</p>
-                        <p>When converting to direct speech, past perfect continuous tense ("had been living") changes to present perfect continuous ("have been living").</p>
-                    </div>
-                </div>
-                
-                <div class="question" id="q13">
-                    <h3>Question 13</h3>
-                    <p>Which is the correct indirect speech for: "Let's go to the park," suggested Tom.</p>
-                    <div class="options">
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q13" value="a">
-                                Tom suggested that we go to the park.
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q13" value="b">
-                                Tom suggested going to the park.
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q13" value="c">
-                                Both A and B are correct.
-                            </label>
-                        </div>
-                    </div>
-                    <div class="explanation" id="exp13">
-                        <p><strong>Correct answer:</strong> Both A and B are correct.</p>
-                        <p>For suggestions using "let's," both "suggested that we go" and "suggested going" are acceptable forms of indirect speech.</p>
-                    </div>
-                </div>
-                
-                <div class="question" id="q14">
-                    <h3>Question 14</h3>
-                    <p>Convert to indirect speech: "I'll call you tomorrow," she promised.</p>
-                    <div class="options">
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q14" value="a">
-                                She promised she will call me tomorrow.
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q14" value="b">
-                                She promised she would call me the next day.
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q14" value="c">
-                                She promised she would call me tomorrow.
-                            </label>
-                        </div>
-                    </div>
-                    <div class="explanation" id="exp14">
-                        <p><strong>Correct answer:</strong> She promised she would call me the next day.</p>
-                        <p>When converting to indirect speech, future tense ("will call") changes to conditional ("would call") and time expressions change ("tomorrow" becomes "the next day").</p>
-                    </div>
-                </div>
-                
-                <div class="question" id="q15">
-                    <h3>Question 15</h3>
-                    <p>Which sentence is in direct speech?</p>
-                    <div class="options">
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q15" value="a">
-                                The teacher told us that our exams would begin next week.
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q15" value="b">
-                                Sarah wondered where she had put her keys.
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q15" value="c">
-                                "This is the best movie I've ever seen!" exclaimed Mark.
-                            </label>
-                        </div>
-                    </div>
-                    <div class="explanation" id="exp15">
-                        <p><strong>Correct answer:</strong> "This is the best movie I've ever seen!" exclaimed Mark.</p>
-                        <p>Direct speech is indicated by quotation marks and reports the exact words spoken, followed by a reporting verb.</p>
-                    </div>
-                </div>
-
-                <div class="question" id="q16">
-                    <h3>Question 16</h3>
-                    <p>Convert to indirect speech: "We have been waiting for an hour," they complained.</p>
-                    <div class="options">
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q16" value="a">
-                                They complained they have been waiting for an hour.
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q16" value="b">
-                                They complained that they had been waiting for an hour.
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q16" value="c">
-                                They complained that they were waiting for an hour.
-                            </label>
-                        </div>
-                    </div>
-                    <div class="explanation" id="exp16">
-                        <p><strong>Correct answer:</strong> They complained that they had been waiting for an hour.</p>
-                        <p>When converting to indirect speech, present perfect continuous ("have been waiting") changes to past perfect continuous ("had been waiting").</p>
-                    </div>
-                </div>
-                
-                <div class="question" id="q17">
-                    <h3>Question 17</h3>
-                    <p>Convert to direct speech: He said he would finish the project by Friday.</p>
-                    <div class="options">
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q17" value="a">
-                                He said, "I will finish the project by Friday."
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q17" value="b">
-                                He said, "I would finish the project by Friday."
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q17" value="c">
-                                He said, "The project will be finished by Friday."
-                            </label>
-                        </div>
-                    </div>
-                    <div class="explanation" id="exp17">
-                        <p><strong>Correct answer:</strong> He said, "I will finish the project by Friday."</p>
-                        <p>When converting from indirect to direct speech, conditional ("would finish") changes back to future tense ("will finish") and pronouns change from third person to first person ("he" becomes "I").</p>
-                    </div>
-                </div>
-                
-                <div class="question" id="q18">
-                    <h3>Question 18</h3>
-                    <p>Convert to indirect speech: "Are you coming to the meeting tomorrow?" asked my colleague.</p>
-                    <div class="options">
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q18" value="a">
-                                My colleague asked if I am coming to the meeting tomorrow.
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q18" value="b">
-                                My colleague asked if I was coming to the meeting the next day.
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q18" value="c">
-                                My colleague asked if I would be coming to the meeting tomorrow.
-                            </label>
-                        </div>
-                    </div>
-                    <div class="explanation" id="exp18">
-                        <p><strong>Correct answer:</strong> My colleague asked if I was coming to the meeting the next day.</p>
-                        <p>When converting yes/no questions to indirect speech, we use "if" or "whether", change present tense to past tense, and shift time expressions ("tomorrow" becomes "the next day").</p>
-                    </div>
-                </div>
-                
-                <div class="question" id="q19">
-                    <h3>Question 19</h3>
-                    <p>Convert to direct speech: The tour guide advised us not to wander off alone.</p>
-                    <div class="options">
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q19" value="a">
-                                The tour guide said, "You should not wander off alone."
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q19" value="b">
-                                The tour guide said, "Don't wander off alone."
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q19" value="c">
-                                The tour guide said, "Please don't wander off alone."
-                            </label>
-                        </div>
-                    </div>
-                    <div class="explanation" id="exp19">
-                        <p><strong>Correct answer:</strong> The tour guide said, "Don't wander off alone."</p>
-                        <p>When "advise not to" is used in indirect speech, it typically converts to a negative imperative (command) in direct speech.</p>
-                    </div>
-                </div>
-                
-                <div class="question" id="q20">
-                    <h3>Question 20</h3>
-                    <p>Convert to indirect speech: "I was studying when you called," said Mary.</p>
-                    <div class="options">
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q20" value="a">
-                                Mary said she was studying when I called.
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q20" value="b">
-                                Mary said she had been studying when I had called.
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q20" value="c">
-                                Mary said she had been studying when I called.
-                            </label>
-                        </div>
-                    </div>
-                    <div class="explanation" id="exp20">
-                        <p><strong>Correct answer:</strong> Mary said she had been studying when I called.</p>
-                        <p>When converting to indirect speech, past continuous ("was studying") generally changes to past perfect continuous ("had been studying"). The second clause ("you called") changes pronouns but remains in simple past tense.</p>
-                    </div>
-                </div>
-                
-                <div class="question" id="q21">
-                    <h3>Question 21</h3>
-                    <p>Which sentence correctly uses direct speech?</p>
-                    <div class="options">
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q21" value="a">
-                                She told me I was late for the meeting.
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q21" value="b">
-                                "Why are you late for the meeting?" she asked.
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q21" value="c">
-                                She asked me why I was late for the meeting.
-                            </label>
-                        </div>
-                    </div>
-                    <div class="explanation" id="exp21">
-                        <p><strong>Correct answer:</strong> "Why are you late for the meeting?" she asked.</p>
-                        <p>Direct speech uses quotation marks to report the exact words spoken, with the exact question structure preserved.</p>
-                    </div>
-                </div>
-                
-                <div class="question" id="q22">
-                    <h3>Question 22</h3>
-                    <p>Convert to direct speech: He wondered if it would rain the next day.</p>
-                    <div class="options">
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q22" value="a">
-                                He said, "Will it rain tomorrow?"
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q22" value="b">
-                                He said, "I wonder if it will rain tomorrow."
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q22" value="c">
-                                He said, "Does it rain tomorrow?"
-                            </label>
-                        </div>
-                    </div>
-                    <div class="explanation" id="exp22">
-                        <p><strong>Correct answer:</strong> He said, "I wonder if it will rain tomorrow."</p>
-                        <p>When the reporting verb is "wondered", it often indicates a thought or speculation rather than a direct question. In direct speech, this becomes "I wonder" followed by the question content.</p>
-                    </div>
-                </div>
-                
-                <div class="question" id="q23">
-                    <h3>Question 23</h3>
-                    <p>Convert to indirect speech: "This museum was built in 1890," the guide explained.</p>
-                    <div class="options">
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q23" value="a">
-                                The guide explained that that museum was built in 1890.
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q23" value="b">
-                                The guide explained that this museum had been built in 1890.
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q23" value="c">
-                                The guide explained that the museum was built in 1890.
-                            </label>
-                        </div>
-                    </div>
-                    <div class="explanation" id="exp23">
-                        <p><strong>Correct answer:</strong> The guide explained that the museum was built in 1890.</p>
-                        <p>When converting to indirect speech, demonstratives like "this" often change to "the", and the past tense ("was built") can remain as past tense since it refers to a historical fact.</p>
-                    </div>
-                </div>
-                
-                <div class="question" id="q24">
-                    <h3>Question 24</h3>
-                    <p>Convert to direct speech: She asked me what my favorite book was.</p>
-                    <div class="options">
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q24" value="a">
-                                She said, "What is your favorite book?"
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q24" value="b">
-                                She said, "What was your favorite book?"
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q24" value="c">
-                                She said, "What your favorite book is?"
-                            </label>
-                        </div>
-                    </div>
-                    <div class="explanation" id="exp24">
-                        <p><strong>Correct answer:</strong> She said, "What is your favorite book?"</p>
-                        <p>When converting questions from indirect to direct speech, past tense verbs ("was") change back to present tense ("is"), and the word order changes to direct question form.</p>
-                    </div>
-                </div>
-                
-                <div class="question" id="q25">
-                    <h3>Question 25</h3>
-                    <p>Convert to indirect speech: "Could you please help me with this package?" the old lady asked.</p>
-                    <div class="options">
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q25" value="a">
-                                The old lady asked could I please help her with that package.
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q25" value="b">
-                                The old lady asked if I could please help her with that package.
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q25" value="c">
-                                The old lady asked me to please help her with this package.
-                            </label>
-                        </div>
-                    </div>
-                    <div class="explanation" id="exp25">
-                        <p><strong>Correct answer:</strong> The old lady asked if I could please help her with that package.</p>
-                        <p>When converting polite requests to indirect speech, we use "if" or "whether" followed by the same modal verb, and demonstratives change ("this" becomes "that").</p>
-                    </div>
-                </div>
-                
-                <div class="question" id="q26">
-                    <h3>Question 26</h3>
-                    <p>Convert to direct speech: She ordered him to leave immediately.</p>
-                    <div class="options">
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q26" value="a">
-                                She said, "You should leave immediately."
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q26" value="b">
-                                She said, "Leave immediately!"
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q26" value="c">
-                                She said, "He must leave immediately."
-                            </label>
-                        </div>
-                    </div>
-                    <div class="explanation" id="exp26">
-                        <p><strong>Correct answer:</strong> She said, "Leave immediately!"</p>
-                        <p>When the reporting verb is "ordered," it typically converts to an imperative (command) in direct speech, often with an exclamation mark to show the forceful tone.</p>
-                    </div>
-                </div>
-                
-                <div class="question" id="q27">
-                    <h3>Question 27</h3>
-                    <p>Convert to indirect speech: "I've never been to Japan, but I'd love to go someday," said Paul.</p>
-                    <div class="options">
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q27" value="a">
-                                Paul said he has never been to Japan, but he would love to go someday.
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q27" value="b">
-                                Paul said he had never been to Japan, but he would love to go someday.
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q27" value="c">
-                                Paul said he never went to Japan, but he would love to go someday.
-                            </label>
-                        </div>
-                    </div>
-                    <div class="explanation" id="exp27">
-                        <p><strong>Correct answer:</strong> Paul said he had never been to Japan, but he would love to go someday.</p>
-                        <p>When converting to indirect speech, present perfect ("have never been") changes to past perfect ("had never been"), and conditional forms ("would love") remain the same.</p>
-                    </div>
-                </div>
-                
-                <div class="question" id="q28">
-                    <h3>Question 28</h3>
-                    <p>Convert to direct speech: My mother reminded me to take my medicine.</p>
-                    <div class="options">
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q28" value="a">
-                                My mother said, "Remember to take your medicine."
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q28" value="b">
-                                My mother said, "Don't forget to take your medicine."
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q28" value="c">
-                                Both A and B are acceptable.
-                            </label>
-                        </div>
-                    </div>
-                    <div class="explanation" id="exp28">
-                        <p><strong>Correct answer:</strong> Both A and B are acceptable.</p>
-                        <p>The reporting verb "reminded" can be expressed in direct speech using either "remember to" or "don't forget to" - both convey the same meaning of a reminder.</p>
-                    </div>
-                </div>
-                
-                <div class="question" id="q29">
-                    <h3>Question 29</h3>
-                    <p>Convert to indirect speech: "Hurry up or we'll miss the train!" shouted my friend.</p>
-                    <div class="options">
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q29" value="a">
-                                My friend shouted to hurry up or we'll miss the train.
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q29" value="b">
-                                My friend shouted that we should hurry up or we would miss the train.
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q29" value="c">
-                                My friend shouted hurry up or we would miss the train.
-                            </label>
-                        </div>
-                    </div>
-                    <div class="explanation" id="exp29">
-                        <p><strong>Correct answer:</strong> My friend shouted that we should hurry up or we would miss the train.</p>
-                        <p>When converting imperatives with explanations to indirect speech, the command often becomes "should" + verb, and future tense ("will miss") changes to conditional ("would miss").</p>
-                    </div>
-                </div>
-                
-                <div class="question" id="q30">
-                    <h3>Question 30</h3>
-                    <p>Which statement about direct and indirect speech is correct?</p>
-                    <div class="options">
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q30" value="a">
-                                In indirect speech, tenses never change from the original direct speech.
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q30" value="b">
-                                In direct speech, the exact words of the speaker are reported without quotation marks.
-                            </label>
-                        </div>
-                        <div class="option">
-                            <label>
-                                <input type="radio" name="q30" value="c">
-                                When converting from direct to indirect speech, pronouns, time expressions, and usually tenses change.
-                            </label>
-                        </div>
-                    </div>
-                    <div class="explanation" id="exp30">
-                        <p><strong>Correct answer:</strong> When converting from direct to indirect speech, pronouns, time expressions, and usually tenses change.</p>
-                        <p>This is the fundamental rule of converting direct to indirect speech - changes typically occur in pronouns (I → he/she), time expressions (today → that day), and tenses (present → past).</p>
-                    </div>
-                </div>
-                
-                <div class="btn-container">
-                    <button type="button" class="btn" id="submit-btn">Submit Quiz</button>
-                    <button type="button" class="btn" onclick="window.location.href = 'direct_indirect_speech.html'" >Back</button>
-                </div>
-                
-                <div class="result" id="result"></div>
-            </form>
-        </div>
-        
-        <footer>
-            <p>&copy; 2025 Direct and Indirect Speech Quiz | GRAMMAR GENIUS</p>
-        </footer>
+        <form id="quizForm">
+            <div id="questionsContainer"></div>
+            <div id="result"></div>
+            <div class="buttons">
+                <button type="button" class="submit-btn" onclick="submitQuiz()">Check Answers</button>
+                <button type="button" class="cancel-btn" onclick="window.location.href = 'direct_indirect_speech.html'">Back to Lessons</button>
+            </div>
+        </form>
+    </div>
+    
+    <div class="scroll-to-top" onclick="scrollToTop()">
+        ↑
     </div>
 
     <script>
-        
-const answers = {
-    q1: "b",
-    q2: "b",
-    q3: "c",
-    q4: "a",
-    q5: "b",
-    q6: "c",
-    q7: "b",
-    q8: "b",
-    q9: "b",
-    q10: "a",
-    q11: "c",
-    q12: "a",
-    q13: "c",
-    q14: "b",
-    q15: "c",
-    q16: "b",
-    q17: "a",
-    q18: "b",
-    q19: "b",
-    q20: "c",
-    q21: "b",
-    q22: "b",
-    q23: "c",
-    q24: "a",
-    q25: "b",
-    q26: "b",
-    q27: "b",
-    q28: "c",
-    q29: "b",
-    q30: "c"
-};
-        
-        document.getElementById('submit-btn').addEventListener('click', function() {
-            let score = 0;
-            let totalQuestions = Object.keys(answers).length;
+        const questions = 
+        [
+    {
+        q: "Convert to indirect speech: \"I am studying for my exams,\" said Mary.",
+        options: [
+            "Mary said I am studying for my exams.",
+            "Mary said that she was studying for her exams.",
+            "Mary said that she is studying for her exams.",
+            "Mary said that she had been studying for her exams."
+        ],
+        answer: "Mary said that she was studying for her exams.",
+        explanation: "When converting direct speech to indirect speech, present continuous tense ('am studying') changes to past continuous tense ('was studying'), and pronouns change from first person to third person ('I' to 'she')."
+    },
+    {
+        q: "Convert to direct speech: He told me that he would help me the next day.",
+        options: [
+            "He said, \"I will help you tomorrow.\"",
+            "He said, \"I would help you the next day.\"",
+            "He said, \"I can help you tomorrow.\"",
+            "He said, \"I am helping you tomorrow.\""
+        ],
+        answer: "He said, \"I will help you tomorrow.\"",
+        explanation: "When converting indirect speech to direct speech, 'would' changes back to 'will' and 'the next day' changes back to 'tomorrow'."
+    },
+    {
+        q: "Convert to indirect speech: \"Are you coming to the party?\" she asked me.",
+        options: [
+            "She asked me am I coming to the party.",
+            "She asked me if I was coming to the party.",
+            "She asked me if I am coming to the party.",
+            "She asked me that I was coming to the party."
+        ],
+        answer: "She asked me if I was coming to the party.",
+        explanation: "When converting direct questions to indirect speech, we use 'if' or 'whether' for yes/no questions, change the word order to statement order, and change present tense ('are coming') to past tense ('was coming')."
+    },
+    {
+        q: "Convert to direct speech: The doctor advised her to take the medicine regularly.",
+        options: [
+            "The doctor said, \"You must take the medicine regularly.\"",
+            "The doctor said, \"She should take the medicine regularly.\"",
+            "The doctor said, \"Take the medicine regularly.\"",
+            "The doctor said, \"You should take the medicine regularly.\""
+        ],
+        answer: "The doctor said, \"Take the medicine regularly.\"",
+        explanation: "When 'advise' is used in indirect speech for giving instructions, it typically becomes an imperative sentence in direct speech."
+    },
+    {
+        q: "Convert to indirect speech: \"I have been living here since 2010,\" he said.",
+        options: [
+            "He said that he has been living there since 2010.",
+            "He said that he had been living there since 2010.",
+            "He said that he was living there since 2010.",
+            "He said that he lived there since 2010."
+        ],
+        answer: "He said that he had been living there since 2010.",
+        explanation: "When converting to indirect speech, present perfect continuous tense ('have been living') changes to past perfect continuous tense ('had been living'), and 'here' changes to 'there'."
+    },
+    {
+        q: "Convert to direct speech: She inquired why I hadn't attended the meeting.",
+        options: [
+            "She said, \"Why haven't you attended the meeting?\"",
+            "She said, \"Why didn't you attend the meeting?\"",
+            "She said, \"Why hadn't you attended the meeting?\"",
+            "She said, \"Why you didn't attend the meeting?\""
+        ],
+        answer: "She said, \"Why didn't you attend the meeting?\"",
+        explanation: "When converting to direct speech, past perfect tense ('hadn't attended') typically reverts to simple past tense ('didn't attend') in the question form."
+    },
+    {
+        q: "Convert to indirect speech: \"Please lend me your pen,\" he said to me.",
+        options: [
+            "He requested me to lend him my pen.",
+            "He requested me that I lend him my pen.",
+            "He said please lend him my pen.",
+            "He told me please to lend him my pen."
+        ],
+        answer: "He requested me to lend him my pen.",
+        explanation: "Polite requests with 'please' are typically reported using 'request' + object + 'to' + infinitive verb, with appropriate pronoun changes."
+    },
+    {
+        q: "Convert to direct speech: She exclaimed with joy that she had won the first prize.",
+        options: [
+            "She said, \"I have won the first prize!\"",
+            "She said, \"I won the first prize!\"",
+            "She said, \"Hurray! I have won the first prize!\"",
+            "She said, \"I had won the first prize!\""
+        ],
+        answer: "She said, \"Hurray! I have won the first prize!\"",
+        explanation: "When 'exclaimed with joy' is used in indirect speech, the direct speech typically includes an exclamation of emotion and uses present perfect tense."
+    },
+    {
+        q: "Convert to indirect speech: \"Don't go near the dog,\" my father warned me.",
+        options: [
+            "My father warned me don't go near the dog.",
+            "My father warned me not to go near the dog.",
+            "My father warned me that I should not go near the dog.",
+            "My father warned that don't go near the dog."
+        ],
+        answer: "My father warned me not to go near the dog.",
+        explanation: "When converting negative imperatives to indirect speech, we use 'warned' + object + 'not to' + infinitive verb."
+    },
+    {
+        q: "Convert to direct speech: The teacher congratulated him on having passed the exam.",
+        options: [
+            "The teacher said, \"Congratulations on passing the exam.\"",
+            "The teacher said, \"Congratulations! You have passed the exam.\"",
+            "The teacher said, \"You passed the exam. Congratulations!\"",
+            "The teacher said, \"Congratulations on having passed the exam.\""
+        ],
+        answer: "The teacher said, \"Congratulations! You have passed the exam.\"",
+        explanation: "When 'congratulated on having done something' is used in indirect speech, the direct speech typically includes 'Congratulations' with a statement using present perfect tense."
+    },
+    {
+        q: "Convert to indirect speech: \"We went to Paris last summer,\" they told us.",
+        options: [
+            "They told us that they went to Paris last summer.",
+            "They told us that they had gone to Paris the previous summer.",
+            "They told us that they have gone to Paris last summer.",
+            "They told us that they had gone to Paris last summer."
+        ],
+        answer: "They told us that they had gone to Paris the previous summer.",
+        explanation: "When converting to indirect speech, simple past tense ('went') changes to past perfect ('had gone') and time expressions change ('last summer' becomes 'the previous summer')."
+    },
+    {
+        q: "Convert to direct speech: She asked me whether I could help her with her homework.",
+        options: [
+            "She said, \"Can you help me with my homework?\"",
+            "She said, \"Could you help me with my homework?\"",
+            "She said, \"Will you help me with my homework?\"",
+            "She said, \"Would you help me with my homework?\""
+        ],
+        answer: "She said, \"Can you help me with my homework?\"",
+        explanation: "When converting from indirect to direct speech, 'could' typically changes back to 'can' when asking for ability or possibility."
+    },
+    {
+        q: "Convert to indirect speech: \"I will finish this project by Friday,\" he promised.",
+        options: [
+            "He promised that he will finish the project by Friday.",
+            "He promised that he would finish that project by Friday.",
+            "He promised that he would finish this project by Friday.",
+            "He promised to finish this project by Friday."
+        ],
+        answer: "He promised that he would finish that project by Friday.",
+        explanation: "When converting to indirect speech, 'will' changes to 'would' and demonstrative pronouns change ('this' becomes 'that')."
+    },
+    {
+        q: "Convert to direct speech: The guide warned the tourists not to take photographs inside the museum.",
+        options: [
+            "The guide said, \"You should not take photographs inside the museum.\"",
+            "The guide said, \"Don't take photographs inside the museum.\"",
+            "The guide said, \"Photography is prohibited inside the museum.\"",
+            "The guide said, \"No photographs inside the museum.\""
+        ],
+        answer: "The guide said, \"Don't take photographs inside the museum.\"",
+        explanation: "When 'warned not to do something' is used in indirect speech, it typically converts to a negative imperative in direct speech."
+    },
+    {
+        q: "Convert to indirect speech: \"What time does the train leave?\" the passenger asked.",
+        options: [
+            "The passenger asked what time does the train leave.",
+            "The passenger asked what time the train left.",
+            "The passenger asked what time did the train leave.",
+            "The passenger asked what time the train leaves."
+        ],
+        answer: "The passenger asked what time the train left.",
+        explanation: "When converting information questions to indirect speech, the word order changes to statement order and present tense ('does leave') changes to past tense ('left')."
+    },
+    {
+        q: "Convert to direct speech: My mother reminded me to buy milk on my way home.",
+        options: [
+            "My mother said, \"Remember to buy milk on your way home.\"",
+            "My mother said, \"Don't forget to buy milk on your way home.\"",
+            "My mother said, \"Buy milk on your way home.\"",
+            "All of the above could be correct, depending on context."
+        ],
+        answer: "All of the above could be correct, depending on context.",
+        explanation: "When 'reminded to do something' is used in indirect speech, it could be expressed in multiple ways in direct speech, including as a reminder, a command, or telling someone not to forget."
+    },
+    {
+        q: "Convert to indirect speech: \"I may visit my grandparents next week,\" she said.",
+        options: [
+            "She said that she might visit her grandparents the following week.",
+            "She said that she may visit her grandparents next week.",
+            "She said that she might visit her grandparents next week.",
+            "She said that she will visit her grandparents the following week."
+        ],
+        answer: "She said that she might visit her grandparents the following week.",
+        explanation: "When converting to indirect speech, 'may' (possibility) changes to 'might' and time references shift ('next week' becomes 'the following week')."
+    },
+    {
+        q: "Which sentence is correctly converted to indirect speech? \"I'll call you as soon as I arrive,\" he said.",
+        options: [
+            "He said he will call me as soon as he arrives.",
+            "He said he would call me as soon as he arrived.",
+            "He said that he would call me as soon as he would arrive.",
+            "He said he will call me as soon as he arrived."
+        ],
+        answer: "He said he would call me as soon as he arrived.",
+        explanation: "When converting future tense with time clauses to indirect speech, 'will' changes to 'would' and present tense in the time clause ('I arrive') changes to past tense ('he arrived')."
+    },
+    {
+        q: "Convert to direct speech: She denied having taken my book.",
+        options: [
+            "She said, \"I didn't take your book.\"",
+            "She said, \"I haven't taken your book.\"",
+            "She said, \"I don't have your book.\"",
+            "She said, \"I had not taken your book.\""
+        ],
+        answer: "She said, \"I didn't take your book.\"",
+        explanation: "When 'denied having done something' is used in indirect speech, it typically converts to a negative statement in simple past tense in direct speech."
+    },
+    {
+        q: "Convert to indirect speech: \"Where have you been all this time?\" she asked angrily.",
+        options: [
+            "She asked angrily where had I been all that time.",
+            "She asked angrily where I had been all that time.",
+            "She angrily asked where have you been all this time.",
+            "She asked angrily where I have been all this time."
+        ],
+        answer: "She asked angrily where I had been all that time.",
+        explanation: "When converting questions to indirect speech, word order changes to statement order, present perfect ('have been') changes to past perfect ('had been'), and demonstratives change ('this time' becomes 'that time')."
+    },
+    {
+        q: "Convert to direct speech: The child asked his mother if he could have an ice cream.",
+        options: [
+            "The child said to his mother, \"Can I have an ice cream?\"",
+            "The child said to his mother, \"Could I have an ice cream?\"",
+            "The child said to his mother, \"May I have an ice cream?\"",
+            "Any of the above options could be correct."
+        ],
+        answer: "Any of the above options could be correct.",
+        explanation: "When converting 'asked if he could' to direct speech, it could be expressed using 'can', 'could', or 'may', all of which are appropriate for making a request or asking for permission."
+    },
+    {
+        q: "Convert to indirect speech: \"I wrote the letter yesterday,\" Jane explained.",
+        options: [
+            "Jane explained that she wrote the letter yesterday.",
+            "Jane explained that she had written the letter the day before.",
+            "Jane explained that she had written the letter yesterday.",
+            "Jane explained that she has written the letter the previous day."
+        ],
+        answer: "Jane explained that she had written the letter the day before.",
+        explanation: "When converting to indirect speech, simple past tense ('wrote') changes to past perfect ('had written') and time references shift ('yesterday' becomes 'the day before')."
+    },
+    {
+        q: "Which of the following is the correct direct speech for: He told me that he was feeling unwell.",
+        options: [
+            "He said, \"I am feeling unwell.\"",
+            "He said, \"I was feeling unwell.\"",
+            "He said, \"I feel unwell.\"",
+            "He said, \"I felt unwell.\""
+        ],
+        answer: "He said, \"I am feeling unwell.\"",
+        explanation: "When converting from indirect to direct speech, past continuous tense ('was feeling') typically changes back to present continuous ('am feeling')."
+    },
+    {
+        q: "Convert to indirect speech: \"Stand up and face the wall,\" the officer ordered the suspect.",
+        options: [
+            "The officer ordered the suspect to stand up and face the wall.",
+            "The officer ordered the suspect that he should stand up and face the wall.",
+            "The officer ordered to the suspect to stand up and face the wall.",
+            "The officer ordered that the suspect stand up and face the wall."
+        ],
+        answer: "The officer ordered the suspect to stand up and face the wall.",
+        explanation: "When converting imperative sentences with 'ordered' to indirect speech, we use 'ordered' + object + 'to' + infinitive verb."
+    },
+    {
+        q: "Convert to direct speech: She suggested going for a picnic on Sunday.",
+        options: [
+            "She said, \"Let's go for a picnic on Sunday.\"",
+            "She said, \"We should go for a picnic on Sunday.\"",
+            "She said, \"Why don't we go for a picnic on Sunday?\"",
+            "All of the above could be correct, depending on context."
+        ],
+        answer: "All of the above could be correct, depending on context.",
+        explanation: "When 'suggested going' is used in indirect speech, it could be expressed in multiple ways in direct speech, including using 'let's', making a suggestion with 'should', or proposing with a question."
+    },
+    {
+        q: "Convert to indirect speech: \"I've been waiting for an hour,\" complained Tom.",
+        options: [
+            "Tom complained that he had been waiting for an hour.",
+            "Tom complained that he has been waiting for an hour.",
+            "Tom complained that he was waiting for an hour.",
+            "Tom complained he waited for an hour."
+        ],
+        answer: "Tom complained that he had been waiting for an hour.",
+        explanation: "When converting to indirect speech, present perfect continuous tense ('have been waiting') changes to past perfect continuous tense ('had been waiting')."
+    },
+    {
+        q: "Which sentence is NOT in indirect speech?",
+        options: [
+            "He asked me where I was going.",
+            "She told him that she would meet him later.",
+            "\"I don't know the answer,\" the student admitted.",
+            "The manager announced that the office would be closed the next day."
+        ],
+        answer: "\"I don't know the answer,\" the student admitted.",
+        explanation: "This sentence is in direct speech, as indicated by the quotation marks and the reporting verb following the quoted speech."
+    },
+    {
+        q: "Convert to direct speech: They wondered why the train was late.",
+        options: [
+            "They said, \"Why is the train late?\"",
+            "They said, \"Why was the train late?\"",
+            "They said, \"We wonder why the train is late.\"",
+            "They said, \"We wondered why the train was late.\""
+        ],
+        answer: "They said, \"Why is the train late?\"",
+        explanation: "When 'wondered why' is used in indirect speech, it typically converts to a direct question in present tense in direct speech."
+    },
+    {
+        q: "Convert to indirect speech: \"We have already discussed this matter twice,\" the chairman pointed out.",
+        options: [
+            "The chairman pointed out that they had already discussed that matter twice.",
+            "The chairman pointed out that they have already discussed this matter twice.",
+            "The chairman pointed out that they discussed that matter twice already.",
+            "The chairman pointed out they had already discussed this matter twice."
+        ],
+        answer: "The chairman pointed out that they had already discussed that matter twice.",
+        explanation: "When converting to indirect speech, present perfect tense ('have discussed') changes to past perfect ('had discussed') and demonstratives change ('this' becomes 'that')."
+    },
+    {
+        q: "Which of the following correctly converts \"Never tell a lie,\" my father advised me to indirect speech?",
+        options: [
+            "My father advised me never to tell a lie.",
+            "My father advised me that I should never tell a lie.",
+            "My father advised not to tell a lie.",
+            "Both A and B are correct."
+        ],
+        answer: "Both A and B are correct.",
+        explanation: "When converting advice with imperatives to indirect speech, both 'advised + object + never to + infinitive' and 'advised + object + that + subject + should never + infinitive' are acceptable forms."
+    }
+];
+
+
+
+        function loadQuestions() {
+            const container = document.getElementById("questionsContainer");
+            container.innerHTML = ""; // Clear previous content
             
-            for (let i = 1; i <= totalQuestions; i++) {
-                let questionId = 'q' + i;
-                let selectedOption = document.querySelector(`input[name=${questionId}]:checked`);
-                let questionDiv = document.getElementById(questionId);
-                let explanation = document.getElementById('exp' + i);
+            questions.forEach((question, index) => {
+                const div = document.createElement("div");
+                div.classList.add("question");
+                div.innerHTML = `
+                    <p>${index + 1}. ${question.q}</p>
+                    <div class="options">
+                        ${question.options.map(option => `
+                            <label class="option-label">
+                                <input type="radio" name="q${index}" value="${option}"> ${option}
+                            </label>
+                        `).join('')}
+                    </div>
+                    <div class="feedback" id="feedback${index}"></div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function updateProgressBar(score, total) {
+            const progressBar = document.getElementById("progressBar");
+            const percentage = (score / total) * 100;
+            progressBar.style.width = `${percentage}%`;
+        }
+
+        function submitQuiz() {
+            let score = 0;
+            const resultElement = document.getElementById("result");
+            
+            questions.forEach((question, index) => {
+                const selected = document.querySelector(`input[name="q${index}"]:checked`);
+                const feedback = document.getElementById(`feedback${index}`);
                 
-                // Reset classes
-                questionDiv.classList.remove('correct', 'incorrect');
-                
-                
-                explanation.style.display = 'block';
-                
-                if (selectedOption) {
-                    if (selectedOption.value === answers[questionId]) {
+                if (selected) {
+                    if (selected.value === question.answer) {
                         score++;
-                        questionDiv.classList.add('correct');
+                        feedback.innerHTML = `✓ Correct! ${question.explanation}`;
+                        feedback.style.backgroundColor = "#d7f9f8";
+                        feedback.style.color = "#0077b6";
                     } else {
-                        questionDiv.classList.add('incorrect');
+                        feedback.innerHTML = `✗ The correct answer is "${question.answer}" <br>${question.explanation}`;
+                        feedback.style.backgroundColor = "#ffe3e3";
+                        feedback.style.color = "#d90429";
                     }
                 } else {
-                    questionDiv.classList.add('incorrect');
+                    feedback.innerHTML = "⚠️ No answer selected!";
+                    feedback.style.backgroundColor = "#fff3cd";
+                    feedback.style.color = "#856404";
                 }
-            }
+            });
             
-            // Show result
-            const result = document.getElementById('result');
-            result.style.display = 'block';
-            const percentage = (score / totalQuestions) * 100;
+            updateProgressBar(score, questions.length);
             
-            let message = '';
-            if (percentage >= 80) {
-                message = 'Excellent! ';
-            } else if (percentage >= 60) {
-                message = 'Good job! ';
+            resultElement.style.display = "block";
+            const percentage = Math.round((score / questions.length) * 100);
+            
+            let message;
+            let color;
+            
+            if (percentage >= 90) {
+                message = "Excellent!";
+                color = "#4cc9f0";
+            } else if (percentage >= 70) {
+                message = "Good job!";
+                color = "#4361ee";
+            } else if (percentage >= 50) {
+                message = "Nice try!";
+                color = "#3a0ca3";
             } else {
-                message = 'Keep practicing! ';
+                message = "Keep practicing!";
+                color = "#f72585";
             }
             
-            result.textContent = `${message}Your score: ${score}/${totalQuestions} (${percentage.toFixed(1)}%)`;
+            resultElement.innerHTML = `
+                <div style="font-size: 20px; margin-bottom: 10px; color: ${color};">${message}</div>
+                <div>You scored ${score} out of ${questions.length} (${percentage}%)</div>
+            `;
+            resultElement.style.backgroundColor = "#f8f9fa";
+            resultElement.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.1)";
             
-            // Scroll to result
-            result.scrollIntoView({ behavior: 'smooth' });
-        });
-        
-        // Back to top button functionality
-        document.getElementById('back-btn').addEventListener('click', function() {
-            document.getElementById('top').scrollIntoView({ behavior: 'smooth' });
-        });
+            // Scroll to results
+            resultElement.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Show/hide scroll to top button
+        window.onscroll = function() {
+            const scrollButton = document.querySelector('.scroll-to-top');
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                scrollButton.classList.add('visible');
+            } else {
+                scrollButton.classList.remove('visible');
+            }
+        };
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        loadQuestions();
     </script>
 </body>
 </html>

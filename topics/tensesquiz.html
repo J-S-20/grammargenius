@@ -1,204 +1,403 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tense quiz</title>
+    <title>English Tense Quiz</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #3498db; /* Light Blue */
-            --light-bg: #e6f2ff; /* Very Light Blue Background */
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
+            --accent-color: #f72585;
+            --light-bg: #f8f9fa;
             --dark-text: #333;
-            --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            --border-radius: 8px;
+            --light-text: #fff;
+            --correct-color: #4cc9f0;
+            --wrong-color: #f72585;
+            --box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
         }
 
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: var(--light-bg);
+            background: linear-gradient(135deg, #4cc9f0 0%, #4361ee 100%);
             color: var(--dark-text);
+            min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: flex-start;
-            min-height: 100vh;
+            align-items: center;
         }
 
         .container {
-            max-width: 800px;
-            width: 100%;
+            max-width: 850px;
+            width: 95%;
             margin: 30px auto;
-            padding: 30px;
-            background-color: #fff;
+            padding: 35px;
+            background-color: var(--light-bg);
             box-shadow: var(--box-shadow);
             border-radius: var(--border-radius);
-            flex: 1;
         }
 
         h2 {
-            color: var(--primary-color);
+            color: var(--secondary-color);
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            font-size: 32px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--correct-color), var(--primary-color));
+            border-radius: 2px;
+        }
+
+        .quiz-info {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--secondary-color);
+            font-weight: 500;
         }
 
         .question {
-            font-size: 18px;
-            margin-bottom: 15px; /* Increased margin */
-            padding-bottom: 10px; /* Added padding */
-            border-bottom: 1px solid #eee; /* Added border */
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
         }
 
-        .options label {
-            display: block;
-            margin: 8px 0; /* Increased margin */
+        .question:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .question p {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .option-label:hover {
+            background-color: #e3e3e3;
+        }
+
+        .option-label input {
+            margin-right: 10px;
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            margin-bottom: 20px;
         }
 
         button {
-            margin-top: 25px; /* Increased margin */
-            padding: 12px 20px; /* Increased padding */
-            background: var(--primary-color);
-            color: white;
+            padding: 14px 30px;
+            font-size: 16px;
+            font-weight: 600;
             border: none;
-            border-radius: var(--border-radius);
+            border-radius: 30px;
             cursor: pointer;
-            transition: background-color 0.3s ease; /* Added transition */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+            transition: var(--transition);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .button:hover {
-            background-color: #2980b9;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        .submit-btn {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: var(--light-text);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .cancel-btn {
+            background-color: #e0e0e0;
+            color: var(--dark-text);
+        }
+
+        .cancel-btn:hover {
+            background-color: #d0d0d0;
         }
 
         #result {
-            font-weight: 500; /* Slightly less bold */
-            margin-top: 25px; /* Increased margin */
-            text-align: center; /* Centered result */
-            color: #27ae60; /* Green color for result */
+            margin-top: 30px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 600;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            display: none;
         }
 
-        /* Responsive Styles */
-        @media (max-width: 600px) {
+        .progress-container {
+            margin-top: 20px;
+            margin-bottom: 30px;
+            background-color: #e0e0e0;
+            border-radius: 20px;
+            height: 10px;
+            width: 100%;
+            overflow: hidden;
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(to right, var(--correct-color), var(--primary-color));
+            transition: width 0.5s ease;
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
             .container {
-                padding: 20px;
+                padding: 25px;
             }
 
-            .question {
-                font-size: 16px;
+            .options {
+                grid-template-columns: 1fr;
             }
 
-            .options label {
-                margin: 6px 0;
-            }
-
-            .button {
-                font-size: 16px;
-                padding: 10px 18px;
-                margin-top: 20px;
+            button {
+                padding: 12px 25px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>TENSE QUIZ </h2>
+        <h2>English Tense Quiz</h2>
+        <div class="quiz-info">Complete the sentences with the correct tense form of the verbs in brackets.</div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
         <form id="quizForm">
             <div id="questionsContainer"></div>
-            <button type="button" onclick="submitQuiz()">Submit</button>
-            <button type="button" onclick="window.location.href = 'tenses.html'">Cancel</button>
+            <div id="result"></div>
+            <div class="buttons">
+                <button type="button" class="submit-btn" onclick="submitQuiz()">Check Answers</button>
+                <button type="button" class="cancel-btn" onclick="window.location.href = 'tenses.html'">Back to Lessons</button>
+            </div>
         </form>
-        <p id="result"></p>
+    </div>
+    
+    <div class="scroll-to-top" onclick="scrollToTop()">
+        ↑
     </div>
 
     <script>
-         
         const questions = [
-  { q: "I ______ (see) him yesterday.", options: ["see", "saw", "have seen", "am seeing"], answer: "saw" },
-  { q: "She ______ (work) on this project for three weeks.", options: ["works", "is working", "has worked", "worked"], answer: "has worked" },
-  { q: "They ______ (go) to the cinema tonight.", options: ["go", "are going", "went", "have gone"], answer: "are going" },
-  { q: "He ______ (live) in London for five years.", options: ["lives", "is living", "has lived", "lived"], answer: "has lived" },
-  { q: "I ______ (eat) breakfast when the phone rang.", options: ["eat", "am eating", "was eating", "ate"], answer: "was eating" },
-  { q: "She ______ (finish) her homework already.", options: ["finishes", "is finishing", "has finished", "finished"], answer: "has finished" },
-  { q: "We ______ (travel) to Italy next summer.", options: ["travel", "are traveling", "traveled", "have traveled"], answer: "are traveling" },
-  { q: "They ______ (build) a new house.", options: ["build", "are building", "have built", "built"], answer: "have built" },
-  { q: "He ______ (sleep) when I arrived.", options: ["sleeps", "is sleeping", "was sleeping", "slept"], answer: "was sleeping" },
-  { q: "I ______ (know) him for ten years.", options: ["know", "am knowing", "have known", "knew"], answer: "have known" },
-  { q: "She ______ (sing) beautifully.", options: ["sings", "is singing", "sang", "has sung"], answer: "sings" },
-  { q: "They ______ (play) football now.", options: ["play", "are playing", "played", "have played"], answer: "are playing" },
-  { q: "He ______ (visit) his grandparents every Sunday.", options: ["visits", "is visiting", "visited", "has visited"], answer: "visits" },
-  { q: "I ______ (learn) Spanish for two years.", options: ["learn", "am learning", "have learned", "learned"], answer: "have learned" },
-  { q: "She ______ (work) in a bank.", options: ["works", "is working", "worked", "has worked"], answer: "works" },
-  { q: "They ______ (eat) all the cake.", options: ["eat", "are eating", "have eaten", "ate"], answer: "have eaten" },
-  { q: "He ______ (run) a marathon next month.", options: ["runs", "is running", "ran", "will run"], answer: "will run" },
-  { q: "I ______ (read) this book twice.", options: ["read", "am reading", "have read", "readed"], answer: "have read" },
-  { q: "She ______ (talk) on the phone when I entered.", options: ["talks", "is talking", "was talking", "talked"], answer: "was talking" },
-  { q: "We ______ (live) here since 2010.", options: ["live", "are living", "have lived", "lived"], answer: "have lived" },
-  { q: "They ______ (go) to the beach every summer.", options: ["go", "are going", "went", "have gone"], answer: "go" },
-  { q: "He ______ (write) a letter.", options: ["writes", "is writing", "has written", "wrote"], answer: "has written" },
-  { q: "I ______ (wait) for the bus for an hour.", options: ["wait", "am waiting", "have been waiting", "waited"], answer: "have been waiting" },
-  { q: "She ______ (dance) at the party last night.", options: ["dances", "is dancing", "danced", "has danced"], answer: "danced" },
-  { q: "We ______ (see) that movie before.", options: ["see", "are seeing", "have seen", "saw"], answer: "have seen" },
-  { q: "They ______ (travel) around the world next year.", options: ["travel", "are traveling", "traveled", "will travel"], answer: "will travel" },
-  { q: "He ______ (study) hard for the exam.", options: ["studies", "is studying", "studied", "has studied"], answer: "is studying" },
-  { q: "I ______ (meet) him at the library yesterday.", options: ["meet", "am meeting", "met", "have met"], answer: "met" },
-  { q: "She ______ (cook) dinner when the guests arrived.", options: ["cooks", "is cooking", "was cooking", "cooked"], answer: "was cooking" },
-  { q: "We ______ (plan) a surprise party for him.", options: ["plan", "are planning", "have planned", "planned"], answer: "are planning" }
-];
+            // Original 15 questions
+            { q: "I ______ (see) him yesterday.", options: ["see", "saw", "have seen", "am seeing"], answer: "saw", tense: "Past Simple" },
+            { q: "She ______ (work) on this project for three weeks.", options: ["works", "is working", "has worked", "worked"], answer: "has worked", tense: "Present Perfect" },
+            { q: "They ______ (go) to the cinema tonight.", options: ["go", "are going", "went", "have gone"], answer: "are going", tense: "Present Continuous" },
+            { q: "He ______ (live) in London for five years.", options: ["lives", "is living", "has lived", "lived"], answer: "has lived", tense: "Present Perfect" },
+            { q: "I ______ (eat) breakfast when the phone rang.", options: ["eat", "am eating", "was eating", "ate"], answer: "was eating", tense: "Past Continuous" },
+            { q: "She ______ (finish) her homework already.", options: ["finishes", "is finishing", "has finished", "finished"], answer: "has finished", tense: "Present Perfect" },
+            { q: "We ______ (travel) to Italy next summer.", options: ["travel", "are traveling", "traveled", "will travel"], answer: "will travel", tense: "Future Simple" },
+            { q: "They ______ (build) a new house since January.", options: ["build", "are building", "have been building", "built"], answer: "have been building", tense: "Present Perfect Continuous" },
+            { q: "He ______ (sleep) when I arrived.", options: ["sleeps", "is sleeping", "was sleeping", "slept"], answer: "was sleeping", tense: "Past Continuous" },
+            { q: "I ______ (know) him for ten years.", options: ["know", "am knowing", "have known", "knew"], answer: "have known", tense: "Present Perfect" },
+            { q: "She ______ (sing) beautifully at every concert.", options: ["sings", "is singing", "sang", "has sung"], answer: "sings", tense: "Present Simple" },
+            { q: "They ______ (play) football now.", options: ["play", "are playing", "played", "have played"], answer: "are playing", tense: "Present Continuous" },
+            { q: "He ______ (visit) his grandparents every Sunday.", options: ["visits", "is visiting", "visited", "has visited"], answer: "visits", tense: "Present Simple" },
+            { q: "I ______ (learn) Spanish since I moved to Madrid.", options: ["learn", "am learning", "have been learning", "learned"], answer: "have been learning", tense: "Present Perfect Continuous" },
+            { q: "She ______ (cook) dinner by the time we arrive.", options: ["will cook", "will be cooking", "will have cooked", "cooks"], answer: "will have cooked", tense: "Future Perfect" },
+            
+            // Additional 15 questions
+            { q: "By next week, I ______ (complete) all my assignments.", options: ["complete", "will complete", "will have completed", "am completing"], answer: "will have completed", tense: "Future Perfect" },
+            { q: "The train ______ (leave) by the time we reach the station.", options: ["leaves", "will leave", "will have left", "is leaving"], answer: "will have left", tense: "Future Perfect" },
+            { q: "They ______ (wait) for over two hours when the bus finally arrived.", options: ["waited", "were waiting", "had been waiting", "have waited"], answer: "had been waiting", tense: "Past Perfect Continuous" },
+            { q: "She ______ (study) all night before the exam.", options: ["studied", "was studying", "had studied", "had been studying"], answer: "had studied", tense: "Past Perfect" },
+            { q: "The company ______ (lose) money for three consecutive years before it finally became profitable.", options: ["lost", "was losing", "had lost", "had been losing"], answer: "had been losing", tense: "Past Perfect Continuous" },
+            { q: "I ______ (meet) her several times before I recognized her.", options: ["met", "was meeting", "had met", "have met"], answer: "had met", tense: "Past Perfect" },
+            { q: "He ______ (teach) at this school since 2010.", options: ["teaches", "is teaching", "has taught", "has been teaching"], answer: "has been teaching", tense: "Present Perfect Continuous" },
+            { q: "Water ______ (boil) at 100 degrees Celsius.", options: ["boils", "is boiling", "has boiled", "boiled"], answer: "boils", tense: "Present Simple" },
+            { q: "This time tomorrow, we ______ (fly) over the Atlantic.", options: ["fly", "are flying", "will fly", "will be flying"], answer: "will be flying", tense: "Future Continuous" },
+            { q: "I ______ (not see) him since last summer.", options: ["don't see", "am not seeing", "haven't seen", "didn't see"], answer: "haven't seen", tense: "Present Perfect" },
+            { q: "We ______ (discuss) the project when the power went out.", options: ["discuss", "were discussing", "had discussed", "had been discussing"], answer: "were discussing", tense: "Past Continuous" },
+            { q: "By the end of this month, I ______ (work) here for five years.", options: ["work", "am working", "will work", "will have been working"], answer: "will have been working", tense: "Future Perfect Continuous" },
+            { q: "The sun ______ (rise) in the east.", options: ["rises", "is rising", "has risen", "rose"], answer: "rises", tense: "Present Simple" },
+            { q: "I ______ (think) about the problem all week.", options: ["think", "am thinking", "have been thinking", "thought"], answer: "have been thinking", tense: "Present Perfect Continuous" },
+            { q: "She ______ (already / leave) when I arrived at the party.", options: ["already leaves", "already left", "had already left", "has already left"], answer: "had already left", tense: "Past Perfect" }
+        ];
 
-function loadQuestions() {
-        const container = document.getElementById("questionsContainer");
-        container.innerHTML = ""; // Clear previous content
-        questions.forEach((question, index) => {
-            const div = document.createElement("div");
-            div.classList.add("question");
-            div.innerHTML = `<p>${index + 1}. ${question.q}</p>`;
-
-            question.options.forEach(option => {
-                div.innerHTML += `
-                    <label>
-                        <input type="radio" name="q${index}" value="${option}"> ${option}
-                    </label>`;
+        function loadQuestions() {
+            const container = document.getElementById("questionsContainer");
+            container.innerHTML = ""; // Clear previous content
+            
+            questions.forEach((question, index) => {
+                const div = document.createElement("div");
+                div.classList.add("question");
+                div.innerHTML = `
+                    <p>${index + 1}. ${question.q}</p>
+                    <div class="options">
+                        ${question.options.map(option => `
+                            <label class="option-label">
+                                <input type="radio" name="q${index}" value="${option}"> ${option}
+                            </label>
+                        `).join('')}
+                    </div>
+                    <div class="feedback" id="feedback${index}"></div>
+                `;
+                container.appendChild(div);
             });
+        }
 
-            // Add a feedback section without displaying the correct answer
-            div.innerHTML += `<p class="feedback" id="feedback${index}" style="font-weight:bold;"></p>`;
+        function updateProgressBar(score, total) {
+            const progressBar = document.getElementById("progressBar");
+            const percentage = (score / total) * 100;
+            progressBar.style.width = `${percentage}%`;
+        }
 
-            container.appendChild(div);
-        });
-    }
-
-    function submitQuiz() {
-        let score = 0;
-
-        questions.forEach((question, index) => {
-            let selected = document.querySelector(`input[name="q${index}"]:checked`);
-            let feedback = document.getElementById(`feedback${index}`);
-
-            if (selected) {
-                if (selected.value === question.answer) {
-                    score++;
-                    feedback.innerHTML = "✅ Correct!";
-                    feedback.style.color = "green";
+        function submitQuiz() {
+            let score = 0;
+            const resultElement = document.getElementById("result");
+            
+            questions.forEach((question, index) => {
+                const selected = document.querySelector(`input[name="q${index}"]:checked`);
+                const feedback = document.getElementById(`feedback${index}`);
+                
+                if (selected) {
+                    if (selected.value === question.answer) {
+                        score++;
+                        feedback.innerHTML = `✓ Correct! This is the ${question.tense} tense.`;
+                        feedback.style.backgroundColor = "#d7f9f8";
+                        feedback.style.color = "#0077b6";
+                    } else {
+                        feedback.innerHTML = `✗ The correct answer is "${question.answer}" (${question.tense} tense).`;
+                        feedback.style.backgroundColor = "#ffe3e3";
+                        feedback.style.color = "#d90429";
+                    }
                 } else {
-                    feedback.innerHTML = "❌ Wrong!";
-                    feedback.style.color = "red";
+                    feedback.innerHTML = "⚠️ No answer selected!";
+                    feedback.style.backgroundColor = "#fff3cd";
+                    feedback.style.color = "#856404";
                 }
+            });
+            
+            updateProgressBar(score, questions.length);
+            
+            resultElement.style.display = "block";
+            const percentage = Math.round((score / questions.length) * 100);
+            
+            let message;
+            let color;
+            
+            if (percentage >= 90) {
+                message = "Excellent!";
+                color = "#4cc9f0";
+            } else if (percentage >= 70) {
+                message = "Good job!";
+                color = "#4361ee";
+            } else if (percentage >= 50) {
+                message = "Nice try!";
+                color = "#3a0ca3";
             } else {
-                feedback.innerHTML = "⚠️ No answer selected!";
-                feedback.style.color = "orange";
+                message = "Keep practicing!";
+                color = "#f72585";
             }
-        });
+            
+            resultElement.innerHTML = `
+                <div style="font-size: 20px; margin-bottom: 10px; color: ${color};">${message}</div>
+                <div>You scored ${score} out of ${questions.length} (${percentage}%)</div>
+            `;
+            resultElement.style.backgroundColor = "#f8f9fa";
+            resultElement.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.1)";
+            
+            // Scroll to results
+            resultElement.scrollIntoView({ behavior: 'smooth' });
+        }
 
-        document.getElementById("result").innerText = `You scored ${score} out of ${questions.length}!`;
-    }
+        // Show/hide scroll to top button
+        window.onscroll = function() {
+            const scrollButton = document.querySelector('.scroll-to-top');
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                scrollButton.classList.add('visible');
+            } else {
+                scrollButton.classList.remove('visible');
+            }
+        };
 
-    loadQuestions();
-   
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        loadQuestions();
     </script>
 </body>
 </html>

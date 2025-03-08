@@ -1,200 +1,702 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Parts of Speech Quiz</title>
+    <title>Parts of Speech Quiz</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #3498db; /* Light Blue */
-            --light-bg: #e6f2ff; /* Very Light Blue Background */
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
+            --accent-color: #f72585;
+            --light-bg: #f8f9fa;
             --dark-text: #333;
-            --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            --border-radius: 8px;
+            --light-text: #fff;
+            --correct-color: #4cc9f0;
+            --wrong-color: #f72585;
+            --box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
         }
 
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: var(--light-bg);
+            background: linear-gradient(135deg, #4cc9f0 0%, #4361ee 100%);
             color: var(--dark-text);
+            min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: flex-start;
-            min-height: 100vh;
+            align-items: center;
         }
 
         .container {
-            max-width: 800px;
-            width: 100%;
+            max-width: 850px;
+            width: 95%;
             margin: 30px auto;
-            padding: 30px;
-            background-color: #fff;
+            padding: 35px;
+            background-color: var(--light-bg);
             box-shadow: var(--box-shadow);
             border-radius: var(--border-radius);
-            flex: 1;
         }
 
         h2 {
-            color: var(--primary-color);
+            color: var(--secondary-color);
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            font-size: 32px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--correct-color), var(--primary-color));
+            border-radius: 2px;
+        }
+
+        .quiz-info {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--secondary-color);
+            font-weight: 500;
         }
 
         .question {
-            font-size: 18px;
-            margin-bottom: 15px; /* Increased margin */
-            padding-bottom: 10px; /* Added padding */
-            border-bottom: 1px solid #eee; /* Added border */
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
         }
 
-        .options label {
-            display: block;
-            margin: 8px 0; /* Increased margin */
+        .question:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .question p {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .option-label:hover {
+            background-color: #e3e3e3;
+        }
+
+        .option-label input {
+            margin-right: 10px;
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            margin-bottom: 20px;
         }
 
         button {
-            margin-top: 25px; /* Increased margin */
-            padding: 12px 20px; /* Increased padding */
-            background: var(--primary-color);
-            color: white;
+            padding: 14px 30px;
+            font-size: 16px;
+            font-weight: 600;
             border: none;
-            border-radius: var(--border-radius);
+            border-radius: 30px;
             cursor: pointer;
-            transition: background-color 0.3s ease; /* Added transition */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+            transition: var(--transition);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        button:hover {
-            background-color: #2980b9;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        .submit-btn {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: var(--light-text);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .cancel-btn {
+            background-color: #e0e0e0;
+            color: var(--dark-text);
+        }
+
+        .cancel-btn:hover {
+            background-color: #d0d0d0;
         }
 
         #result {
-            font-weight: 500; /* Slightly less bold */
-            margin-top: 25px; /* Increased margin */
-            text-align: center; /* Centered result */
-            color: #27ae60; /* Green color for result */
+            margin-top: 30px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 600;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            display: none;
         }
 
-        /* Responsive Styles */
-        @media (max-width: 600px) {
+        .progress-container {
+            margin-top: 20px;
+            margin-bottom: 30px;
+            background-color: #e0e0e0;
+            border-radius: 20px;
+            height: 10px;
+            width: 100%;
+            overflow: hidden;
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(to right, var(--correct-color), var(--primary-color));
+            transition: width 0.5s ease;
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
             .container {
-                padding: 20px;
+                padding: 25px;
             }
 
-            .question {
-                font-size: 16px;
-            }
-
-            .options label {
-                margin: 6px 0;
+            .options {
+                grid-template-columns: 1fr;
             }
 
             button {
-                font-size: 16px;
-                padding: 10px 18px;
+                padding: 12px 25px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Interactive Parts of Speech Quiz</h2>
+        <h2>Parts of Speech Quiz</h2>
+        <div class="quiz-info">Test your knowledge of the different parts of speech in English.</div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
         <form id="quizForm">
             <div id="questionsContainer"></div>
-            <button type="button" onclick="submitQuiz()">Submit</button>
-            <button type="button" onclick="window.location.href = 'parts_of_speech.html'">Cancel</button>
+            <div id="result"></div>
+            <div class="buttons">
+                <button type="button" class="submit-btn" onclick="submitQuiz()">Check Answers</button>
+                <button type="button" class="cancel-btn" onclick="window.location.href = 'parts_of_speech.html'">Back to Lessons</button>
+            </div>
         </form>
-        <p id="result"></p>
+    </div>
+    
+    <div class="scroll-to-top" onclick="scrollToTop()">
+        ↑
     </div>
 
     <script>
-         
-        const questions = [
-            { q: "Which part of speech is the word 'happiness'?", options: ["Noun", "Verb", "Adjective", "Adverb"], answer: "Noun" },
-            { q: "What is the function of a pronoun?", options: ["Replaces a noun", "Describes a noun", "Joins words", "Expresses action"], answer: "Replaces a noun" },
-            { q: "Identify the verb in this sentence: 'She runs every morning.'", options: ["She", "Runs", "Morning", "Every"], answer: "Runs" },
-            { q: "Which word is an adjective?", options: ["Quickly", "Smart", "Run", "Wow"], answer: "Smart" },
-            { q: "Choose the correct preposition: 'The book is __ the table.'", options: ["On", "Run", "And", "Ouch"], answer: "On" },
-            { q: "Which is an interjection?", options: ["Wow", "Run", "Slowly", "And"], answer: "Wow" },
-            { q: "Find the adverb: 'He runs quickly.'", options: ["He", "Runs", "Quickly", "The"], answer: "Quickly" },
-            { q: "Which is a conjunction?", options: ["And", "Tree", "Fast", "Him"], answer: "And" },
-            { q: "What type of noun is 'Paris'?", options: ["Common", "Proper", "Abstract", "Collective"], answer: "Proper" },
-            { q: "Which pronoun fits: 'This book is __.'", options: ["Mine", "Run", "Beautiful", "Wow"], answer: "Mine" },
-            { q: "Which verb is in the past tense?", options: ["Run", "Jumped", "Eat", "Go"], answer: "Jumped" },
-            { q: "Identify the preposition: 'She sat beside me.'", options: ["She", "Sat", "Beside", "Me"], answer: "Beside" },
-            { q: "Which word is an adverb?", options: ["Slowly", "Happy", "Tree", "Jump"], answer: "Slowly" },
-            { q: "Which is a collective noun?", options: ["Flock", "Fast", "Play", "Sing"], answer: "Flock" },
-            { q: "What type of conjunction is 'but'?", options: ["Coordinating", "Subordinating", "Correlative", "Interjection"], answer: "Coordinating" },
-            { q: "Which is an abstract noun?", options: ["Happiness", "Chair", "Dog", "Car"], answer: "Happiness" },
-            { q: "Identify the interjection: 'Wow! That was amazing.'", options: ["Wow", "That", "Was", "Amazing"], answer: "Wow" },
-            { q: "Which sentence contains a verb?", options: ["The cat sleeps.", "The big cat.", "A tall tree.", "Soft and warm."], answer: "The cat sleeps." },
-            { q: "Which is a possessive pronoun?", options: ["His", "He", "Him", "They"], answer: "His" },
-            { q: "Find the adjective: 'She has a beautiful dress.'", options: ["Beautiful", "Dress", "She", "Has"], answer: "Beautiful" },
-            { q: "Identify the preposition: 'The ball rolled under the table.'", options: ["The", "Rolled", "Under", "Table"], answer: "Under" },
-            { q: "Which verb is in the present tense?", options: ["Running", "Ran", "Jumped", "Gone"], answer: "Running" },
-            { q: "Which word is a common noun?", options: ["City", "Paris", "Tom", "Amazon"], answer: "City" },
-            { q: "Find the correct conjunction: 'I like tea __ coffee.'", options: ["And", "Jump", "Happy", "Fast"], answer: "And" },
-            { q: "Identify the interjection: 'Ouch! That hurt.'", options: ["Ouch", "That", "Hurt", "The"], answer: "Ouch" },
-            { q: "Which pronoun is plural?", options: ["They", "He", "She", "I"], answer: "They" },
-            { q: "Choose the correct verb: 'He __ to school daily.'", options: ["Goes", "Go", "Gone", "Going"], answer: "Goes" }
-        ];
+        const questions = 
+        [
+    {
+        q: "Identify the part of speech of the word 'quickly' in the sentence: 'She quickly finished her homework.'",
+        options: [
+            "Adjective",
+            "Adverb",
+            "Verb",
+            "Noun"
+        ],
+        answer: "Adverb",
+        explanation: "Adverbs modify verbs, adjectives, or other adverbs. Here, 'quickly' describes how she finished her homework, modifying the verb 'finished'."
+    },
+    {
+        q: "Which part of speech is the word 'beautiful' in the sentence: 'The beautiful painting was displayed in the gallery.'",
+        options: [
+            "Noun",
+            "Verb",
+            "Adjective",
+            "Preposition"
+        ],
+        answer: "Adjective",
+        explanation: "Adjectives modify or describe nouns. Here, 'beautiful' describes the noun 'painting'."
+    },
+    {
+        q: "Identify the part of speech of the word 'under' in the sentence: 'The cat is hiding under the bed.'",
+        options: [
+            "Conjunction",
+            "Adverb",
+            "Preposition",
+            "Pronoun"
+        ],
+        answer: "Preposition",
+        explanation: "Prepositions show relationships between other words in a sentence. 'Under' shows the relationship between 'hiding' and 'the bed'."
+    },
+    {
+        q: "What part of speech is the word 'they' in the sentence: 'They went to the park yesterday.'",
+        options: [
+            "Noun",
+            "Pronoun",
+            "Adjective",
+            "Verb"
+        ],
+        answer: "Pronoun",
+        explanation: "Pronouns replace nouns. 'They' is taking the place of specific people who went to the park."
+    },
+    {
+        q: "Identify the part of speech of the word 'happiness' in the sentence: 'Happiness is important for a good life.'",
+        options: [
+            "Noun",
+            "Verb",
+            "Adjective",
+            "Adverb"
+        ],
+        answer: "Noun",
+        explanation: "Nouns name people, places, things, or ideas. 'Happiness' is an abstract noun that names a feeling or state."
+    },
+    {
+        q: "What part of speech is the word 'jumped' in the sentence: 'The frog jumped into the pond.'",
+        options: [
+            "Noun",
+            "Pronoun",
+            "Verb",
+            "Conjunction"
+        ],
+        answer: "Verb",
+        explanation: "Verbs express action or state of being. 'Jumped' is an action verb that tells what the frog did."
+    },
+    {
+        q: "Identify the part of speech of the word 'and' in the sentence: 'Jack and Jill went up the hill.'",
+        options: [
+            "Preposition",
+            "Conjunction",
+            "Interjection",
+            "Adverb"
+        ],
+        answer: "Conjunction",
+        explanation: "Conjunctions connect words, phrases, or clauses. 'And' connects the nouns 'Jack' and 'Jill'."
+    },
+    {
+        q: "What part of speech is the word 'wow' in the sentence: 'Wow! That was an amazing performance!'",
+        options: [
+            "Pronoun",
+            "Adverb",
+            "Interjection",
+            "Preposition"
+        ],
+        answer: "Interjection",
+        explanation: "Interjections express strong emotion and are grammatically independent from the rest of the sentence. 'Wow' expresses surprise or amazement."
+    },
+    {
+        q: "Identify the part of speech of the word 'his' in the sentence: 'John forgot his keys at home.'",
+        options: [
+            "Adjective",
+            "Pronoun",
+            "Adverb",
+            "Conjunction"
+        ],
+        answer: "Adjective",
+        explanation: "In this sentence, 'his' is a possessive adjective that modifies the noun 'keys', showing ownership or relationship."
+    },
+    {
+        q: "What part of speech is the word 'very' in the sentence: 'The movie was very entertaining.'",
+        options: [
+            "Noun",
+            "Adjective",
+            "Adverb",
+            "Pronoun"
+        ],
+        answer: "Adverb",
+        explanation: "Here, 'very' is an adverb that modifies the adjective 'entertaining', indicating degree or intensity."
+    },
+    {
+        q: "Identify the part of speech of the word 'between' in the sentence: 'The secret lies between truth and fiction.'",
+        options: [
+            "Noun",
+            "Adjective",
+            "Conjunction",
+            "Preposition"
+        ],
+        answer: "Preposition",
+        explanation: "Prepositions show relationships in time, space, or logic. 'Between' shows the relationship of 'the secret' to 'truth and fiction'."
+    },
+    {
+        q: "What part of speech is the word 'whom' in the sentence: 'To whom did you give the letter?'",
+        options: [
+            "Preposition",
+            "Conjunction",
+            "Pronoun",
+            "Adverb"
+        ],
+        answer: "Pronoun",
+        explanation: "Interrogative pronouns like 'whom' are used to ask questions. 'Whom' is the object of the preposition 'to'."
+    },
+    {
+        q: "Identify the part of speech of the word 'but' in the sentence: 'She tried her best but failed the test.'",
+        options: [
+            "Preposition",
+            "Conjunction",
+            "Adverb",
+            "Interjection"
+        ],
+        answer: "Conjunction",
+        explanation: "Coordinating conjunctions like 'but' connect words, phrases, or clauses of equal rank. Here it connects two independent clauses."
+    },
+    {
+        q: "What part of speech is the word 'seven' in the sentence: 'I need seven apples for the recipe.'",
+        options: [
+            "Noun",
+            "Pronoun",
+            "Adjective",
+            "Determiner"
+        ],
+        answer: "Adjective",
+        explanation: "Numbers functioning as adjectives modify nouns. 'Seven' tells how many 'apples', making it a numeral adjective."
+    },
+    {
+        q: "Identify the part of speech of the underlined word in the sentence: 'Reading is my favorite hobby.'",
+        options: [
+            "Verb",
+            "Noun",
+            "Adjective",
+            "Adverb"
+        ],
+        answer: "Noun",
+        explanation: "Although 'reading' can be a verb, in this sentence it functions as a gerund (a verb form used as a noun). It's the subject of the sentence, making it a noun."
+    },
+    {
+        q: "What part of speech is the word 'the' in the sentence: 'The car is parked outside.'",
+        options: [
+            "Noun",
+            "Adverb",
+            "Article",
+            "Pronoun"
+        ],
+        answer: "Article",
+        explanation: "Articles are a type of determiner that specify whether a noun is specific ('the') or nonspecific ('a' or 'an'). 'The' is a definite article."
+    },
+    {
+        q: "Identify the part of speech of the word 'sleeping' in the sentence: 'The sleeping baby looks peaceful.'",
+        options: [
+            "Verb",
+            "Noun",
+            "Adjective",
+            "Adverb"
+        ],
+        answer: "Adjective",
+        explanation: "Here, 'sleeping' is a participle (verb form) functioning as an adjective, describing the noun 'baby'."
+    },
+    {
+        q: "What part of speech is the word 'themselves' in the sentence: 'They built the treehouse themselves.'",
+        options: [
+            "Pronoun",
+            "Noun",
+            "Adverb",
+            "Adjective"
+        ],
+        answer: "Pronoun",
+        explanation: "Reflexive pronouns like 'themselves' refer back to the subject of the sentence. This is a type of intensive pronoun emphasizing that 'they' did the building."
+    },
+    {
+        q: "Identify the part of speech of the word 'whenever' in the sentence: 'Call me whenever you need help.'",
+        options: [
+            "Adverb",
+            "Preposition",
+            "Conjunction",
+            "Pronoun"
+        ],
+        answer: "Conjunction",
+        explanation: "Subordinating conjunctions like 'whenever' connect dependent clauses to independent clauses. Here, it connects 'you need help' to 'Call me'."
+    },
+    {
+        q: "What part of speech is the word 'running' in the sentence: 'Running daily improves your health.'",
+        options: [
+            "Verb",
+            "Adjective",
+            "Adverb",
+            "Noun"
+        ],
+        answer: "Noun",
+        explanation: "Although 'running' can be a verb, in this sentence it functions as a gerund (verb + ing) used as a noun. It's the subject of the sentence."
+    },
+    {
+        q: "Identify the part of speech of the word 'after' in the sentence: 'We'll discuss it after the meeting.'",
+        options: [
+            "Conjunction",
+            "Preposition",
+            "Adverb",
+            "Adjective"
+        ],
+        answer: "Preposition",
+        explanation: "Here, 'after' is a preposition that establishes the time relationship between 'discuss' and 'the meeting'."
+    },
+    {
+        q: "What part of speech is the word 'carefully' in the sentence: 'He carefully examined each document.'",
+        options: [
+            "Noun",
+            "Adjective",
+            "Adverb",
+            "Pronoun"
+        ],
+        answer: "Adverb",
+        explanation: "Adverbs typically describe how an action is performed. 'Carefully' describes how he examined the documents, modifying the verb 'examined'."
+    },
+    {
+        q: "Identify the part of speech of the word 'near' in the sentence: 'The school is near the library.'",
+        options: [
+            "Conjunction",
+            "Adverb",
+            "Preposition",
+            "Adjective"
+        ],
+        answer: "Preposition",
+        explanation: "In this context, 'near' functions as a preposition showing the spatial relationship between 'school' and 'library'."
+    },
+    {
+        q: "What part of speech is the word 'twenty' in the sentence: 'She has twenty dollars in her wallet.'",
+        options: [
+            "Pronoun",
+            "Noun",
+            "Adjective",
+            "Adverb"
+        ],
+        answer: "Adjective",
+        explanation: "Numbers used to describe quantity function as adjectives. 'Twenty' modifies the noun 'dollars', specifying how many."
+    },
+    {
+        q: "Identify the part of speech of the word 'quietly' in the sentence: 'Please speak quietly in the library.'",
+        options: [
+            "Noun",
+            "Verb",
+            "Adjective",
+            "Adverb"
+        ],
+        answer: "Adverb",
+        explanation: "Adverbs can modify verbs, adjectives, or other adverbs. 'Quietly' describes how to speak, modifying the verb 'speak'."
+    },
+    {
+        q: "Which part of speech is the word 'although' in the sentence: 'Although it was raining, we went for a walk.'",
+        options: [
+            "Preposition",
+            "Conjunction",
+            "Adverb",
+            "Pronoun"
+        ],
+        answer: "Conjunction",
+        explanation: "Subordinating conjunctions like 'although' connect dependent clauses to independent clauses, showing contrast or exception."
+    },
+    {
+        q: "Identify the part of speech of the word 'whose' in the sentence: 'Whose jacket is this?'",
+        options: [
+            "Adverb",
+            "Adjective",
+            "Pronoun",
+            "Conjunction"
+        ],
+        answer: "Pronoun",
+        explanation: "Interrogative pronouns like 'whose' are used to ask questions. In this case, it's asking about possession or ownership."
+    },
+    {
+        q: "What part of speech is the word 'oh' in the sentence: 'Oh, I forgot my keys again!'",
+        options: [
+            "Conjunction",
+            "Interjection",
+            "Adverb",
+            "Preposition"
+        ],
+        answer: "Interjection",
+        explanation: "Interjections express emotion and are grammatically separate from the rest of the sentence. 'Oh' expresses surprise or realization."
+    },
+    {
+        q: "Identify the part of speech of the word 'her' in the sentence: 'I gave her the book.'",
+        options: [
+            "Adjective",
+            "Adverb",
+            "Pronoun",
+            "Preposition"
+        ],
+        answer: "Pronoun",
+        explanation: "In this sentence, 'her' is an object pronoun that receives the action of the verb 'gave'."
+    },
+    {
+        q: "What part of speech is the word 'above' in the sentence: 'Look at the picture above the fireplace.'",
+        options: [
+            "Adverb",
+            "Preposition",
+            "Adjective",
+            "Conjunction"
+        ],
+        answer: "Preposition",
+        explanation: "Prepositions show relationships in space, time, or logic. 'Above' shows the spatial relationship between 'picture' and 'fireplace'."
+    }
+];
+
 
         function loadQuestions() {
-        const container = document.getElementById("questionsContainer");
-        container.innerHTML = ""; // Clear previous content
-        questions.forEach((question, index) => {
-            const div = document.createElement("div");
-            div.classList.add("question");
-            div.innerHTML = `<p>${index + 1}. ${question.q}</p>`;
-
-            question.options.forEach(option => {
-                div.innerHTML += `
-                    <label>
-                        <input type="radio" name="q${index}" value="${option}"> ${option}
-                    </label>`;
+            const container = document.getElementById("questionsContainer");
+            container.innerHTML = ""; // Clear previous content
+            
+            questions.forEach((question, index) => {
+                const div = document.createElement("div");
+                div.classList.add("question");
+                div.innerHTML = `
+                    <p>${index + 1}. ${question.q}</p>
+                    <div class="options">
+                        ${question.options.map(option => `
+                            <label class="option-label">
+                                <input type="radio" name="q${index}" value="${option}"> ${option}
+                            </label>
+                        `).join('')}
+                    </div>
+                    <div class="feedback" id="feedback${index}"></div>
+                `;
+                container.appendChild(div);
             });
+        }
 
-            // Add a feedback section without displaying the correct answer
-            div.innerHTML += `<p class="feedback" id="feedback${index}" style="font-weight:bold;"></p>`;
+        function updateProgressBar(score, total) {
+            const progressBar = document.getElementById("progressBar");
+            const percentage = (score / total) * 100;
+            progressBar.style.width = `${percentage}%`;
+        }
 
-            container.appendChild(div);
-        });
-    }
-
-    function submitQuiz() {
-        let score = 0;
-
-        questions.forEach((question, index) => {
-            let selected = document.querySelector(`input[name="q${index}"]:checked`);
-            let feedback = document.getElementById(`feedback${index}`);
-
-            if (selected) {
-                if (selected.value === question.answer) {
-                    score++;
-                    feedback.innerHTML = "✅ Correct!";
-                    feedback.style.color = "green";
+        function submitQuiz() {
+            let score = 0;
+            const resultElement = document.getElementById("result");
+            
+            questions.forEach((question, index) => {
+                const selected = document.querySelector(`input[name="q${index}"]:checked`);
+                const feedback = document.getElementById(`feedback${index}`);
+                
+                if (selected) {
+                    if (selected.value === question.answer) {
+                        score++;
+                        feedback.innerHTML = `✓ Correct! ${question.explanation}`;
+                        feedback.style.backgroundColor = "#d7f9f8";
+                        feedback.style.color = "#0077b6";
+                    } else {
+                        feedback.innerHTML = `✗ The correct answer is "${question.answer}" <br>${question.explanation}`;
+                        feedback.style.backgroundColor = "#ffe3e3";
+                        feedback.style.color = "#d90429";
+                    }
                 } else {
-                    feedback.innerHTML = "❌ Wrong!";
-                    feedback.style.color = "red";
+                    feedback.innerHTML = "⚠️ No answer selected!";
+                    feedback.style.backgroundColor = "#fff3cd";
+                    feedback.style.color = "#856404";
                 }
+            });
+            
+            updateProgressBar(score, questions.length);
+            
+            resultElement.style.display = "block";
+            const percentage = Math.round((score / questions.length) * 100);
+            
+            let message;
+            let color;
+            
+            if (percentage >= 90) {
+                message = "Excellent!";
+                color = "#4cc9f0";
+            } else if (percentage >= 70) {
+                message = "Good job!";
+                color = "#4361ee";
+            } else if (percentage >= 50) {
+                message = "Nice try!";
+                color = "#3a0ca3";
             } else {
-                feedback.innerHTML = "⚠️ No answer selected!";
-                feedback.style.color = "orange";
+                message = "Keep practicing!";
+                color = "#f72585";
             }
-        });
+            
+            resultElement.innerHTML = `
+                <div style="font-size: 20px; margin-bottom: 10px; color: ${color};">${message}</div>
+                <div>You scored ${score} out of ${questions.length} (${percentage}%)</div>
+            `;
+            resultElement.style.backgroundColor = "#f8f9fa";
+            resultElement.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.1)";
+            
+            // Scroll to results
+            resultElement.scrollIntoView({ behavior: 'smooth' });
+        }
 
-        document.getElementById("result").innerText = `You scored ${score} out of ${questions.length}!`;
-    }
+        // Show/hide scroll to top button
+        window.onscroll = function() {
+            const scrollButton = document.querySelector('.scroll-to-top');
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                scrollButton.classList.add('visible');
+            } else {
+                scrollButton.classList.remove('visible');
+            }
+        };
 
-    loadQuestions();
-   
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        loadQuestions();
     </script>
 </body>
 </html>
