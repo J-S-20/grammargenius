@@ -92,8 +92,8 @@
         }
 
         .hero h1 {
-    font-size: 1.2em; 
-}
+            font-size: 1.2em; 
+        }
 
         .hero p {
             font-size: 1.1em;
@@ -137,53 +137,61 @@
             margin-bottom: 10px;
         }
 
-        /* REMOVE MEDIA QUERY */
-        .header-top {
-            flex-direction: column;
-            align-items: center;
-            padding: 0 10px;
-        }
+        /* Proper media query for responsive design */
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px auto;
+                padding: 15px;
+            }
 
-        .logo {
-            font-size: 2em;
-            margin-right: 0;
-            margin-bottom: 10px;
-            color: white;
-        }
+            .header-top {
+                flex-direction: column;
+                align-items: center;
+                padding: 0 10px;
+            }
 
-        .auth-buttons {
-            flex-direction: row;
-            margin-top: 10px;
-        }
+            .logo {
+                font-size: 2em;
+                margin-right: 0;
+                margin-bottom: 10px;
+                color: white;
+            }
 
-        .auth-buttons a {
-            margin: 0 5px;
-            width: auto;
-            text-align: center;
-            font-size: 0.8em;
-            padding: 8px 16px;
-        }
+            .auth-buttons {
+                flex-direction: row;
+                margin-top: 10px;
+            }
 
-        .hero h1 {
-            font-size: 1.6em;
-        }
+            .auth-buttons a {
+                margin: 0 5px;
+                width: auto;
+                text-align: center;
+                font-size: 0.8em;
+                padding: 8px 16px;
+            }
 
-        .hero p {
-            font-size: 1em;
-        }
+            .hero h1 {
+                font-size: 1.6em;
+            }
 
-        .topics {
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
+            .hero p {
+                font-size: 1em;
+                padding: 0 10px;
+            }
 
-        .topic-card {
-            padding: 25px;
-            min-height: auto;
-        }
+            .topics {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
 
-        .topic-card a {
-            font-size: 1em;
+            .topic-card {
+                padding: 20px;
+                min-height: auto;
+            }
+
+            .topic-card a {
+                font-size: 1em;
+            }
         }
     </style>
 </head>
@@ -198,7 +206,7 @@
                     <a href="register.html">Register</a>
                 </div> -->
             </div>
-            <h1 font-size: 0.9em>Master the building blocks of language</h1>
+            <h1 style="font-size: 1.2em;">Master the building blocks of language</h1>
         </div>
         <section class="hero">
             <p>Grammar Genius is a user-friendly online resource for learning and practicing English grammar, focusing on fundamental concepts and aiming to improve users' overall communication skills.</p>
