@@ -36,23 +36,6 @@
             padding: 0 20px;
         }
 
-        /* Mobile Menu Toggle */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            position: relative;
-            z-index: 1001;
-        }
-
-        .menu-toggle span {
-            height: 3px;
-            width: 25px;
-            background-color: var(--deep-blue);
-            margin: 4px 0;
-            transition: all 0.3s ease;
-        }
-
         /* Header Styling */
         .header {
             background-color: white;
@@ -190,7 +173,6 @@
             font-weight: 600;
         }
 
-        /* Mobile Responsiveness */
         @media (max-width: 1200px) {
             .topics {
                 grid-template-columns: repeat(3, 1fr);
@@ -198,77 +180,20 @@
         }
 
         @media (max-width: 768px) {
-            .menu-toggle {
-                display: flex;
-            }
-
             .header-content {
                 flex-direction: column;
-                position: relative;
             }
 
-            .main-nav {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: white;
-                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-                padding: 20px 0;
-            }
-
-            .main-nav.active {
-                display: flex;
+            .main-nav, .cta-buttons {
+                margin-top: 20px;
             }
 
             .main-nav a {
-                margin: 10px 0;
-                text-align: center;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                width: 100%;
-                align-items: center;
-            }
-
-            .btn {
-                margin: 10px 0;
-                width: 80%;
-                text-align: center;
-            }
-
-            .hero {
-                padding: 100px 0 50px;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero-description {
-                font-size: 1rem;
+                margin: 0 10px;
             }
 
             .topics {
-                grid-template-columns: 1fr 1fr;
-                gap: 20px;
-            }
-
-            .topic-card {
-                padding: 20px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .topics {
-                grid-template-columns: 1fr;
-            }
-
-            .logo {
-                font-size: 1.5rem;
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
@@ -277,13 +202,6 @@
     <header class="header">
         <div class="container header-content">
             <a href="#" class="logo">Grammar Genius</a>
-            
-            <div class="menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-
             <nav class="main-nav">
                 <a href="#">Home</a>
                 <a href="#">Courses</a>
@@ -291,7 +209,6 @@
                 <a href="#">Practice</a>
                 <a href="#">About</a>
             </nav>
-            
             <div class="cta-buttons">
                 <a href="#" class="btn btn-login">Login</a>
                 <a href="#" class="btn btn-register">Get Started</a>
@@ -352,14 +269,5 @@
             </div>
         </section>
     </main>
-
-    <script>
-        document.querySelector('.menu-toggle').addEventListener('click', function() {
-            document.querySelector('.main-nav').classList.toggle('active');
-            
-            // Toggle menu icon animation
-            this.classList.toggle('active');
-        });
-    </script>
 </body>
 </html>
