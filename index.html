@@ -3,261 +3,271 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grammar Genius - Home</title>
+    <title>Grammar Genius | Professional English Language Learning</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Open+Sans:wght@600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #3498db;
-            --light-bg: #e6f2ff;
-            --dark-text: #333;
-            --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            --border-radius: 8px;
-            --background:#85c1feee
+            --deep-blue: #1A4B84;
+            --royal-blue: #2C67B3;
+            --soft-white: #F7F9FC;
+            --gray-text: #4A4A4A;
+            --accent-color: #2980B9;
+            --transition-speed: 0.3s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--light-bg);
-            color: var(--dark-text);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--gray-text);
+            background-color: var(--soft-white);
         }
 
         .container {
-            max-width: 960px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styling */
+        .header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: fixed;
             width: 100%;
-            margin: 30px auto;
-            padding: 30px;
-            background-color:var(--background);
-            box-shadow: var(--box-shadow);
-            border-radius: var(--border-radius);
-            flex: 1;
+            top: 0;
+            z-index: 1000;
         }
 
         .header-content {
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
-            width: 100%;
-        }
-
-        .header-top {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            padding: 0 20px;
-            box-sizing: border-box;
+            padding: 20px 0;
         }
 
         .logo {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 2rem;
             font-weight: 700;
-            color: var(--primary-color);
+            color: var(--deep-blue);
             text-decoration: none;
-            font-size: 2.8em;
-            margin-right: 20px;
         }
 
-        .auth-buttons {
+        .main-nav {
             display: flex;
+            align-items: center;
         }
 
-        .auth-buttons a {
-            padding: 10px 20px;
-            margin: 0 5px;
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: var(--border-radius);
+        .main-nav a {
+            color: var(--gray-text);
             text-decoration: none;
-            transition: background-color 0.3s ease;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
-            font-size: 0.9em;
+            margin-left: 30px;
+            font-weight: 500;
+            position: relative;
+            transition: color var(--transition-speed);
         }
 
-        .auth-buttons a:hover {
-            background-color: #2980b9;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--royal-blue);
+            transition: width var(--transition-speed);
         }
 
+        .main-nav a:hover {
+            color: var(--royal-blue);
+        }
+
+        .main-nav a:hover::after {
+            width: 100%;
+        }
+
+        .cta-buttons {
+            display: flex;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            margin-left: 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all var(--transition-speed);
+        }
+
+        .btn-login {
+            color: var(--royal-blue);
+            border: 2px solid var(--royal-blue);
+        }
+
+        .btn-register {
+            background-color: var(--royal-blue);
+            color: white;
+        }
+
+        /* Hero Section */
         .hero {
+            padding: 150px 0 80px;
             text-align: center;
-            padding: 40px 0;
+            background: linear-gradient(135deg, var(--soft-white) 0%, #E6F2FF 100%);
         }
 
         .hero h1 {
-    font-size: 1.2em; 
-}
-
-        .hero p {
-            font-size: 1.1em;
-            color: #555;
-            line-height: 1.6;
-            margin-bottom: 30px;
+            font-size: 3rem;
+            color: var(--deep-blue);
+            margin-bottom: 20px;
+            font-weight: 700;
         }
 
+        .hero-description {
+            max-width: 800px;
+            margin: 0 auto 40px;
+            font-size: 1.1rem;
+            color: var(--gray-text);
+        }
+
+        /* Topics Section */
         .topics {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(5, 1fr);
             gap: 30px;
+            padding: 50px 0;
         }
 
         .topic-card {
-            background-color: #fff;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
             padding: 30px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
             text-align: center;
-            min-height: 200px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
         }
 
         .topic-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-        }
-
-        .topic-card a {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.1em;
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
         }
 
         .topic-card h3 {
-            margin-bottom: 10px;
-        }
-
-        /* REMOVE MEDIA QUERY */
-        .header-top {
-            flex-direction: column;
-            align-items: center;
-            padding: 0 10px;
-        }
-
-        .logo {
-            font-size: 2em;
-            margin-right: 0;
-            margin-bottom: 10px;
-            color: white;
-        }
-
-        .auth-buttons {
-            flex-direction: row;
-            margin-top: 10px;
-        }
-
-        .auth-buttons a {
-            margin: 0 5px;
-            width: auto;
-            text-align: center;
-            font-size: 0.8em;
-            padding: 8px 16px;
-        }
-
-        .hero h1 {
-            font-size: 1.6em;
-        }
-
-        .hero p {
-            font-size: 1em;
-        }
-
-        .topics {
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
-
-        .topic-card {
-            padding: 25px;
-            min-height: auto;
+            color: var(--deep-blue);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
         }
 
         .topic-card a {
-            font-size: 1em;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        @media (max-width: 1200px) {
+            .topics {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+
+            .main-nav, .cta-buttons {
+                margin-top: 20px;
+            }
+
+            .main-nav a {
+                margin: 0 10px;
+            }
+
+            .topics {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
     </style>
 </head>
 <body>
-
-    <div class="container">
-        <div class="header-content">
-            <div class="header-top">
-                <span class="logo">GRAMMAR GENIUS</span>
-                <div class="auth-buttons">
-                    <a href="login.html">Login</a>
-                    <a href="register.html">Register</a>
-                </div> 
+    <header class="header">
+        <div class="container header-content">
+            <a href="#" class="logo">Grammar Genius</a>
+            <nav class="main-nav">
+                <a href="#">Home</a>
+                <a href="#">Courses</a>
+                <a href="#">Topics</a>
+                <a href="#">Practice</a>
+                <a href="#">About</a>
+            </nav>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-login">Login</a>
+                <a href="#" class="btn btn-register">Get Started</a>
             </div>
-            <h1 font-size: 0.9em>Master the building blocks of language</h1>
         </div>
+    </header>
+
+    <main>
         <section class="hero">
-            <p>Grammar Genius is a user-friendly online resource for learning and practicing English grammar, focusing on fundamental concepts and aiming to improve users' overall communication skills.</p>
-        </section>
-
-        <section class="topics">
-            <div class="topic-card">
-                <a href="topics/parts_of_speech.html">
-                    <h3>Parts of Speech</h3>
-                </a>
-            </div>
-            <div class="topic-card">
-                <a href="topics/tenses.html">
-                    <h3>Tenses</h3>
-                </a>
-            </div>
-            <div class="topic-card">
-                <a href="topics/subject_verb_agreement.html">
-                    <h3>Subject-Verb Agreement</h3>
-                </a>
-            </div>
-            <div class="topic-card">
-                <a href="topics/active_passive_voice.html">
-                    <h3>Active and Passive Voice</h3>
-                </a>
-            </div>
-            <div class="topic-card">
-                <a href="topics/direct_indirect_speech.html">
-                    <h3>Direct and Indirect Speech</h3>
-                </a>
-            </div>
-            <div class="topic-card">
-                <a href="/articles">
-                    <h3>Articles (a, an, the)</h3>
-                </a>
-            </div>
-            <div class="topic-card">
-                <a href="/prepositions">
-                    <h3>Prepositions</h3>
-                </a>
-            </div>
-            <div class="topic-card">
-                <a href="/punctuation">
-                    <h3>Punctuation</h3>
-                </a>
-            </div>
-            <div class="topic-card">
-                <a href="/sentence-structure">
-                    <h3>Sentence Structure</h3>
-                </a>
-            </div>
-            <div class="topic-card">
-                <a href="/common-errors">
-                    <h3>Common Errors in English</h3>
-                </a>
+            <div class="container">
+                <h1>Master English Grammar Systematically</h1>
+                <p class="hero-description">
+                    Grammar Genius offers a comprehensive, structured approach to English language learning. Our meticulously designed curriculum breaks down complex grammatical concepts into digestible, easy-to-understand lessons.
+                </p>
             </div>
         </section>
 
-    </div>
-
+        <section class="container topics">
+            <div class="topic-card">
+                <h3>Parts of Speech</h3>
+                <a href="#">Explore Module</a>
+            </div>
+            <div class="topic-card">
+                <h3>Tenses</h3>
+                <a href="#">Explore Module</a>
+            </div>
+            <div class="topic-card">
+                <h3>Subject-Verb Agreement</h3>
+                <a href="#">Explore Module</a>
+            </div>
+            <div class="topic-card">
+                <h3>Active & Passive Voice</h3>
+                <a href="#">Explore Module</a>
+            </div>
+            <div class="topic-card">
+                <h3>Direct & Indirect Speech</h3>
+                <a href="#">Explore Module</a>
+            </div>
+            <div class="topic-card">
+                <h3>Articles</h3>
+                <a href="#">Explore Module</a>
+            </div>
+            <div class="topic-card">
+                <h3>Prepositions</h3>
+                <a href="#">Explore Module</a>
+            </div>
+            <div class="topic-card">
+                <h3>Punctuation</h3>
+                <a href="#">Explore Module</a>
+            </div>
+            <div class="topic-card">
+                <h3>Sentence Structure</h3>
+                <a href="#">Explore Module</a>
+            </div>
+            <div class="topic-card">
+                <h3>Common Errors</h3>
+                <a href="#">Explore Module</a>
+            </div>
+        </section>
+    </main>
 </body>
 </html>
