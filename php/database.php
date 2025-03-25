@@ -5,7 +5,7 @@ $password = "ftpproject123"; // Default password for XAMPP/MAMP
 $dbname = "if0_38272767_grammargenius";
 
 // Create connection
-$conn = mysqli_connect($servername, $username, $password, $dbname);
+$conn =new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
 if (!$conn) {
