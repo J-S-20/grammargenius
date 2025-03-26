@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Language Mastery: Parts of Speech Explained</title>
+    <title>Language Mastery: Royal Parts of Speech Guide</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #3498db;  /* Bright Light Blue */
-            --secondary-color: #f0f8ff;  /* Alice Blue */
-            --text-color: #2c3e50;
-            --background-color: #ffffff;
-            --soft-blue: #e6f2ff;
-            --shadow: 0 8px 20px rgba(0, 123, 255, 0.1);
+            --royal-blue: #4169E1;  /* Royal Blue */
+            --light-royal-blue: #B0C4DE;  /* Light Steel Blue */
+            --deep-blue: #191970;  /* Midnight Blue */
+            --soft-blue: #E6F2FF;  /* Soft Light Blue */
+            --elegant-shadow: 0 10px 30px rgba(65, 105, 225, 0.15);
         }
 
         * {
@@ -23,8 +22,8 @@
 
         body {
             font-family: 'Nunito', sans-serif;
-            background-color: var(--secondary-color);
-            color: var(--text-color);
+            background-color: var(--soft-blue);
+            color: var(--deep-blue);
             line-height: 1.6;
         }
 
@@ -40,18 +39,19 @@
             background-color: white;
             padding: 30px;
             border-radius: 15px;
-            box-shadow: var(--shadow);
+            box-shadow: var(--elegant-shadow);
+            border: 2px solid var(--light-royal-blue);
         }
 
         .header h1 {
-            color: var(--primary-color);
+            color: var(--royal-blue);
             font-size: 2.8em;
             margin-bottom: 15px;
             font-weight: 700;
         }
 
         .header p {
-            color: #6c757d;
+            color: var(--deep-blue);
             max-width: 800px;
             margin: 0 auto;
             font-size: 1.1em;
@@ -66,7 +66,7 @@
         .part-of-speech-card {
             background-color: white;
             border-radius: 15px;
-            box-shadow: var(--shadow);
+            box-shadow: var(--elegant-shadow);
             padding: 30px;
             transition: all 0.3s ease;
             border: 2px solid transparent;
@@ -74,21 +74,34 @@
 
         .part-of-speech-card:hover {
             transform: translateY(-10px);
-            border-color: var(--primary-color);
+            border-color: var(--royal-blue);
         }
 
         .card-header {
             display: flex;
             align-items: center;
             margin-bottom: 20px;
-            border-bottom: 2px solid var(--soft-blue);
+            border-bottom: 2px solid var(--light-royal-blue);
             padding-bottom: 15px;
+        }
+
+        .card-image-placeholder {
+            width: 100%;
+            height: 200px;
+            background-color: var(--soft-blue);
+            margin-bottom: 20px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--royal-blue);
+            font-weight: bold;
         }
 
         .card-icon {
             width: 60px;
             height: 60px;
-            background-color: var(--primary-color);
+            background-color: var(--royal-blue);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -100,14 +113,14 @@
         }
 
         .card-title {
-            color: var(--primary-color);
+            color: var(--royal-blue);
             font-size: 1.8em;
             font-weight: 700;
         }
 
         .card-definition {
             font-style: italic;
-            color: #6c757d;
+            color: var(--deep-blue);
             margin-bottom: 15px;
         }
 
@@ -119,12 +132,12 @@
             position: relative;
             padding-left: 25px;
             margin-bottom: 10px;
-            color: var(--text-color);
+            color: var(--deep-blue);
         }
 
         .examples-list li::before {
             content: '▸';
-            color: var(--primary-color);
+            color: var(--royal-blue);
             position: absolute;
             left: 0;
             font-weight: bold;
@@ -133,13 +146,14 @@
         .advanced-section {
             background-color: white;
             border-radius: 15px;
-            box-shadow: var(--shadow);
+            box-shadow: var(--elegant-shadow);
             padding: 40px;
             margin-top: 50px;
+            border: 2px solid var(--light-royal-blue);
         }
 
         .advanced-section h2 {
-            color: var(--primary-color);
+            color: var(--royal-blue);
             text-align: center;
             margin-bottom: 30px;
             font-size: 2.2em;
@@ -164,7 +178,7 @@
         }
 
         .advanced-tip h3 {
-            color: var(--primary-color);
+            color: var(--royal-blue);
             margin-bottom: 10px;
         }
 
@@ -178,7 +192,7 @@
         .button {
             display: inline-block;
             padding: 12px 25px;
-            background-color: var(--primary-color);
+            background-color: var(--royal-blue);
             color: white;
             text-decoration: none;
             border-radius: 8px;
@@ -187,7 +201,7 @@
         }
 
         .button:hover {
-            background-color: #2980b9;
+            background-color: var(--deep-blue);
             transform: translateY(-3px);
         }
 
@@ -212,6 +226,9 @@
         <div class="parts-of-speech-grid">
             <!-- Noun Card -->
             <div class="part-of-speech-card">
+                <div class="card-image-placeholder">
+                    Noun Image Placeholder
+                </div>
                 <div class="card-header">
                     <div class="card-icon">N</div>
                     <h2 class="card-title">Noun</h2>
@@ -227,6 +244,9 @@
 
             <!-- Pronoun Card -->
             <div class="part-of-speech-card">
+                <div class="card-image-placeholder">
+                    Pronoun Image Placeholder
+                </div>
                 <div class="card-header">
                     <div class="card-icon">Pr</div>
                     <h2 class="card-title">Pronoun</h2>
@@ -242,6 +262,9 @@
 
             <!-- Verb Card -->
             <div class="part-of-speech-card">
+                <div class="card-image-placeholder">
+                    Verb Image Placeholder
+                </div>
                 <div class="card-header">
                     <div class="card-icon">V</div>
                     <h2 class="card-title">Verb</h2>
@@ -257,6 +280,9 @@
 
             <!-- Adjective Card -->
             <div class="part-of-speech-card">
+                <div class="card-image-placeholder">
+                    Adjective Image Placeholder
+                </div>
                 <div class="card-header">
                     <div class="card-icon">Adj</div>
                     <h2 class="card-title">Adjective</h2>
@@ -272,6 +298,9 @@
 
             <!-- Adverb Card -->
             <div class="part-of-speech-card">
+                <div class="card-image-placeholder">
+                    Adverb Image Placeholder
+                </div>
                 <div class="card-header">
                     <div class="card-icon">Adv</div>
                     <h2 class="card-title">Adverb</h2>
@@ -287,6 +316,9 @@
 
             <!-- Preposition Card -->
             <div class="part-of-speech-card">
+                <div class="card-image-placeholder">
+                    Preposition Image Placeholder
+                </div>
                 <div class="card-header">
                     <div class="card-icon">Prep</div>
                     <h2 class="card-title">Preposition</h2>
