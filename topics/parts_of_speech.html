@@ -3,301 +3,330 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parts of Speech</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>Language Mastery: Parts of Speech Explained</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #3498db; /* Light Blue */
-            --light-bg: #e6f2ff; /* Very Light Blue Background */
-            --dark-text: #333;
-            --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            --border-radius: 8px;
+            --primary-color: #3498db;  /* Bright Light Blue */
+            --secondary-color: #f0f8ff;  /* Alice Blue */
+            --text-color: #2c3e50;
+            --background-color: #ffffff;
+            --soft-blue: #e6f2ff;
+            --shadow: 0 8px 20px rgba(0, 123, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--light-bg); /* Use light blue background */
-            color: var(--dark-text);
-            display: flex;
-            justify-content: center;
-            align-items: flex-start; /* Align to top on larger screens */
-            min-height: 100vh;
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            line-height: 1.6;
         }
 
         .container {
-            max-width: 960px;
-            width: 100%; /* Full width within flex container */
-            margin: 30px auto;
-            padding: 30px;
-            background-color: #fff;
-            box-shadow: var(--box-shadow);
-            border-radius: var(--border-radius);
-            flex: 1; /* Allow container to grow */
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 40px 20px;
         }
 
-        h1 {
-            color: var(--primary-color);
+        .header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 50px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
         }
 
-        .part-of-speech {
-            margin-bottom: 40px;
-            padding-bottom: 25px;
-            border-bottom: 1px solid #eee;
-        }
-
-        h2 {
+        .header h1 {
             color: var(--primary-color);
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .header p {
+            color: #6c757d;
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1em;
+        }
+
+        .parts-of-speech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .part-of-speech-card {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            padding: 30px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .part-of-speech-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--soft-blue);
+            padding-bottom: 15px;
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            color: white;
+            font-weight: bold;
+            font-size: 1.5em;
+        }
+
+        .card-title {
+            color: var(--primary-color);
+            font-size: 1.8em;
+            font-weight: 700;
+        }
+
+        .card-definition {
+            font-style: italic;
+            color: #6c757d;
             margin-bottom: 15px;
         }
 
-        .definition {
-            font-style: italic;
-            color: #7f8c8d;
-            margin-bottom: 20px;
+        .examples-list {
+            list-style-type: none;
         }
 
-        .types {
-            margin-bottom: 20px;
-        }
-
-        ul {
-            list-style-type: disc;
+        .examples-list li {
+            position: relative;
             padding-left: 25px;
+            margin-bottom: 10px;
+            color: var(--text-color);
         }
 
-        li {
+        .examples-list li::before {
+            content: '▸';
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .advanced-section {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            padding: 40px;
+            margin-top: 50px;
+        }
+
+        .advanced-section h2 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+
+        .advanced-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .advanced-tip {
+            background-color: var(--soft-blue);
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .advanced-tip:hover {
+            transform: scale(1.05);
+        }
+
+        .advanced-tip h3 {
+            color: var(--primary-color);
             margin-bottom: 10px;
         }
 
-        strong {
-            font-weight: 500;
+        .buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+            gap: 20px;
         }
 
-        .quiz-button {
-            display: block;
-            margin: 40px auto;
-            padding: 15px 30px;
+        .button {
+            display: inline-block;
+            padding: 12px 25px;
             background-color: var(--primary-color);
             color: white;
-            border: none;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            font-size: 18px;
-            font-weight: 500;
             text-decoration: none;
-            transition: background-color 0.3s ease;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15); /* Button shadow */
-        }
-
-        .quiz-button:hover {
-            background-color: #2980b9;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* More prominent hover shadow */
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                max-width: 95%;
-                margin: 20px auto;
-                padding: 20px;
-            }
-
-            body {
-                align-items: flex-start; /* Align to top on mobile */
-            }
-
-            h1 {
-                font-size: 1.8em;
-            }
-
-            .quiz-button {
-                font-size: 16px;
-                padding: 12px 25px;
-            }
-        }
-
-        body {
-            /* ... (other body styles) ... */
-            flex-direction: column; /* Arrange items in a column */
-            min-height: 100vh;
-        }
-
-        .container {
-            /* ... (other container styles) ... */
-            flex: 1; /* Allow content to take up available space */
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #fff; /* Or a slightly different background */
-            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Shadow on top */
-        }
-
-        .quiz-button {
-            /* ... (your quiz button styles) ... */
-            margin: 0 auto; /* Center the button in the footer */
-        }
-
-        .back-to-home {
-    display: block; /* Makes the link a block element so it takes up the full width */
-    margin: 20px auto; /* Centers the link horizontally */
-    padding: 10px 20px; /* Adds padding around the text */
-    background-color: var(--primary-color); /* Blue background */
-    color: white; /* White text */
-    text-decoration: none; /* Removes the underline */
-    border-radius: var(--border-radius); /* Rounded corners */
-    transition: background-color 0.3s ease; /* Smooth hover effect */
-    box-shadow: var(--box-shadow); /* Adds a shadow */
-    text-align: center; /* Centers the text within the button */
-}
-
-.back-to-home:hover {
-    background-color: #2980b9; /* Darker blue on hover */
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* More prominent hover shadow */
-}
-
-.button {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 0 10px;
-            background-color: #007bff; /* Blue button */
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease; /* Smooth hover effect */
-        }
-
-        .buttons {
-            text-align: center;
-            margin-top: 20px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-weight: 600;
         }
 
         .button:hover {
-            background-color: #0056b3; /* Darker blue on hover */
+            background-color: #2980b9;
+            transform: translateY(-3px);
         }
 
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.2em;
+            }
+            
+            .parts-of-speech-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
-
     <div class="container">
-        <h1>Parts of Speech</h1>
+        <div class="header">
+            <h1>Mastering Parts of Speech</h1>
+            <p>Dive into the fascinating world of language structure. Understanding parts of speech is like having a roadmap to effective communication, helping you craft more precise and engaging writing.</p>
+        </div>
 
-        <div class="part-of-speech">
-            <h2>Noun</h2>
-            <p class="definition">A word that names a person, place, thing, or idea.</p>
-            <div class="types">
-                <h3>Types</h3>
-                <ul>
-                    <li><strong>Common Noun:</strong> A general name (e.g., The <strong>dog</strong> barked loudly.)</li>
-                    <li><strong>Proper Noun:</strong> A specific name (e.g., I live in <strong>London</strong>.)</li>
-                    <li><strong>Collective Noun:</strong> A group name (e.g., The <strong>team</strong> won the game.)</li>
-                    <li><strong>Abstract Noun:</strong> An idea or concept (e.g., <strong>Love</strong> is a powerful emotion.)</li>
+        <div class="parts-of-speech-grid">
+            <!-- Noun Card -->
+            <div class="part-of-speech-card">
+                <div class="card-header">
+                    <div class="card-icon">N</div>
+                    <h2 class="card-title">Noun</h2>
+                </div>
+                <p class="card-definition">The building blocks that name and identify everything in our world.</p>
+                <ul class="examples-list">
+                    <li><strong>Common Nouns:</strong> Everyday objects and concepts</li>
+                    <li><strong>Proper Nouns:</strong> Specific, unique names</li>
+                    <li><strong>Abstract Nouns:</strong> Intangible ideas and emotions</li>
+                    <li><strong>Collective Nouns:</strong> Groups and collections</li>
+                </ul>
+            </div>
+
+            <!-- Pronoun Card -->
+            <div class="part-of-speech-card">
+                <div class="card-header">
+                    <div class="card-icon">Pr</div>
+                    <h2 class="card-title">Pronoun</h2>
+                </div>
+                <p class="card-definition">Words that stand in for nouns, keeping our language fluid and concise.</p>
+                <ul class="examples-list">
+                    <li><strong>Personal Pronouns:</strong> I, you, he, she, it</li>
+                    <li><strong>Possessive Pronouns:</strong> Mine, yours, hers</li>
+                    <li><strong>Reflexive Pronouns:</strong> Myself, yourself, himself</li>
+                    <li><strong>Interrogative Pronouns:</strong> Who, which, what</li>
+                </ul>
+            </div>
+
+            <!-- Verb Card -->
+            <div class="part-of-speech-card">
+                <div class="card-header">
+                    <div class="card-icon">V</div>
+                    <h2 class="card-title">Verb</h2>
+                </div>
+                <p class="card-definition">The powerhouses of action and state, bringing sentences to life.</p>
+                <ul class="examples-list">
+                    <li><strong>Action Verbs:</strong> Move, create, inspire</li>
+                    <li><strong>Linking Verbs:</strong> Seem, become, appear</li>
+                    <li><strong>Helping Verbs:</strong> Will, can, should</li>
+                    <li><strong>Tense Variations:</strong> Past, present, future</li>
+                </ul>
+            </div>
+
+            <!-- Adjective Card -->
+            <div class="part-of-speech-card">
+                <div class="card-header">
+                    <div class="card-icon">Adj</div>
+                    <h2 class="card-title">Adjective</h2>
+                </div>
+                <p class="card-definition">The colorful descriptors that add depth and detail to our language.</p>
+                <ul class="examples-list">
+                    <li><strong>Descriptive:</strong> Vibrant, smooth, intelligent</li>
+                    <li><strong>Comparative:</strong> Bigger, faster, smarter</li>
+                    <li><strong>Superlative:</strong> Biggest, fastest, smartest</li>
+                    <li><strong>Compound:</strong> Well-known, blue-eyed</li>
+                </ul>
+            </div>
+
+            <!-- Adverb Card -->
+            <div class="part-of-speech-card">
+                <div class="card-header">
+                    <div class="card-icon">Adv</div>
+                    <h2 class="card-title">Adverb</h2>
+                </div>
+                <p class="card-definition">The nuanced modifiers that add precision to our expressions.</p>
+                <ul class="examples-list">
+                    <li><strong>Manner:</strong> Quickly, carefully, gently</li>
+                    <li><strong>Time:</strong> Now, soon, yesterday</li>
+                    <li><strong>Place:</strong> Here, everywhere, anywhere</li>
+                    <li><strong>Degree:</strong> Very, almost, completely</li>
+                </ul>
+            </div>
+
+            <!-- Preposition Card -->
+            <div class="part-of-speech-card">
+                <div class="card-header">
+                    <div class="card-icon">Prep</div>
+                    <h2 class="card-title">Preposition</h2>
+                </div>
+                <p class="card-definition">The connectors that reveal relationships between words.</p>
+                <ul class="examples-list">
+                    <li><strong>Location:</strong> In, on, at, under</li>
+                    <li><strong>Direction:</strong> To, towards, into</li>
+                    <li><strong>Time:</strong> Before, after, during</li>
+                    <li><strong>Relationship:</strong> With, by, for</li>
                 </ul>
             </div>
         </div>
-    
-        <div class="part-of-speech">
-            <h2>Pronoun</h2>
-            <p class="definition">A word that replaces a noun.</p>
-            <div class="types">
-                <h3>Types</h3>
-                <ul>
-                    <li><strong>Personal:</strong> Refers to a person/thing (e.g., <strong>She</strong> went to the store.)</li>
-                    <li><strong>Possessive:</strong> Shows ownership (e.g., That book is <strong>mine</strong>.)</li>
-                    <li><strong>Demonstrative:</strong> Points out specifics (e.g., <strong>This</strong> is my favorite song.)</li>
-                    <li><strong>Interrogative:</strong> Asks questions (e.g., <strong>Who</strong> is at the door?)</li>
-                    <li><strong>Reflexive:</strong> Refers back to the subject (e.g., He hurt <strong>himself</strong>.)</li>
-                </ul>
+
+        <div class="advanced-section">
+            <h2>Language Learning Insights</h2>
+            <div class="advanced-content">
+                <div class="advanced-tip">
+                    <h3>Contextual Learning</h3>
+                    <p>Words can change their part of speech based on how they're used in a sentence.</p>
+                </div>
+                <div class="advanced-tip">
+                    <h3>Sentence Complexity</h3>
+                    <p>Mastering parts of speech helps you construct more sophisticated sentences.</p>
+                </div>
+                <div class="advanced-tip">
+                    <h3>Writing Skill</h3>
+                    <p>Diverse use of parts of speech makes your writing more engaging and descriptive.</p>
+                </div>
+                <div class="advanced-tip">
+                    <h3>Continuous Practice</h3>
+                    <p>Regular identification of parts of speech improves language comprehension.</p>
+                </div>
             </div>
         </div>
-    
-        <div class="part-of-speech">
-            <h2>Verb</h2>
-            <p class="definition">A word that expresses action or being.</p>
-            <div class="types">
-                <h3>Types</h3>
-                <ul>
-                    <li><strong>Action:</strong> Shows an action (e.g., She <strong>runs</strong> every morning.)</li>
-                    <li><strong>Linking:</strong> Connects subject to description (e.g., He <strong>is</strong> a doctor.)</li>
-                    <li><strong>Auxiliary:</strong> Helps other verbs (e.g., I <strong>have</strong> finished my homework.)</li>
-                </ul>
-            </div>
-        </div>
-    
-        <div class="part-of-speech">
-            <h2>Adjective</h2>
-            <p class="definition">A word that describes a noun/pronoun.</p>
-            <div class="types">
-                <h3>Examples</h3>
-                <ul>
-                    <li>The <strong>red</strong> car is fast.</li>
-                    <li>She is a <strong>talented</strong> musician.</li>
-                </ul>
-            </div>
-        </div>
-    
-        <div class="part-of-speech">
-            <h2>Adverb</h2>
-            <p class="definition">A word that modifies a verb, adjective, or adverb.</p>
-            <div class="types">
-                <h3>Examples</h3>
-                <ul>
-                    <li>He ran <strong>quickly</strong>.</li>
-                    <li>She is <strong>very</strong> tall.</li>
-                </ul>
-            </div>
-        </div>
-    
-        <div class="part-of-speech">
-            <h2>Preposition</h2>
-            <p class="definition">A word showing relationship between words.</p>
-            <div class="types">
-                <h3>Examples</h3>
-                <ul>
-                    <li>The book is <strong>on</strong> the table.</li>
-                    <li>She went <strong>to</strong> the store.</li>
-                </ul>
-            </div>
-        </div>
-    
-        <div class="part-of-speech">
-            <h2>Conjunction</h2>
-            <p class="definition">A word that connects words, phrases, or clauses.</p>
-            <div class="types">
-                <h3>Types</h3>
-                <ul>
-                    <li><strong>Coordinating:</strong> Connects equal parts (e.g., I like apples <strong>and</strong> oranges.)</li>
-                    <li><strong>Subordinating:</strong> Connects dependent clause (e.g., He studied hard <strong>because</strong> he wanted to pass.)</li>
-                </ul>
-            </div>
-        </div>
-    
-        <div class="part-of-speech">
-            <h2>Interjection</h2>
-            <p class="definition">A word expressing strong emotion.</p>
-            <div class="types">
-                <h3>Examples</h3>
-                <ul>
-                    <li><strong>Ouch!</strong> That hurts.</li>
-                    <li><strong>Wow!</strong> That's amazing.</li>
-                </ul>
-            </div>
-        </div>
+
         <div class="buttons">
-            <a href="partsofspeechquiz.html" class="button">Take Quiz</a>
-            <a href="index.html" class="button">Back to home </a>
+            <a href="partsofspeechquiz.html" class="button">Take Language Quiz</a>
+            <a href="index.html" class="button">Back to Resources</a>
         </div>
-        </div>
-
-
-
-
+    </div>
 </body>
 </html>
