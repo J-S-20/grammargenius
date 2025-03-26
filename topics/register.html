@@ -181,6 +181,21 @@
   }
 }
 
+.back-home-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #1B2840;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 20px; /* Added margin for spacing */
+        }
+
+        .back-home-btn:hover {
+            background-color: #14203a;
+        }
 
 
 body {
@@ -233,6 +248,10 @@ body {
             Already have an account? 
             <a href="login.html">Login</a>
         </div>
+
+        <button class="back-home-btn" onclick="window.location.href='index.html'">Back to Home</button>
+
+
     </div>
 
     <script>

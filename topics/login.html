@@ -183,6 +183,22 @@ body {
   padding-top: 2rem;
 }
 
+.back-home-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #1B2840;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 20px; /* Added margin for spacing */
+        }
+
+        .back-home-btn:hover {
+            background-color: #14203a;
+        }
+
         
     </style>
 </head>
@@ -225,6 +241,10 @@ body {
             Don't have an account? 
             <a href="register.html">Sign Up</a>
         </div>
+
+        <button class="back-home-btn" onclick="window.location.href='index.html'">Back to home</button>
+
+        
     </div>
 
     <script>
