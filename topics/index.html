@@ -196,6 +196,22 @@
             z-index: 1; /* Ensure text is above the hover effect */
         }
 
+        @media (max-width: 768px) {
+    .hero h1 {
+        font-size: calc(1.5rem + 2vw); /* Responsive font size */
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        padding: 0 10px;
+    }
+
+    .hero-description {
+        font-size: calc(0.9rem + 1vw);
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        padding: 0 10px;
+    }
+}
+
         @media (max-width: 1200px) {
             .topics {
                 grid-template-columns: repeat(3, 1fr);
