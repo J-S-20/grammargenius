@@ -151,9 +151,28 @@
             background-color: white;
             border-radius: 10px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-            padding: 30px;
+            padding: 22px;
             text-align: center;
             transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .topic-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(44, 103, 179, 0.1);
+            opacity: 0;
+            transition: opacity var(--transition-speed);
+        }
+
+        .topic-card:hover::before {
+            opacity: 1;
         }
 
         .topic-card:hover {
@@ -161,16 +180,20 @@
             box-shadow: 0 15px 35px rgba(0,0,0,0.1);
         }
 
-        .topic-card h3 {
-            color: var(--deep-blue);
-            margin-bottom: 15px;
-            font-size: 1.2rem;
+        .topic-card-link {
+            display: block;
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
         }
 
-        .topic-card a {
-            color: var(--accent-color);
-            text-decoration: none;
-            font-weight: 600;
+        .topic-card h3 {
+            color: var(--deep-blue);
+            margin-top: 25px;
+            margin-bottom: 25px;
+            font-size: 1.2rem;
+            position: relative;
+            z-index: 1;
         }
 
         @media (max-width: 1200px) {
@@ -203,14 +226,14 @@
         <div class="container header-content">
             <a href="#" class="logo">Grammar Genius</a>
             <nav class="main-nav">
-                <a href="topics/index.html">Home</a>
+                <a href="index.html">Home</a>
                 <a href="#">Topics</a>
                 <a href="#">Practice</a>
                 <a href="#">About</a>
             </nav>
             <div class="cta-buttons">
-                <a href="topics/login.html" class="btn btn-login">Login</a>
-                <a href="topics/register.html" class="btn btn-register">Get Started</a>
+                <a href="login.html" class="btn btn-login">Login</a>
+                <a href="register.html" class="btn btn-register">Get Started</a>
             </div>
         </div>
     </header>
@@ -226,44 +249,55 @@
         </section>
 
         <section class="container topics">
-            <div class="topic-card">
-                <h3>Parts of Speech</h3>
-                <a href="topics/parts_of_speech.html">Explore Module</a>
+            <div class="topic-card" onclick="window.location.href='topics/parts_of_speech.html'">
+                <a href="topics/parts_of_speech.html" class="topic-card-link">
+                    <h3>Parts of Speech</h3>
+                </a>
             </div>
-            <div class="topic-card">
-                <h3>Tenses</h3>
-                <a href="topics/tenses.html">Explore Module</a>
+            <div class="topic-card" onclick="window.location.href='topics/tenses.html'">
+                <a href="topics/tenses.html" class="topic-card-link">
+                    <h3>Tenses</h3>
+                </a>
             </div>
-            <div class="topic-card">
-                <h3>Subject-Verb Agreement</h3>
-                <a href="topics/subject_verb_agreement.html">Explore Module</a>
+            <div class="topic-card" onclick="window.location.href='topics/subject_verb_agreement.html'">
+                <a href="topics/subject_verb_agreement.html" class="topic-card-link">
+                    <h3>Subject-Verb Agreement</h3>
+                </a>
             </div>
-            <div class="topic-card">
-                <h3>Active & Passive Voice</h3>
-                <a href="topics/active_passive_voice.html">Explore Module</a>
+            <div class="topic-card" onclick="window.location.href='topics/active_passive_voice.html'">
+                <a href="topics/active_passive_voice.html" class="topic-card-link">
+                    <h3>Active & Passive Voice</h3>
+                </a>
             </div>
-            <div class="topic-card">
-                <h3>Direct & Indirect Speech</h3>
-                <a href="topics/direct_indirect_speech.html">Explore Module</a>
+            <div class="topic-card" onclick="window.location.href='topics/direct_indirect_speech.html'">
+                <a href="topics/direct_indirect_speech.html" class="topic-card-link">
+                    <h3>Direct & Indirect Speech</h3>
+                </a>
             </div>
-            <div class="topic-card">
-                <a href="topics/articles.html"><h3>Articles</h3></a>
+            <div class="topic-card" onclick="window.location.href='topics/articles.html'">
+                <a href="topics/articles.html" class="topic-card-link">
+                    <h3>Articles</h3>
+                </a>
             </div>
-            <div class="topic-card">
-                <h3>Prepositions</h3>
-                <a href="topics/prepositions.html">Explore Module</a>
+            <div class="topic-card" onclick="window.location.href='topics/prepositions.html'">
+                <a href="topics/prepositions.html" class="topic-card-link">
+                    <h3>Prepositions</h3>
+                </a>
             </div>
-            <div class="topic-card">
-                <h3>Punctuation</h3>
-                <a href="topics/punctuation.html">Explore Module</a>
+            <div class="topic-card" onclick="window.location.href='topics/punctuation.html'">
+                <a href="topics/punctuation.html" class="topic-card-link">
+                    <h3>Punctuation</h3>
+                </a>
             </div>
-            <div class="topic-card">
-                <h3>Sentence Structure</h3>
-                <a href="topics/sentence_structure.html">Explore Module</a>
+            <div class="topic-card" onclick="window.location.href='topics/sentence_structure.html'">
+                <a href="topics/sentence_structure.html" class="topic-card-link">
+                    <h3>Sentence Structure</h3>
+                </a>
             </div>
-            <div class="topic-card">
-                <h3>Common Errors</h3>
-                <a href="topics/common_errors.html">Explore Module</a>
+            <div class="topic-card" onclick="window.location.href='topics/common_errors.html'">
+                <a href="topics/common_errors.html" class="topic-card-link">
+                    <h3>Common Errors</h3>
+                </a>
             </div>
         </section>
     </main>
