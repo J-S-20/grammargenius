@@ -154,6 +154,25 @@
             padding: 22px;
             text-align: center;
             transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+            cursor: pointer; /* Add cursor pointer */
+            position: relative; /* Add relative positioning */
+            overflow: hidden; /* Ensure hover effect is contained */
+        }
+
+        .topic-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(44, 103, 179, 0.1); /* Subtle royal blue overlay */
+            opacity: 0;
+            transition: opacity var(--transition-speed);
+        }
+
+        .topic-card:hover::before {
+            opacity: 1;
         }
 
         .topic-card:hover {
@@ -161,17 +180,20 @@
             box-shadow: 0 15px 35px rgba(0,0,0,0.1);
         }
 
+        .topic-card-link {
+            display: block;
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
+        }
+
         .topic-card h3 {
             color: var(--deep-blue);
             margin-top: 25px;
             margin-bottom: 25px;
             font-size: 1.2rem;
-        }
-
-        .topic-card a {
-            color: var(--accent-color);
-            text-decoration: none;
-            font-weight: 600;
+            position: relative;
+            z-index: 1; /* Ensure text is above the hover effect */
         }
 
         @media (max-width: 1200px) {
@@ -227,44 +249,55 @@
         </section>
 
         <section class="container topics">
-            <div class="topic-card">
-                
-                <a href="parts_of_speech.html"><h3>Parts of Speech</h3></a>
+            <div class="topic-card" onclick="window.location.href='parts_of_speech.html'">
+                <a href="parts_of_speech.html" class="topic-card-link">
+                    <h3>Parts of Speech</h3>
+                </a>
             </div>
-            <div class="topic-card">
-                
-                <a href="tenses.html"><h3>Tenses</h3></a>
+            <div class="topic-card" onclick="window.location.href='tenses.html'">
+                <a href="tenses.html" class="topic-card-link">
+                    <h3>Tenses</h3>
+                </a>
             </div>
-            <div class="topic-card">
-                
-                <a href="subject_verb_agreement.html"><h3>Subject-Verb Agreement</h3></a>
+            <div class="topic-card" onclick="window.location.href='subject_verb_agreement.html'">
+                <a href="subject_verb_agreement.html" class="topic-card-link">
+                    <h3>Subject-Verb Agreement</h3>
+                </a>
             </div>
-            <div class="topic-card">
-                
-                <a href="active_passive_voice.html"><h3>Active & Passive Voice</h3></a>
+            <div class="topic-card" onclick="window.location.href='active_passive_voice.html'">
+                <a href="active_passive_voice.html" class="topic-card-link">
+                    <h3>Active & Passive Voice</h3>
+                </a>
             </div>
-            <div class="topic-card">
-                
-                <a href="direct_indirect_speech.html"><h3>Direct & Indirect Speech</h3></a>
+            <div class="topic-card" onclick="window.location.href='direct_indirect_speech.html'">
+                <a href="direct_indirect_speech.html" class="topic-card-link">
+                    <h3>Direct & Indirect Speech</h3>
+                </a>
             </div>
-            <div class="topic-card">
-                <a href="articles.html"><h3>Articles</h3></a>
+            <div class="topic-card" onclick="window.location.href='articles.html'">
+                <a href="articles.html" class="topic-card-link">
+                    <h3>Articles</h3>
+                </a>
             </div>
-            <div class="topic-card">
-                
-                <a href="prepositions.html"><h3>Prepositions</h3></a>
+            <div class="topic-card" onclick="window.location.href='prepositions.html'">
+                <a href="prepositions.html" class="topic-card-link">
+                    <h3>Prepositions</h3>
+                </a>
             </div>
-            <div class="topic-card">
-                
-                <a href="punctuation.html"><h3>Punctuation</h3></a>
+            <div class="topic-card" onclick="window.location.href='punctuation.html'">
+                <a href="punctuation.html" class="topic-card-link">
+                    <h3>Punctuation</h3>
+                </a>
             </div>
-            <div class="topic-card">
-                
-                <a href="sentence_structure.html"><h3>Sentence Structure</h3></a>
+            <div class="topic-card" onclick="window.location.href='sentence_structure.html'">
+                <a href="sentence_structure.html" class="topic-card-link">
+                    <h3>Sentence Structure</h3>
+                </a>
             </div>
-            <div class="topic-card">
-                
-                <a href="common_errors.html"><h3>Common Errors</h3></a>
+            <div class="topic-card" onclick="window.location.href='common_errors.html'">
+                <a href="common_errors.html" class="topic-card-link">
+                    <h3>Common Errors</h3>
+                </a>
             </div>
         </section>
     </main>
