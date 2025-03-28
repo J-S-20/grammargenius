@@ -22,7 +22,7 @@
             padding: 40px;
             border-radius: 12px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            max-width: 800px;
+            max-width: 900px;
             width: 90%;
             margin: 20px;
         }
@@ -58,6 +58,20 @@
             padding: 15px;
             margin: 20px 0;
             border-radius: 0 5px 5px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .example-text {
+            flex-grow: 1;
+        }
+
+        .example img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin-left: 20px;
+            border-radius: 8px;
         }
 
         .structure {
@@ -67,6 +81,14 @@
             border-radius: 5px;
             display: inline-block;
             margin: 10px 0;
+        }
+
+        .section-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
         ul {
@@ -147,12 +169,6 @@
         .comparison-table tr:nth-child(even) {
             background-color: #f8f9fa;
         }
-
-        .highlight {
-            background-color: #e6f0ff;
-            padding: 2px 4px;
-            border-radius: 3px;
-        }
     </style>
 </head>
 <body>
@@ -162,28 +178,32 @@
         <p>Understanding the difference between active and passive voice is essential for crafting clear, effective, and powerful writing. These two grammatical constructions serve different purposes and create distinct impressions on your readers.</p>
 
         <h2>Active Voice</h2>
-        <p>In active voice, the subject of the sentence performs the action. This creates a more direct, energetic, and concise style that engages readers.</p>
-        
-        <div class="structure">Structure: Subject + Verb + Object</div>
-        
         <div class="example">
-            <strong>Example:</strong> "The chef cooked the meal."<br>
-            <em>Here, "the chef" (subject) performs the action "cooked" on "the meal" (object).</em>
+            <div class="example-text">
+                <p>In active voice, the subject of the sentence performs the action. This creates a more direct, energetic, and concise style that engages readers.</p>
+                
+                <div class="structure">Structure: Subject + Verb + Object</div>
+                
+                <strong>Example:</strong> "The chef cooked the meal."<br>
+                <em>Here, "the chef" (subject) performs the action "cooked" on "the meal" (object).</em>
+            </div>
+            <img src="/api/placeholder/100/100" alt="Active Chef Cooking" />
         </div>
 
         <h2>Passive Voice</h2>
-        <p>In passive voice, the subject of the sentence receives the action. This construction is useful when the action itself is more important than who performed it, or when the actor is unknown or irrelevant.</p>
-        
-        <div class="structure">Structure: Object + Verb (to be) + Past Participle + (by Subject)</div>
-        
         <div class="example">
-            <strong>Example:</strong> "The meal was cooked by the chef."<br>
-            <em>Here, "the meal" (object) receives the action of being "cooked" by "the chef" (subject).</em>
-        </div>
-        
-        <div class="example">
-            <strong>Example with unknown actor:</strong> "The window was broken."<br>
-            <em>In this case, we don't know who broke the window, so the passive voice is appropriate.</em>
+            <div class="example-text">
+                <p>In passive voice, the subject of the sentence receives the action. This construction is useful when the action itself is more important than who performed it, or when the actor is unknown or irrelevant.</p>
+                
+                <div class="structure">Structure: Object + Verb (to be) + Past Participle + (by Subject)</div>
+                
+                <strong>Example:</strong> "The meal was cooked by the chef."<br>
+                <em>Here, "the meal" (object) receives the action of being "cooked" by "the chef" (subject).</em>
+                
+                <strong>Example with unknown actor:</strong> "The window was broken."<br>
+                <em>In this case, we don't know who broke the window, so the passive voice is appropriate.</em>
+            </div>
+            <img src="/api/placeholder/100/100" alt="Passive Scene with Meal" />
         </div>
 
         <h2>Comparing Active and Passive Voice</h2>
@@ -236,8 +256,8 @@
         </ul>
 
         <div class="button-container">
-            <a href="voice_quiz.html" class="button">Take the Quiz</a>
-            <a href="index.html" class="button">Back to Home</a>
+            <a href="#" class="button">Practice Exercises</a>
+            <a href="#" class="button">Download Guide</a>
         </div>
     </div>
 </body>
