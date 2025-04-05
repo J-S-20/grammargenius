@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Articles Quiz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
+            --accent-color: #f72585;
+            --light-bg: #f8f9fa;
+            --dark-text: #333;
+            --light-text: #fff;
+            --correct-color: #4cc9f0;
+            --wrong-color: #f72585;
+            --box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #4cc9f0 0%, #4361ee 100%);
+            color: var(--dark-text);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 850px;
+            width: 95%;
+            margin: 30px auto;
+            padding: 35px;
+            background-color: var(--light-bg);
+            box-shadow: var(--box-shadow);
+            border-radius: var(--border-radius);
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 32px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--correct-color), var(--primary-color));
+            border-radius: 2px;
+        }
+
+        .quiz-info {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--secondary-color);
+            font-weight: 500;
+        }
+
+        .question {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .question:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .question p {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .option-label:hover {
+            background-color: #e3e3e3;
+        }
+
+        .option-label input {
+            margin-right: 10px;
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 14px 30px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: var(--light-text);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .cancel-btn {
+            background-color: #e0e0e0;
+            color: var(--dark-text);
+        }
+
+        .cancel-btn:hover {
+            background-color: #d0d0d0;
+        }
+
+        #result {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 600;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            display: none;
+        }
+
+        .progress-container {
+            margin-top: 20px;
+            margin-bottom: 30px;
+            background-color: #e0e0e0;
+            border-radius: 20px;
+            height: 10px;
+            width: 100%;
+            overflow: hidden;
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(to right, var(--correct-color), var(--primary-color));
+            transition: width 0.5s ease;
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px;
+            }
+
+            .options {
+                grid-template-columns: 1fr;
+            }
+
+            button {
+                padding: 12px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>English Articles Quiz</h2>
+        <div class="quiz-info">Test your knowledge of articles (a, an, the) and when to use them.</div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <form id="quizForm">
+            <div id="questionsContainer"></div>
+            <div id="result"></div>
+            <div class="buttons">
+                <button type="button" class="submit-btn" onclick="submitQuiz()">Check Answers</button>
+                <button type="button" class="cancel-btn" onclick="window.location.href = 'articles.html'">Back to the lesson</button>
+            </div>
+        </form>
+    </div>
+    
+    <div class="scroll-to-top" onclick="scrollToTop()">
+        ↑
+    </div>
+
+    <script>
+        const questions = [
+            {
+                q: "Please pass me _____ salt.",
+                options: [
+                    "a",
+                    "an",
+                    "the",
+                    "No article needed"
+                ],
+                answer: "the",
+                explanation: "We use 'the' with specific objects. Here, the salt refers to a specific salt at the table, not salt in general."
+            },
+            {
+                q: "I need _____ umbrella because it's raining.",
+                options: [
+                    "a",
+                    "an",
+                    "the",
+                    "No article needed"
+                ],
+                answer: "an",
+                explanation: "We use 'an' before singular countable nouns that begin with a vowel sound. 'Umbrella' begins with a vowel sound."
+            },
+            {
+                q: "_____ Eiffel Tower is in Paris.",
+                options: [
+                    "A",
+                    "An",
+                    "The",
+                    "No article needed"
+                ],
+                answer: "The",
+                explanation: "We use 'the' with unique objects or landmarks. The Eiffel Tower is a specific, unique landmark."
+            },
+            {
+                q: "My brother is _____ doctor.",
+                options: [
+                    "a",
+                    "an",
+                    "the",
+                    "No article needed"
+                ],
+                answer: "a",
+                explanation: "We use 'a' before singular countable nouns that begin with a consonant sound. 'Doctor' begins with a consonant sound."
+            },
+            {
+                q: "_____ honesty is the best policy.",
+                options: [
+                    "A",
+                    "An",
+                    "The",
+                    "No article needed"
+                ],
+                answer: "No article needed",
+                explanation: "Abstract nouns in general statements often don't need articles. 'Honesty' is an abstract concept being discussed in general."
+            },
+            {
+                q: "I saw _____ movie last night.",
+                options: [
+                    "a",
+                    "an",
+                    "the",
+                    "No article needed"
+                ],
+                answer: "a",
+                explanation: "We use 'a' for the first mention of a singular countable noun. If the speaker hasn't mentioned the specific movie before, 'a' is appropriate."
+            },
+            {
+                q: "_____ moon revolves around Earth.",
+                options: [
+                    "A",
+                    "An",
+                    "The",
+                    "No article needed"
+                ],
+                answer: "The",
+                explanation: "We use 'the' with unique objects. Earth has only one moon, making it unique in our context."
+            },
+            {
+                q: "Do you play _____ piano?",
+                options: [
+                    "a",
+                    "an",
+                    "the",
+                    "No article needed"
+                ],
+                answer: "the",
+                explanation: "We use 'the' with musical instruments when talking about playing them as a skill."
+            },
+            {
+                q: "She's _____ honest person.",
+                options: [
+                    "a",
+                    "an",
+                    "the",
+                    "No article needed"
+                ],
+                answer: "an",
+                explanation: "We use 'an' before words that begin with a vowel sound. Although 'honest' starts with 'h', the 'h' is silent, so it begins with a vowel sound."
+            },
+            {
+                q: "We're going to _____ dinner tonight.",
+                options: [
+                    "a",
+                    "an",
+                    "the",
+                    "No article needed"
+                ],
+                answer: "No article needed",
+                explanation: "Meals like 'dinner', 'lunch', or 'breakfast' usually don't take articles when we're talking about the meal in general."
+            },
+            {
+                q: "She gave me _____ useful advice.",
+                options: [
+                    "a",
+                    "an",
+                    "the",
+                    "No article needed"
+                ],
+                answer: "No article needed",
+                explanation: "Uncountable nouns like 'advice' generally don't take 'a' or 'an'. We can use adjectives directly before them without articles."
+            },
+            {
+                q: "_____ hour ago, I was at the store.",
+                options: [
+                    "A",
+                    "An",
+                    "The",
+                    "No article needed"
+                ],
+                answer: "An",
+                explanation: "We use 'an' before words that begin with a vowel sound. Although 'hour' starts with 'h', it's silent, so the word begins with a vowel sound."
+            },
+            {
+                q: "Have you ever visited _____ United States?",
+                options: [
+                    "a",
+                    "an",
+                    "the",
+                    "No article needed"
+                ],
+                answer: "the",
+                explanation: "We use 'the' with the names of most countries that are plural in form or include words like 'States', 'Kingdom', or 'Republic'."
+            },
+            {
+                q: "_____ water in this lake is very clean.",
+                options: [
+                    "A",
+                    "An",
+                    "The",
+                    "No article needed"
+                ],
+                answer: "The",
+                explanation: "We use 'the' when referring to a specific instance of an uncountable noun. Here, we're talking about the specific water in a particular lake."
+            },
+            {
+                q: "I have _____ university degree in economics.",
+                options: [
+                    "a",
+                    "an",
+                    "the",
+                    "No article needed"
+                ],
+                answer: "a",
+                explanation: "Although 'university' starts with a vowel letter, it begins with a consonant sound /j/ as in 'you', so we use 'a' rather than 'an'."
+            },
+            {
+                q: "_____ happiness is more important than money.",
+                options: [
+                    "A",
+                    "An",
+                    "The",
+                    "No article needed"
+                ],
+                answer: "No article needed",
+                explanation: "Abstract nouns in general statements typically don't need articles. 'Happiness' is being discussed as a general concept here."
+            },
+            {
+                q: "She plays tennis at _____ professional level.",
+                options: [
+                    "a",
+                    "an",
+                    "the",
+                    "No article needed"
+                ],
+                answer: "a",
+                explanation: "We use 'a' to indicate a level or standard. 'Professional level' begins with a consonant sound, so 'a' is used."
+            },
+            {
+                q: "Let's meet for lunch at _____ usual time.",
+                options: [
+                    "a",
+                    "an",
+                    "the",
+                    "No article needed"
+                ],
+                answer: "the",
+                explanation: "We use 'the' with adjectives like 'usual', 'same', 'right', etc., when they refer to something specific and known to both the speaker and listener."
+            },
+            {
+                q: "My father is _____ engineer.",
+                options: [
+                    "a",
+                    "an",
+                    "the",
+                    "No article needed"
+                ],
+                answer: "an",
+                explanation: "We use 'an' before words that begin with a vowel sound. 'Engineer' begins with the vowel sound /e/."
+            },
+            {
+                q: "_____ information you gave me was very helpful.",
+                options: [
+                    "A",
+                    "An",
+                    "The",
+                    "No article needed"
+                ],
+                answer: "The",
+                explanation: "We use 'the' when referring to specific information that both the speaker and listener know about. 'Information' is also an uncountable noun."
+            },
+            {
+                q: "She goes to work by _____ bus.",
+                options: [
+                    "a",
+                    "an",
+                    "the",
+                    "No article needed"
+                ],
+                answer: "No article needed",
+                explanation: "We typically don't use articles in phrases like 'by bus', 'by train', or 'by car' when talking about the mode of transportation in general."
+            },
+            {
+                q: "I have _____ headache.",
+                options: [
+                    "a",
+                    "an",
+                    "the",
+                    "No article needed"
+                ],
+                answer: "a",
+                explanation: "We use 'a' before singular countable nouns beginning with a consonant sound. 'Headache' begins with /h/, which is a consonant sound."
+            },
+            {
+                q: "_____ history is my favorite subject.",
+                options: [
+                    "A",
+                    "An",
+                    "The",
+                    "No article needed"
+                ],
+                answer: "No article needed",
+                explanation: "School subjects often don't require articles when speaking generally. When we say 'History is my favorite subject', we're referring to the subject in general."
+            },
+            {
+                q: "There's _____ fly in my soup!",
+                options: [
+                    "a",
+                    "an",
+                    "the",
+                    "No article needed"
+                ],
+                answer: "a",
+                explanation: "We use 'a' for the first mention of a singular countable noun beginning with a consonant sound. 'Fly' begins with a consonant sound."
+            },
+            {
+                q: "I need to go to _____ hospital to visit my grandmother.",
+                options: [
+                    "a",
+                    "an",
+                    "the",
+                    "No article needed"
+                ],
+                answer: "the",
+                explanation: "In American English, when you're visiting someone at the hospital (not going as a patient), you use 'the hospital'."
+            },
+            {
+                q: "We should respect _____ elderly.",
+                options: [
+                    "a",
+                    "an",
+                    "the",
+                    "No article needed"
+                ],
+                answer: "the",
+                explanation: "We use 'the' with adjectives like 'elderly', 'rich', 'poor', etc. when referring to a group of people as a whole."
+            },
+            {
+                q: "She has _____ unique approach to problem-solving.",
+                options: [
+                    "a",
+                    "an",
+                    "the",
+                    "No article needed"
+                ],
+                answer: "a",
+                explanation: "Although 'unique' begins with a vowel letter, it starts with a consonant sound /j/ as in 'you', so we use 'a' rather than 'an'."
+            },
+            {
+                q: "Please turn off _____ light when you leave.",
+                options: [
+                    "a",
+                    "an",
+                    "the",
+                    "No article needed"
+                ],
+                answer: "the",
+                explanation: "We use 'the' when referring to a specific object that both the speaker and listener can identify. Here, it's a specific light in a specific room."
+            },
+            {
+                q: "He gave me _____ one-hour lecture about punctuality.",
+                options: [
+                    "a",
+                    "an",
+                    "the",
+                    "No article needed"
+                ],
+                answer: "a",
+                explanation: "We use 'a' before expressions that begin with a consonant sound. Although 'one' begins with a vowel letter, it starts with the sound /w/, which is a consonant sound."
+            },
+            {
+                q: "_____ Mount Everest is the highest mountain in the world.",
+                options: [
+                    "A",
+                    "An",
+                    "The",
+                    "No article needed"
+                ],
+                answer: "No article needed",
+                explanation: "Names of most mountains don't take articles. 'Mount Everest' is a proper noun that doesn't require an article."
+            }
+        ];
+
+        function loadQuestions() {
+            const container = document.getElementById("questionsContainer");
+            container.innerHTML = ""; // Clear previous content
+            
+            questions.forEach((question, index) => {
+                const div = document.createElement("div");
+                div.classList.add("question");
+                div.innerHTML = `
+                    <p>${index + 1}. ${question.q}</p>
+                    <div class="options">
+                        ${question.options.map(option => `
+                            <label class="option-label">
+                                <input type="radio" name="q${index}" value="${option}"> ${option}
+                            </label>
+                        `).join('')}
+                    </div>
+                    <div class="feedback" id="feedback${index}"></div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function updateProgressBar(score, total) {
+            const progressBar = document.getElementById("progressBar");
+            const percentage = (score / total) * 100;
+            progressBar.style.width = `${percentage}%`;
+        }
+
+        function submitQuiz() {
+            let score = 0;
+            const resultElement = document.getElementById("result");
+            
+            questions.forEach((question, index) => {
+                const selected = document.querySelector(`input[name="q${index}"]:checked`);
+                const feedback = document.getElementById(`feedback${index}`);
+                
+                if (selected) {
+                    if (selected.value === question.answer) {
+                        score++;
+                        feedback.innerHTML = `✓ Correct! ${question.explanation}`;
+                        feedback.style.backgroundColor = "#d7f9f8";
+                        feedback.style.color = "#0077b6";
+                    } else {
+                        feedback.innerHTML = `✗ The correct answer is "${question.answer}" <br>${question.explanation}`;
+                        feedback.style.backgroundColor = "#ffe3e3";
+                        feedback.style.color = "#d90429";
+                    }
+                } else {
+                    feedback.innerHTML = "⚠️ No answer selected!";
+                    feedback.style.backgroundColor = "#fff3cd";
+                    feedback.style.color = "#856404";
+                }
+            });
+            
+            updateProgressBar(score, questions.length);
+            
+            resultElement.style.display = "block";
+            const percentage = Math.round((score / questions.length) * 100);
+            
+            let message;
+            let color;
+            
+            if (percentage >= 90) {
+                message = "Excellent!";
+                color = "#4cc9f0";
+            } else if (percentage >= 70) {
+                message = "Good job!";
+                color = "#4361ee";
+            } else if (percentage >= 50) {
+                message = "Nice try!";
+                color = "#3a0ca3";
+            } else {
+                message = "Keep practicing!";
+                color = "#f72585";
+            }
+            
+            resultElement.innerHTML = `
+                <div style="font-size: 20px; margin-bottom: 10px; color: ${color};">${message}</div>
+                <div>You scored ${score} out of ${questions.length} (${percentage}%)</div>
+            `;
+            resultElement.style.backgroundColor = "#f8f9fa";
+            resultElement.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.1)";
+            
+            // Scroll to results
+            resultElement.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Show/hide scroll to top button
+        window.onscroll = function() {
+            const scrollButton = document.querySelector('.scroll-to-top');
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                scrollButton.classList.add('visible');
+            } else {
+                scrollButton.classList.remove('visible');
+            }
+        };
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        loadQuestions();
+    </script>
+</body>
+</html>

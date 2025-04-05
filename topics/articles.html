@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grammar Guide</title>
+    <style>
+        :root {
+            --primary-blue: #1e88e5;
+            --light-blue: #bbdefb;
+            --lighter-blue: #e3f2fd;
+            --dark-blue: #1565c0;
+            --text-color: #333;
+            --white: #fff;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--lighter-blue);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        header {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 20px 0;
+            text-align: center;
+        }
+        
+        header h1 {
+            color: var(--white);
+            margin: 0;
+        }
+        
+        h1, h2, h3, h4 {
+            color: var(--dark-blue);
+            text-align: center;
+        }
+        
+        .grammar-section {
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            padding: 25px;
+            text-align: left;
+        }
+        
+        .section-title {
+            border-bottom: 2px solid var(--light-blue);
+            padding-bottom: 10px;
+            margin-top: 0;
+            text-align: center;
+        }
+        
+        .grammar-explanation {
+            margin-bottom: 20px;
+        }
+        
+        .grammar-types {
+            background-color: var(--lighter-blue);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--primary-blue);
+        }
+        
+        .example-box {
+            border: 1px solid var(--light-blue);
+            background-color: var(--white);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        
+        .example-sentence {
+            font-style: italic;
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            justify-content: center;
+        }
+        
+        .example-image {
+            text-align: center;
+            margin: 15px 0;
+        }
+        
+        .example-image img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .grammar-rule {
+            background-color: var(--light-blue);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .rule-title {
+            color: var(--dark-blue);
+            font-weight: bold;
+            margin-top: 0;
+            text-align: center;
+        }
+        
+        .situation-box {
+            background-color: var(--white);
+            border: 1px solid var(--light-blue);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .situation-title {
+            color: var(--primary-blue);
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--dark-blue);
+        }
+        
+        .highlight {
+            background-color: rgba(30, 136, 229, 0.2);
+            padding: 0 3px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <!-- Sample Grammar Section: Articles -->
+        <header>
+            <h1>English Grammar Guide</h1>
+        </header>
+        <div class="grammar-section">
+            <h2 class="section-title">Articles</h2>
+            
+            <div class="grammar-explanation">
+                <p>Articles are determiners that define a noun as specific or unspecific. English employs three articles: <span class="highlight">a</span>, <span class="highlight">an</span>, and <span class="highlight">the</span>. These functional words precede nouns or noun equivalents and play a crucial role in establishing context.</p>
+            </div>
+            
+            <div class="grammar-types">
+                <h3>Types of Articles</h3>
+                <ul>
+                    <li><strong>Definite Article:</strong> "The" - indicates specific or particular nouns</li>
+                    <li><strong>Indefinite Articles:</strong> "A" and "An" - denote nonspecific or general nouns</li>
+                </ul>
+            </div>
+            
+            <h3>Examples of Articles</h3>
+            
+            <div class="example-box">
+                <h4>Definite Article (The)</h4>
+                <div class="example-sentence">
+                    <p>"<span class="highlight">The</span> book on the table belongs to Sarah."</p>
+                </div>
+                <div class="example-image">
+                    <img src="/api/placeholder/500/300" alt="A specific book on a table" />
+                    <p><em>The definite article "the" refers to a specific, identifiable book.</em></p>
+                </div>
+            </div>
+            
+            <div class="example-box">
+                <h4>Indefinite Articles (A/An)</h4>
+                <div class="example-sentence">
+                    <p>"I need <span class="highlight">a</span> pencil to complete this form."</p>
+                </div>
+                <div class="example-image">
+                    <img src="/api/placeholder/500/300" alt="Any pencil among many pencils" />
+                    <p><em>The indefinite article "a" indicates any pencil, not a particular one.</em></p>
+                </div>
+                
+                <div class="example-sentence">
+                    <p>She observed <span class="highlight">an</span> elephant at the zoo yesterday.</p>
+                </div>
+                <div class="example-image">
+                    <img src="/api/placeholder/500/300" alt="An elephant at the zoo" />
+                    <p><em>The indefinite article "an" is utilized before words beginning with vowel sounds.</em></p>
+                </div>
+            </div>
+            
+            <div class="grammar-rule">
+                <h4 class="rule-title">Rules for Using Articles</h4>
+                <ol>
+                    <li>Use "the" when the noun is specific, previously mentioned, or understood contextually.</li>
+                    <li>Use "a" before nouns that begin with a consonant sound.</li>
+                    <li>Use "an" before nouns that begin with a vowel sound.</li>
+                    <li>Certain nouns do not require articles, such as general plural nouns or abstract uncountable nouns.</li>
+                </ol>
+            </div>
+            
+            <div class="situation-box">
+                <h4 class="situation-title">Common Applications</h4>
+                <p><strong>Use "The" when:</strong></p>
+                <ul>
+                    <li>Referring to unique entities: <em>the Earth, the Prime Minister</em></li>
+                    <li>With superlative adjectives: <em>the most efficient, the highest quality</em></li>
+                    <li>With ordinal numbers: <em>the first quarter, the third option</em></li>
+                </ul>
+                
+                <p><strong>No Article required when:</strong></p>
+                <ul>
+                    <li>Discussing general categories: <em>Business professionals often work late hours.</em></li>
+                    <li>With most proper nouns: <em>Professor Johnson will lecture at Stanford University.</em></li>
+                    <li>With abstract uncountable nouns in general statements: <em>Leadership requires empathy.</em></li>
+                </ul>
+            </div> 
+            <div class="navigation-buttons">
+            <a href="articles-quiz.html" class="btn">Take Quiz</a>
+            <a href="index.html" class="btn">Back to home</a>
+        </div>
+        </div>
+        
+        <!-- Navigation Buttons -->
+       
+    </div>
+</body>
+</html>
