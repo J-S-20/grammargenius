@@ -3,362 +3,416 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Language Mastery: Royal Parts of Speech Guide</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Grammar Genius - Master English Grammar</title>
+    <script src="https://unpkg.com/scrollreveal"></script>
     <style>
-        :root {
-            --royal-blue: #2C67B3;  /* Matched from Grammar Genius */
-            --light-royal-blue: #2C67B3;  /* Simplified to match royal blue */
-            --deep-blue: #1A4B84;  /* Matched from Grammar Genius */
-            --soft-blue: #E6F2FF;  /* Kept original soft blue */
-            --elegant-shadow: 0 10px 30px rgba(44, 103, 179, 0.15);  /* Updated to match royal blue */
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            font-family: 'Nunito', sans-serif;
-            background-color: var(--soft-blue);
-            color: var(--deep-blue);
-            line-height: 1.6;
+            background-color: #f5f7fd;
+            color: #333;
+        }
+        
+
+        .header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            padding: 2rem;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
         }
 
         .container {
-            max-width: 1280px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 2rem;
         }
 
-        .header {
+        .intro {
             text-align: center;
-            margin-bottom: 50px;
-            background-color: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: var(--elegant-shadow);
-            border: 2px solid var(--light-royal-blue);
+            margin-bottom: 3rem;
         }
 
-        .header h1 {
-            color: var(--royal-blue);
-            font-size: 2.8em;
-            margin-bottom: 15px;
-            font-weight: 700;
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            margin-top: 2rem;
+            color: #6a11cb;
         }
 
-        .header p {
-            color: var(--deep-blue);
+        .intro p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
             max-width: 800px;
             margin: 0 auto;
-            font-size: 1.1em;
         }
 
-        .parts-of-speech-grid {
+        .topics-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
         }
 
-        .part-of-speech-card {
-            background-color: white;
-            border-radius: 15px;
-            box-shadow: var(--elegant-shadow);
-            padding: 30px;
+        .topic-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+        }
+
+        .topic-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .topic-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .topic-desc {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 1rem;
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        .buttons-bottom {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .btn {
+            background-color: #fff;
+            color: #6a11cb;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
-            border: 2px solid transparent;
         }
 
-        .part-of-speech-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--royal-blue);
-        }
-
-        .card-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            border-bottom: 2px solid var(--light-royal-blue);
-            padding-bottom: 15px;
-        }
-
-        .card-image-placeholder {
-            width: 100%;
-            height: 200px;
-            background-color: var(--soft-blue);
-            margin-bottom: 20px;
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: var(--royal-blue);
-            font-weight: bold;
-        }
-
-        .card-icon {
-            width: 60px;
-            height: 60px;
-            background-color: var(--royal-blue);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 20px;
-            color: white;
-            font-weight: bold;
-            font-size: 1.5em;
-        }
-
-        .card-title {
-            color: var(--royal-blue);
-            font-size: 1.8em;
-            font-weight: 700;
-        }
-
-        .card-definition {
-            font-style: italic;
-            color: var(--deep-blue);
-            margin-bottom: 15px;
-        }
-
-        .examples-list {
-            list-style-type: none;
-        }
-
-        .examples-list li {
-            position: relative;
-            padding-left: 25px;
-            margin-bottom: 10px;
-            color: var(--deep-blue);
-        }
-
-        .examples-list li::before {
-            content: '▸';
-            color: var(--royal-blue);
-            position: absolute;
-            left: 0;
-            font-weight: bold;
-        }
-
-        .advanced-section {
-            background-color: white;
-            border-radius: 15px;
-            box-shadow: var(--elegant-shadow);
-            padding: 40px;
-            margin-top: 50px;
-            border: 2px solid var(--light-royal-blue);
-        }
-
-        .advanced-section h2 {
-            color: var(--royal-blue);
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 2.2em;
-        }
-
-        .advanced-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .advanced-tip {
-            background-color: var(--soft-blue);
-            padding: 25px;
-            border-radius: 10px;
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .advanced-tip:hover {
-            transform: scale(1.05);
-        }
-
-        .advanced-tip h3 {
-            color: var(--royal-blue);
-            margin-bottom: 10px;
-        }
-
-        .buttons {
-            display: flex;
-            justify-content: center;
-            margin-top: 40px;
-            gap: 20px;
-        }
-
-        .button {
-            display: inline-block;
-            padding: 12px 25px;
-            background-color: var(--royal-blue);
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            font-weight: 600;
-        }
-
-        .button:hover {
-            background-color: var(--deep-blue);
+        .btn:hover {
             transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
+
+        .btn-primary {
+            background-color: #FF9A3C;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #ff8921;
+        }
+
+        .decoration {
+            position: absolute;
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.2);
+            user-select: none;
+            pointer-events: none;
+            animation: floatText 6s ease-in-out infinite;
+        }
+
+        #comma1 { top: 20%; left: 10%; }
+        #question1 { top: 15%; left: 30%; }
+        #exclamation1 { top: 25%; left: 70%; }
+        #comma2 { top: 60%; left: 15%; }
+        #question2 { top: 70%; left: 80%; }
 
         @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2.2em;
-            }
-            
-            .parts-of-speech-grid {
+            .topics-grid {
                 grid-template-columns: 1fr;
             }
+
+            .logo {
+                font-size: 2rem;
+            }
+
+            .tagline {
+                font-size: 1rem;
+            }
+
+            .buttons-bottom {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
         }
+
+        @keyframes floatText {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @media (max-width: 480px) {
+  .container {
+    padding: 1rem;
+  }
+}
+@media (max-width: 480px) {
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .topic-title {
+    font-size: 1.1rem;
+  }
+
+  .topic-desc {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .decoration {
+    font-size: 1.5rem;
+  }
+}
+@media (max-width: 480px) {
+  .topic-card {
+    padding: 1rem;
+  }
+}
+
+
+        .topic-tip {
+  color: #555;
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+}
+
+.tip-hover {
+  font-size: 1.2rem;
+  cursor: help;
+  display: inline-block;
+  margin-top: 0.4rem;
+  color: #FF9A3C;
+}
+
     </style>
 </head>
 <body>
+    <header class="header">
+        <div class="decoration" id="comma1">,</div>
+        <div class="decoration" id="question1">?</div>
+        <div class="decoration" id="exclamation1">!</div>
+        <div class="decoration" id="comma2">,</div>
+        <div class="decoration" id="question2">?</div>
+
+        <div class="logo">Grammar Genius</div>
+        <p class="tagline">Where Language Rules Come to Life!</p>
+    </header>
+
     <div class="container">
-        <div class="header">
-            <h1>Mastering Parts of Speech</h1>
-            <p>Dive into the fascinating world of language structure. Understanding parts of speech is like having a roadmap to effective communication, helping you craft more precise and engaging writing.</p>
+        <div class="topics-grid">
+            <!-- 1. Noun -->
+<div class="topic-card">
+  <div class="topic-icon">📦</div>
+  <h3 class="topic-title">Noun</h3>
+  <p class="topic-desc">Names a person, place, thing, or idea.<br><strong>Examples:</strong> cat, school, love, computer.</p>
+  <p class="text-gray-600 text-sm">
+    ✍️ <strong>Tip:</strong> Nouns are naming words. If you can put "the" or "a" before it, it’s likely a noun.
+  </p>
+  <div class="mt-6 text-sm text-yellow-500 italic">
+    💡 Everything you can see or think of can be a noun!
+  </div>
+</div>
+
+<!-- 2. Pronoun -->
+<div class="topic-card">
+  <div class="topic-icon">🙋‍♂️</div>
+  <h3 class="topic-title">Pronoun</h3>
+  <p class="topic-desc">Replaces a noun to avoid repetition.<br><strong>Examples:</strong> he, she, it, they, you.</p>
+  <p class="text-gray-600 text-sm">
+    ✍️ <strong>Tip:</strong> Pronouns make sentences smoother by replacing names.
+  </p>
+  <div class="mt-6 text-sm text-yellow-500 italic">
+    💡 Without pronouns, we’d repeat names again and again!
+  </div>
+</div>
+
+<!-- 3. Verb -->
+<div class="topic-card">
+  <div class="topic-icon">🏃</div>
+  <h3 class="topic-title">Verb</h3>
+  <p class="topic-desc">Shows an action or state of being.<br><strong>Examples:</strong> jump, sleep, am, have.</p>
+  <p class="text-gray-600 text-sm">
+    ✍️ <strong>Tip:</strong> Action verbs = things you do. Helping verbs = support the main verb (is, was, have).
+  </p>
+  <div class="mt-6 text-sm text-yellow-500 italic">
+    💡 Verbs are the heart of a sentence - no sentence is complete without one!
+  </div>
+</div>
+
+<!-- 4. Adjective -->
+<div class="topic-card">
+  <div class="topic-icon">🎨</div>
+  <h3 class="topic-title">Adjective</h3>
+  <p class="topic-desc">Describes or modifies a noun.<br><strong>Examples:</strong> blue, tall, beautiful, five.</p>
+  <p class="text-gray-600 text-sm">
+    ✍️ <strong>Tip:</strong> Adjectives give color and detail to nouns.
+  </p>
+  <div class="mt-6 text-sm text-yellow-500 italic">
+    💡 If it answers “What kind? How many? Which one?” – it’s an adjective!
+  </div>
+</div>
+
+<!-- 5. Adverb -->
+<div class="topic-card">
+  <div class="topic-icon">🚀</div>
+  <h3 class="topic-title">Adverb</h3>
+  <p class="topic-desc">Describes a verb, adjective, or another adverb.<br><strong>Examples:</strong> quickly, very, well, now.</p>
+  <p class="text-gray-600 text-sm">
+    ✍️ <strong>Tip:</strong> Many adverbs end in -ly and tell how, when, where, or to what extent.
+  </p>
+  <div class="mt-6 text-sm text-yellow-500 italic">
+    💡 Adverbs add spice to your actions and descriptions!
+  </div>
+</div>
+
+<!-- 6. Preposition -->
+<div class="topic-card">
+  <div class="topic-icon">📍</div>
+  <h3 class="topic-title">Preposition</h3>
+  <p class="topic-desc">Shows the relationship between a noun/pronoun and another word in the sentence.<br><strong>Examples:</strong> in, on, under, beside.</p>
+  <p class="text-gray-600 text-sm">
+    ✍️ <strong>Tip:</strong> Prepositions often show direction, place, or time.
+  </p>
+  <div class="mt-6 text-sm text-yellow-500 italic">
+    💡 Picture a box: “in” the box, “on” the box, “under” the box – those are prepositions!
+  </div>
+</div>
+
+<!-- 7. Conjunction -->
+<div class="topic-card">
+  <div class="topic-icon">🔗</div>
+  <h3 class="topic-title">Conjunction</h3>
+  <p class="topic-desc">Joins words, phrases, or clauses together.<br><strong>Examples:</strong> and, but, or, because.</p>
+  <p class="text-gray-600 text-sm">
+    ✍️ <strong>Tip:</strong> Think of conjunctions as bridges connecting ideas.
+  </p>
+  <div class="mt-6 text-sm text-yellow-500 italic">
+    💡 FANBOYS: For, And, Nor, But, Or, Yet, So – common conjunctions!
+  </div>
+</div>
+
+<!-- 8. Interjection -->
+<div class="topic-card">
+  <div class="topic-icon">😲</div>
+  <h3 class="topic-title">Interjection</h3>
+  <p class="topic-desc">Expresses strong emotion or sudden feeling.<br><strong>Examples:</strong> wow, ouch, hey, oh no!</p>
+  <p class="text-gray-600 text-sm">
+    ✍️ <strong>Tip:</strong> Interjections stand alone and usually have punctuation like “!” or “,”.
+  </p>
+  <div class="mt-6 text-sm text-yellow-500 italic">
+    💡 Interjections bring emotion and personality to language!
+  </div>
+</div>
+
         </div>
+        
 
-        <div class="parts-of-speech-grid">
-            <!-- Noun Card -->
-            <div class="part-of-speech-card">
-                <div class="card-image-placeholder">
-                    Noun Image Placeholder
-                </div>
-                <div class="card-header">
-                    <div class="card-icon">N</div>
-                    <h2 class="card-title">Noun</h2>
-                </div>
-                <p class="card-definition">The building blocks that name and identify everything in our world.</p>
-                <ul class="examples-list">
-                    <li><strong>Common Nouns:</strong> Everyday objects and concepts</li>
-                    <li><strong>Proper Nouns:</strong> Specific, unique names</li>
-                    <li><strong>Abstract Nouns:</strong> Intangible ideas and emotions</li>
-                    <li><strong>Collective Nouns:</strong> Groups and collections</li>
-                </ul>
-            </div>
-
-            <!-- Pronoun Card -->
-            <div class="part-of-speech-card">
-                <div class="card-image-placeholder">
-                    Pronoun Image Placeholder
-                </div>
-                <div class="card-header">
-                    <div class="card-icon">Pr</div>
-                    <h2 class="card-title">Pronoun</h2>
-                </div>
-                <p class="card-definition">Words that stand in for nouns, keeping our language fluid and concise.</p>
-                <ul class="examples-list">
-                    <li><strong>Personal Pronouns:</strong> I, you, he, she, it</li>
-                    <li><strong>Possessive Pronouns:</strong> Mine, yours, hers</li>
-                    <li><strong>Reflexive Pronouns:</strong> Myself, yourself, himself</li>
-                    <li><strong>Interrogative Pronouns:</strong> Who, which, what</li>
-                </ul>
-            </div>
-
-            <!-- Verb Card -->
-            <div class="part-of-speech-card">
-                <div class="card-image-placeholder">
-                    Verb Image Placeholder
-                </div>
-                <div class="card-header">
-                    <div class="card-icon">V</div>
-                    <h2 class="card-title">Verb</h2>
-                </div>
-                <p class="card-definition">The powerhouses of action and state, bringing sentences to life.</p>
-                <ul class="examples-list">
-                    <li><strong>Action Verbs:</strong> Move, create, inspire</li>
-                    <li><strong>Linking Verbs:</strong> Seem, become, appear</li>
-                    <li><strong>Helping Verbs:</strong> Will, can, should</li>
-                    <li><strong>Tense Variations:</strong> Past, present, future</li>
-                </ul>
-            </div>
-
-            <!-- Adjective Card -->
-            <div class="part-of-speech-card">
-                <div class="card-image-placeholder">
-                    Adjective Image Placeholder
-                </div>
-                <div class="card-header">
-                    <div class="card-icon">Adj</div>
-                    <h2 class="card-title">Adjective</h2>
-                </div>
-                <p class="card-definition">The colorful descriptors that add depth and detail to our language.</p>
-                <ul class="examples-list">
-                    <li><strong>Descriptive:</strong> Vibrant, smooth, intelligent</li>
-                    <li><strong>Comparative:</strong> Bigger, faster, smarter</li>
-                    <li><strong>Superlative:</strong> Biggest, fastest, smartest</li>
-                    <li><strong>Compound:</strong> Well-known, blue-eyed</li>
-                </ul>
-            </div>
-
-            <!-- Adverb Card -->
-            <div class="part-of-speech-card">
-                <div class="card-image-placeholder">
-                    Adverb Image Placeholder
-                </div>
-                <div class="card-header">
-                    <div class="card-icon">Adv</div>
-                    <h2 class="card-title">Adverb</h2>
-                </div>
-                <p class="card-definition">The nuanced modifiers that add precision to our expressions.</p>
-                <ul class="examples-list">
-                    <li><strong>Manner:</strong> Quickly, carefully, gently</li>
-                    <li><strong>Time:</strong> Now, soon, yesterday</li>
-                    <li><strong>Place:</strong> Here, everywhere, anywhere</li>
-                    <li><strong>Degree:</strong> Very, almost, completely</li>
-                </ul>
-            </div>
-
-            <!-- Preposition Card -->
-            <div class="part-of-speech-card">
-                <div class="card-image-placeholder">
-                    Preposition Image Placeholder
-                </div>
-                <div class="card-header">
-                    <div class="card-icon">Prep</div>
-                    <h2 class="card-title">Preposition</h2>
-                </div>
-                <p class="card-definition">The connectors that reveal relationships between words.</p>
-                <ul class="examples-list">
-                    <li><strong>Location:</strong> In, on, at, under</li>
-                    <li><strong>Direction:</strong> To, towards, into</li>
-                    <li><strong>Time:</strong> Before, after, during</li>
-                    <li><strong>Relationship:</strong> With, by, for</li>
-                </ul>
-            </div>
+        <div class="intro">
+            <h2>Common Mistakes</h2>
+            <p>Watch out for these easy-to-make grammar errors. Learn them once, avoid them forever!</p>
         </div>
-
-        <div class="advanced-section">
-            <h2>Language Learning Insights</h2>
-            <div class="advanced-content">
-                <div class="advanced-tip">
-                    <h3>Contextual Learning</h3>
-                    <p>Words can change their part of speech based on how they're used in a sentence.</p>
-                </div>
-                <div class="advanced-tip">
-                    <h3>Sentence Complexity</h3>
-                    <p>Mastering parts of speech helps you construct more sophisticated sentences.</p>
-                </div>
-                <div class="advanced-tip">
-                    <h3>Writing Skill</h3>
-                    <p>Diverse use of parts of speech makes your writing more engaging and descriptive.</p>
-                </div>
-                <div class="advanced-tip">
-                    <h3>Continuous Practice</h3>
-                    <p>Regular identification of parts of speech improves language comprehension.</p>
-                </div>
+        <div class="topics-grid">
+            <div class="topic-card">
+                <div class="topic-icon">❌</div>
+                <h3 class="topic-title">Your vs You're</h3>
+                <p class="topic-desc">"Your" shows possession. "You're" means "you are". Ex: You're amazing at using your grammar!</p>
+            </div>
+            <div class="topic-card">
+                <div class="topic-icon">🔁</div>
+                <h3 class="topic-title">Its vs It's</h3>
+                <p class="topic-desc">
+                    "Its" shows possession (The cat licked its paw). "It’s" = "it is" (It’s raining outside).
+                  </p>
+                  
+            </div>
+            <div class="topic-card">
+                <div class="topic-icon">📏</div>
+                <h3 class="topic-title">Less vs Fewer</h3>
+                <p class="topic-desc">"Less" for uncountables, "fewer" for countables. Ex: Less water, fewer bottles.</p>
             </div>
         </div>
 
-        <div class="buttons">
-            <a href="partsofspeechquiz.html" class="button">Take Language Quiz</a>
-            <a href="index.html" class="button">Back to Resources</a>
+        <div class="buttons-bottom">
+            <button class="btn"onclick="window.location.href='index.html'">⬅️ Back to Home</button>
+            <button class="btn btn-primary" onclick="window.location.href='partsofspeechquiz.html'">📝 Take Quiz</button>
+        </div>
+
+        <div class="footer">
+            © 2025 Grammar Genius. All grammar rules respectfully followed.
         </div>
     </div>
+
+    <script>
+        ScrollReveal().reveal('.topic-card', {
+            interval: 100,
+            distance: '50px',
+            origin: 'bottom',
+            duration: 800,
+            reset: false
+        });
+
+        ScrollReveal().reveal('.intro, .logo, .tagline, .buttons-bottom', {
+            distance: '40px',
+            origin: 'top',
+            duration: 900,
+            reset: false
+        });
+
+      
+    ScrollReveal().reveal('.topic-card', {
+        delay: 200,
+        distance: '50px',
+        origin: 'bottom',
+        duration: 800,
+        easing: 'ease-in-out',
+        interval: 100
+    });
+
+    </script>
 </body>
 </html>
