@@ -2,286 +2,562 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>English Tenses Explained</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grammar Genius - Tenses</title>
     <style>
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            font-family: 'Roboto', sans-serif;
-            line-height: 1.6;
-            background-color: #f9f9f9;
+            background-color: #f5f7fd;
             color: #333;
-            font-size: 16px; /* Base font size for better mobile readability */
         }
         
-        header {
-            background-color: #4a90e2;
+        .header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            padding: 2rem;
             color: white;
-            padding: 15px;
             text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
         }
         
-        h1 {
-            font-size: 1.8em; /* Reduced for mobile */
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
         }
         
-        h2 {
-            color: #4a90e2;
-            margin-top: 20px;
-            font-size: 1.5em; /* Reduced for mobile */
-            padding: 0 10px;
+        .tagline {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .btn {
+            background-color: #fff;
+            color: #6a11cb;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-primary {
+            background-color: #FF9A3C;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #ff8921;
         }
         
         .container {
-            width: 100%;
             max-width: 1200px;
-            margin: 10px auto;
-            padding: 10px;
-            background-color: white;
+            margin: 0 auto;
+            padding: 2rem;
         }
         
-        /* Responsive Table */
-        table {
+        .intro {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #6a11cb;
+        }
+        
+        .intro p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .topic-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .topic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+        }
+        
+        .topic-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .topic-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        
+        .topic-desc {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 1rem;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        /* Simple floating animation for decoration */
+        .decoration {
+            position: absolute;
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.2);
+            user-select: none;
+            pointer-events: none;
+        }
+        
+        #comma1 { top: 20%; left: 10%; }
+        #question1 { top: 15%; left: 30%; }
+        #exclamation1 { top: 25%; left: 70%; }
+        #comma2 { top: 60%; left: 15%; }
+        #question2 { top: 70%; left: 80%; }
+        
+        /* Navigation breadcrumb */
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .breadcrumb a {
+            color: #6a11cb;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .breadcrumb a:hover {
+            color: #2575fc;
+        }
+        
+        .breadcrumb span {
+            margin: 0 0.5rem;
+            color: #888;
+        }
+        
+        /* Table styles for tenses */
+        .tenses-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 15px;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
         
-        /* For very small screens, make tables scrollable */
-        @media screen and (max-width: 600px) {
-            table {
-                display: block;
-                overflow-x: auto;
-            }
-            
-            table thead {
-                display: table;
-                width: calc(100% - 1em); /* Accounting for scrollbar */
-                table-layout: fixed;
-            }
-            
-            table tbody {
-                display: block;
-                width: 100%;
-                overflow-x: auto;
-            }
-            
-            table tr {
-                display: table;
-                width: 100%;
-                table-layout: fixed;
-            }
-        }
-        
-        th, td {
-            border: 1px solid #ddd;
-            padding: 10px;
+        .tenses-table th, .tenses-table td {
+            padding: 1rem;
             text-align: left;
-            word-wrap: break-word; /* Helps text wrap in small screens */
+            border-bottom: 1px solid #eee;
         }
         
-        th {
-            background-color: #e1f5fe;
-            font-weight: bold;
-        }
-        
-        .example {
-            font-style: italic;
-            color: #555;
-        }
-        
-        .tense-category {
-            margin-top: 20px;
-        }
-        
-        .buttons {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            margin: 20px 0;
-        }
-        
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #4a90e2;
+        .tenses-table th {
+            background-color: #6a11cb;
             color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-            font-weight: bold;
-            text-align: center;
-            width: calc(50% - 10px); /* Responsive button sizing */
-            max-width: 250px;
         }
         
-        .button:hover {
-            background-color: #357ABD;
+        .tenses-table tr:last-child td {
+            border-bottom: none;
         }
         
-        footer {
-            text-align: center;
-            padding: 15px;
-            font-size: 0.8em;
-            color: #777;
+        .tenses-table tr:hover {
+            background-color: #f9f9ff;
         }
         
-        /* Additional mobile responsiveness */
-        @media screen and (max-width: 480px) {
-            body {
-                font-size: 14px; /* Smaller font for very small screens */
+        /* Time period heading */
+        .time-heading {
+            color: #6a11cb;
+            font-size: 1.5rem;
+            margin: 2.5rem 0 1rem 0;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+        
+        .time-heading::before, .time-heading::after {
+            content: "";
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(to right, transparent, rgba(106, 17, 203, 0.2), transparent);
+            margin: 0 1rem;
+        }
+        
+        /* Examples box */
+        .example-box {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        .example-title {
+            font-size: 1.2rem;
+            color: #6a11cb;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .example-sentence {
+            margin-bottom: 0.8rem;
+            padding-left: 1rem;
+            border-left: 3px solid #FF9A3C;
+        }
+        
+        /* Icon for time periods */
+        .time-icon {
+            font-size: 1.8rem;
+            margin-right: 0.7rem;
+        }
+        
+        @media (max-width: 768px) {
+            .topics-grid {
+                grid-template-columns: 1fr;
             }
             
-            .button {
-                width: 100%; /* Full width buttons on tiny screens */
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .tagline {
+                font-size: 1rem;
+            }
+            
+            .tenses-table {
+                font-size: 0.9rem;
+            }
+            
+            .tenses-table th, .tenses-table td {
+                padding: 0.75rem;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 250px;
+                margin-bottom: 0.5rem;
+            }
+            
+            .time-heading {
+                font-size: 1.3rem;
+            }
+            
+            .example-title {
+                font-size: 1.1rem;
+            }
+        }
+        
+        /* Table responsiveness for mobile */
+        @media (max-width: 600px) {
+            .tenses-table {
+                overflow-x: auto;
+                display: block;
+            }
+            
+            .tenses-table table {
+                width: 100%;
+                min-width: 500px;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>English Tenses Explained</h1>
+    <header class="header">
+        <div class="decoration" id="comma1">,</div>
+        <div class="decoration" id="question1">?</div>
+        <div class="decoration" id="exclamation1">!</div>
+        <div class="decoration" id="comma2">,</div>
+        <div class="decoration" id="question2">?</div>
+        
+        <div class="logo">Grammar Genius</div>
+        <p class="tagline">Where Language Rules Come to Life!</p>
     </header>
-
+    
     <div class="container">
-        <p>In grammar, <strong>tense</strong> refers to the form a verb takes to indicate the time of an action or event. English has three primary tenses (past, present, future), each with four aspects (simple, continuous, perfect, perfect continuous), resulting in a total of 12 tenses.</p>
-
-        <div class="tense-category">
-            <h2>Present Tenses</h2>
+        <div class="breadcrumb">
+            <a href="index.html">Home</a>
+            <span>›</span>
+            <a href="#">Tenses</a>
+        </div>
+        
+        <div class="intro">
+            <h2>English Tenses</h2>
+            <p>Understanding tenses is key to mastering English grammar. Tenses tell us when an action takes place - in the past, present, or future. Each tense has different forms to show whether an action is simple, continuous, perfect, or perfect continuous. Let's explore the 12 main tenses in English and how to use them correctly.</p>
+        </div>
+        
+        <h2>The 12 Basic Tenses in English</h2>
+        
+        <!-- Present Tenses -->
+        <div class="time-heading">
+            <span class="time-icon">🔄</span> Present Tenses
+        </div>
+        
+        <div class="tenses-table">
             <table>
                 <thead>
                     <tr>
                         <th>Tense</th>
-                        <th>Form</th>
-                        <th>Use</th>
+                        <th>Structure</th>
                         <th>Example</th>
+                        <th>Usage</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Simple Present</td>
-                        <td>Base verb (e.g., <em>I work</em>) or base verb + -s/-es (e.g., <em>He works</em>)</td>
-                        <td>Habits, facts, scheduled events</td>
-                        <td class="example"><em>I drink coffee every morning.</em></td>
+                        <td>Present Simple</td>
+                        <td>Subject + V1 (+ s/es)</td>
+                        <td>I speak. She speaks.</td>
+                        <td>Habits, facts, general truths</td>
                     </tr>
                     <tr>
                         <td>Present Continuous</td>
-                        <td><em>am/is/are</em> + present participle (-ing)</td>
-                        <td>Actions happening now, temporary situations</td>
-                        <td class="example"><em>I am eating lunch.</em></td>
+                        <td>Subject + am/is/are + V-ing</td>
+                        <td>I am speaking now.</td>
+                        <td>Actions happening now or temporary situations</td>
                     </tr>
                     <tr>
                         <td>Present Perfect</td>
-                        <td><em>have/has</em> + past participle</td>
-                        <td>Completed actions with present relevance, experiences</td>
-                        <td class="example"><em>I have finished my report.</em></td>
+                        <td>Subject + have/has + V3</td>
+                        <td>I have spoken to her.</td>
+                        <td>Past actions with present relevance</td>
                     </tr>
                     <tr>
                         <td>Present Perfect Continuous</td>
-                        <td><em>have/has</em> + <em>been</em> + present participle (-ing)</td>
-                        <td>Actions in progress recently, actions continuing from the past</td>
-                        <td class="example"><em>I've been working on this project all day.</em></td>
+                        <td>Subject + have/has been + V-ing</td>
+                        <td>I have been speaking for an hour.</td>
+                        <td>Actions that started in past and continue to present</td>
                     </tr>
                 </tbody>
             </table>
         </div>
-
-        <div class="tense-category">
-            <h2>Past Tenses</h2>
+        
+        <div class="example-box">
+            <div class="example-title">Present Simple Examples</div>
+            <p class="example-sentence">The sun <strong>rises</strong> in the east. (general truth)</p>
+            <p class="example-sentence">She <strong>works</strong> as a doctor. (permanent situation)</p>
+            <p class="example-sentence">I <strong>play</strong> tennis every Sunday. (habit)</p>
+        </div>
+        
+        <div class="example-box">
+            <div class="example-title">Present Continuous Examples</div>
+            <p class="example-sentence">I <strong>am learning</strong> English grammar right now. (happening now)</p>
+            <p class="example-sentence">She <strong>is staying</strong> with her parents this week. (temporary situation)</p>
+            <p class="example-sentence">They <strong>are coming</strong> to dinner tonight. (future arrangement)</p>
+        </div>
+        
+        <!-- Past Tenses -->
+        <div class="time-heading">
+            <span class="time-icon">⏮️</span> Past Tenses
+        </div>
+        
+        <div class="tenses-table">
             <table>
                 <thead>
                     <tr>
                         <th>Tense</th>
-                        <th>Form</th>
-                        <th>Use</th>
+                        <th>Structure</th>
                         <th>Example</th>
+                        <th>Usage</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Simple Past</td>
-                        <td>Past tense form of the verb</td>
-                        <td>Completed actions at a specific time in the past</td>
-                        <td class="example"><em>I went to the store yesterday.</em></td>
+                        <td>Past Simple</td>
+                        <td>Subject + V2</td>
+                        <td>I spoke yesterday.</td>
+                        <td>Completed actions in the past</td>
                     </tr>
                     <tr>
                         <td>Past Continuous</td>
-                        <td><em>was/were</em> + present participle (-ing)</td>
-                        <td>Actions in progress at a specific time in the past</td>
-                        <td class="example"><em>I was watching TV when the phone rang.</em></td>
+                        <td>Subject + was/were + V-ing</td>
+                        <td>I was speaking when you called.</td>
+                        <td>Actions in progress at a specific time in past</td>
                     </tr>
                     <tr>
                         <td>Past Perfect</td>
-                        <td><em>had</em> + past participle</td>
-                        <td>Actions completed before another action in the past</td>
-                        <td class="example"><em>I had finished my work before I went to bed.</em></td>
+                        <td>Subject + had + V3</td>
+                        <td>I had spoken before you arrived.</td>
+                        <td>Actions completed before another past action</td>
                     </tr>
                     <tr>
                         <td>Past Perfect Continuous</td>
-                        <td><em>had</em> + <em>been</em> + present participle (-ing)</td>
-                        <td>Actions in progress before another action in the past</td>
-                        <td class="example"><em>I had been working on the project for hours before the deadline.</em></td>
+                        <td>Subject + had been + V-ing</td>
+                        <td>I had been speaking for hours.</td>
+                        <td>Continuous actions that happened before another past action</td>
                     </tr>
                 </tbody>
             </table>
         </div>
-
-        <div class="tense-category">
-            <h2>Future Tenses</h2>
+        
+        <div class="example-box">
+            <div class="example-title">Past Simple Examples</div>
+            <p class="example-sentence">She <strong>visited</strong> Paris last summer. (completed action)</p>
+            <p class="example-sentence">They <strong>lived</strong> in New York for ten years. (finished period)</p>
+            <p class="example-sentence">I <strong>bought</strong> a new car yesterday. (specific time in past)</p>
+        </div>
+        
+        <div class="example-box">
+            <div class="example-title">Past Perfect Examples</div>
+            <p class="example-sentence">By the time I arrived, the train <strong>had left</strong>. (action before another past action)</p>
+            <p class="example-sentence">She <strong>had studied</strong> for six hours before she took the exam. (finished action before another)</p>
+            <p class="example-sentence">They <strong>had never seen</strong> such a beautiful sunset before that evening. (experience before a point in past)</p>
+        </div>
+        
+        <!-- Future Tenses -->
+        <div class="time-heading">
+            <span class="time-icon">⏭️</span> Future Tenses
+        </div>
+        
+        <div class="tenses-table">
             <table>
                 <thead>
                     <tr>
                         <th>Tense</th>
-                        <th>Form</th>
-                        <th>Use</th>
+                        <th>Structure</th>
                         <th>Example</th>
+                        <th>Usage</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Simple Future</td>
-                        <td><em>will</em> + base verb</td>
-                        <td>Predictions, spontaneous decisions, promises</td>
-                        <td class="example"><em>It will rain tomorrow.</em></td>
+                        <td>Future Simple</td>
+                        <td>Subject + will + V1</td>
+                        <td>I will speak tomorrow.</td>
+                        <td>Predictions, promises, spontaneous decisions</td>
                     </tr>
                     <tr>
                         <td>Future Continuous</td>
-                        <td><em>will</em> + <em>be</em> + present participle (-ing)</td>
-                        <td>Actions in progress at a specific time in the future</td>
-                        <td class="example"><em>I will be working on this project all next week.</em></td>
+                        <td>Subject + will be + V-ing</td>
+                        <td>I will be speaking at 8 PM.</td>
+                        <td>Actions in progress at a specific future time</td>
                     </tr>
                     <tr>
                         <td>Future Perfect</td>
-                        <td><em>will</em> + <em>have</em> + past participle</td>
-                        <td>Actions completed before a specific time in the future</td>
-                        <td class="example"><em>I will have finished the report by Friday.</em></td>
+                        <td>Subject + will have + V3</td>
+                        <td>I will have spoken by then.</td>
+                        <td>Actions that will be completed before a future time</td>
                     </tr>
                     <tr>
                         <td>Future Perfect Continuous</td>
-                        <td><em>will</em> + <em>have</em> + <em>been</em> + present participle (-ing)</td>
-                        <td>Actions in progress for a period before a specific time in the future</td>
-                        <td class="example"><em>By next year, I will have been working here for ten years.</em></td>
+                        <td>Subject + will have been + V-ing</td>
+                        <td>I will have been speaking for 2 hours.</td>
+                        <td>Continuous actions that will be completed by a future time</td>
                     </tr>
                 </tbody>
             </table>
         </div>
-
-        <div class="buttons">
-            <a href="tensesquiz.html" class="button">Take Quiz</a>
-            <a href="index.html" class="button">Back to Home</a>
+        
+        <div class="example-box">
+            <div class="example-title">Future Simple Examples</div>
+            <p class="example-sentence">I <strong>will help</strong> you with your homework. (promise/offer)</p>
+            <p class="example-sentence">It <strong>will rain</strong> tomorrow. (prediction)</p>
+            <p class="example-sentence">I think she <strong>will pass</strong> the exam. (opinion about future)</p>
+        </div>
+        
+        <div class="example-box">
+            <div class="example-title">Future Perfect Examples</div>
+            <p class="example-sentence">By next month, I <strong>will have finished</strong> this project. (completed before future point)</p>
+            <p class="example-sentence">She <strong>will have lived</strong> here for ten years by 2026. (duration up to future point)</p>
+            <p class="example-sentence">They <strong>will have built</strong> the bridge by the time we visit again. (completed future action)</p>
+        </div>
+        
+        <div class="topics-grid">
+            <div class="topic-card">
+                <div class="topic-icon">🔄</div>
+                <h3 class="topic-title">Present Tenses</h3>
+                <p class="topic-desc">Dive deeper into present simple, present continuous, present perfect, and present perfect continuous tenses.</p>
+            </div>
+            
+            <div class="topic-card">
+                <div class="topic-icon">⏮️</div>
+                <h3 class="topic-title">Past Tenses</h3>
+                <p class="topic-desc">Explore past simple, past continuous, past perfect, and past perfect continuous tenses.</p>
+            </div>
+            
+            <div class="topic-card">
+                <div class="topic-icon">⏭️</div>
+                <h3 class="topic-title">Future Tenses</h3>
+                <p class="topic-desc">Learn about future simple, future continuous, future perfect, and future perfect continuous tenses.</p>
+            </div>
+            
+            <div class="topic-card">
+                <div class="topic-icon">🔄</div>
+                <h3 class="topic-title">Tense Shifting</h3>
+                <p class="topic-desc">Master the art of changing tenses appropriately in different contexts.</p>
+            </div>
+            
+            <div class="topic-card">
+                <div class="topic-icon">❓</div>
+                <h3 class="topic-title">Questions & Negatives</h3>
+                <p class="topic-desc">Learn how to form questions and negatives in different tenses.</p>
+            </div>
+            
+            <div class="topic-card">
+                <div class="topic-icon">🎯</div>
+                <h3 class="topic-title">Advanced Practice</h3>
+                <p class="topic-desc">Test your knowledge with advanced exercises and real-world examples.</p>
+            </div>
+        </div>
+        
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <a href="quiz.html" class="btn btn-primary">Take Quiz</a>
+            <a href="index.html" class="btn">Back to Home</a>
+        </div>
+        
+        <div class="footer">
+            © 2025 Grammar Genius. All grammar rules respectfully followed.
         </div>
     </div>
-
-    <footer>
-        &copy; 2023 English Tenses Explained. All rights reserved.
-    </footer>
 </body>
 </html>
