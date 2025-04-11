@@ -273,10 +273,6 @@
                 font-size: 0.9rem;
             }
             
-            .tenses-table th, .tenses-table td {
-                padding: 0.75rem;
-            }
-            
             .action-buttons {
                 flex-direction: column;
                 align-items: center;
@@ -297,16 +293,17 @@
             }
         }
         
-        /* Table responsiveness for mobile */
+        /* Table responsiveness for mobile - FIXED */
         @media (max-width: 600px) {
             .tenses-table {
                 overflow-x: auto;
                 display: block;
+                width: 100%;
             }
             
             .tenses-table table {
                 width: 100%;
-                min-width: 500px;
+                min-width: 100%;
             }
         }
     </style>
@@ -395,6 +392,20 @@
             <p class="example-sentence">They <strong>are coming</strong> to dinner tonight. (future arrangement)</p>
         </div>
         
+        <div class="example-box">
+            <div class="example-title">Present Perfect Examples</div>
+            <p class="example-sentence">I <strong>have traveled</strong> to five countries. (past experience with present relevance)</p>
+            <p class="example-sentence">She <strong>has lived</strong> here since 2020. (action started in past and continues)</p>
+            <p class="example-sentence">They <strong>have already finished</strong> their homework. (completed action with relevance now)</p>
+        </div>
+        
+        <div class="example-box">
+            <div class="example-title">Present Perfect Continuous Examples</div>
+            <p class="example-sentence">I <strong>have been studying</strong> English for six years. (ongoing action from past to present)</p>
+            <p class="example-sentence">She <strong>has been working</strong> here since January. (emphasis on duration)</p>
+            <p class="example-sentence">They <strong>have been waiting</strong> for the bus for 30 minutes. (continuous action until now)</p>
+        </div>
+        
         <!-- Past Tenses -->
         <div class="time-heading">
             <span class="time-icon">⏮️</span> Past Tenses
@@ -447,10 +458,24 @@
         </div>
         
         <div class="example-box">
+            <div class="example-title">Past Continuous Examples</div>
+            <p class="example-sentence">I <strong>was watching</strong> TV when the phone rang. (interrupted action)</p>
+            <p class="example-sentence">They <strong>were working</strong> all day yesterday. (action in progress)</p>
+            <p class="example-sentence">At 8 PM last night, we <strong>were having</strong> dinner. (specific time in past)</p>
+        </div>
+        
+        <div class="example-box">
             <div class="example-title">Past Perfect Examples</div>
             <p class="example-sentence">By the time I arrived, the train <strong>had left</strong>. (action before another past action)</p>
             <p class="example-sentence">She <strong>had studied</strong> for six hours before she took the exam. (finished action before another)</p>
             <p class="example-sentence">They <strong>had never seen</strong> such a beautiful sunset before that evening. (experience before a point in past)</p>
+        </div>
+        
+        <div class="example-box">
+            <div class="example-title">Past Perfect Continuous Examples</div>
+            <p class="example-sentence">I <strong>had been working</strong> for five hours when you called. (duration before another action)</p>
+            <p class="example-sentence">She <strong>had been living</strong> in London before she moved to Paris. (continuous action before another)</p>
+            <p class="example-sentence">They <strong>had been studying</strong> English for years before they visited the UK. (ongoing action before past event)</p>
         </div>
         
         <!-- Future Tenses -->
@@ -505,48 +530,24 @@
         </div>
         
         <div class="example-box">
+            <div class="example-title">Future Continuous Examples</div>
+            <p class="example-sentence">This time next week, I <strong>will be sitting</strong> on a beach in Hawaii. (action at specific future time)</p>
+            <p class="example-sentence">She <strong>will be studying</strong> when you arrive. (ongoing action in future)</p>
+            <p class="example-sentence">They <strong>will be flying</strong> to Paris at this time tomorrow. (action in progress)</p>
+        </div>
+        
+        <div class="example-box">
             <div class="example-title">Future Perfect Examples</div>
             <p class="example-sentence">By next month, I <strong>will have finished</strong> this project. (completed before future point)</p>
             <p class="example-sentence">She <strong>will have lived</strong> here for ten years by 2026. (duration up to future point)</p>
             <p class="example-sentence">They <strong>will have built</strong> the bridge by the time we visit again. (completed future action)</p>
         </div>
         
-        <div class="topics-grid">
-            <div class="topic-card">
-                <div class="topic-icon">🔄</div>
-                <h3 class="topic-title">Present Tenses</h3>
-                <p class="topic-desc">Dive deeper into present simple, present continuous, present perfect, and present perfect continuous tenses.</p>
-            </div>
-            
-            <div class="topic-card">
-                <div class="topic-icon">⏮️</div>
-                <h3 class="topic-title">Past Tenses</h3>
-                <p class="topic-desc">Explore past simple, past continuous, past perfect, and past perfect continuous tenses.</p>
-            </div>
-            
-            <div class="topic-card">
-                <div class="topic-icon">⏭️</div>
-                <h3 class="topic-title">Future Tenses</h3>
-                <p class="topic-desc">Learn about future simple, future continuous, future perfect, and future perfect continuous tenses.</p>
-            </div>
-            
-            <div class="topic-card">
-                <div class="topic-icon">🔄</div>
-                <h3 class="topic-title">Tense Shifting</h3>
-                <p class="topic-desc">Master the art of changing tenses appropriately in different contexts.</p>
-            </div>
-            
-            <div class="topic-card">
-                <div class="topic-icon">❓</div>
-                <h3 class="topic-title">Questions & Negatives</h3>
-                <p class="topic-desc">Learn how to form questions and negatives in different tenses.</p>
-            </div>
-            
-            <div class="topic-card">
-                <div class="topic-icon">🎯</div>
-                <h3 class="topic-title">Advanced Practice</h3>
-                <p class="topic-desc">Test your knowledge with advanced exercises and real-world examples.</p>
-            </div>
+        <div class="example-box">
+            <div class="example-title">Future Perfect Continuous Examples</div>
+            <p class="example-sentence">By December, I <strong>will have been teaching</strong> for 20 years. (ongoing action up to future point)</p>
+            <p class="example-sentence">Next week, she <strong>will have been working</strong> on this project for six months. (emphasis on duration)</p>
+            <p class="example-sentence">By the time you arrive, they <strong>will have been waiting</strong> for three hours. (duration until future event)</p>
         </div>
         
         <!-- Action Buttons -->
