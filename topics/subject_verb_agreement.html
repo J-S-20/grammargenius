@@ -3,217 +3,371 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subject-Verb Agreement</title>
+    <title>Subject-Verb Agreement - Grammar Genius</title>
     <style>
-        body {
-            font-family: sans-serif;
+        * {
             margin: 0;
-            background-color: #f0f0f0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fd;
             color: #333;
             line-height: 1.6;
         }
-
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-
-        h1 {
+        
+        .header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            padding: 2rem;
+            color: white;
             text-align: center;
-            color: #007bff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
         }
-
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .page-title {
+            font-size: 2rem;
+            margin-top: 1rem;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .intro {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
         h2 {
+            font-size: 1.6rem;
+            margin: 2rem 0 1rem;
+            color: #6a11cb;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 0.5rem;
+        }
+        
+        .intro p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .rule-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .rule-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+        }
+        
+        .rule-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
             color: #333;
-            margin-top: 1em;
+            display: flex;
+            align-items: center;
         }
-
+        
+        .rule-icon {
+            font-size: 1.8rem;
+            margin-right: 0.8rem;
+            color: #6a11cb;
+        }
+        
         ul {
-            list-style-type: disc;
-            padding-left: 20px;
-            margin-bottom: 1em;
+            list-style-type: none;
         }
-
+        
+        li {
+            margin-bottom: 0.8rem;
+        }
+        
         li strong {
             font-weight: bold;
+            color: #6a11cb;
         }
-
-        .example {
-            font-style: italic;
-            color: #777;
-            display: block; /* Examples on their own line */
-            margin-top: 0.5em; /* Add some space above the example */
-        }
-
-        .example li {
-            margin-bottom: 0.5em;
-        }
-
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 0 10px;
-            background-color: #007bff; /* Blue button */
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease; /* Smooth hover effect */
-        }
-
-        .button:hover {
-            background-color: #0056b3; /* Darker blue on hover */
-        }
-
-        footer {
-            background-color: #f8f9fa; /* Very light gray footer background */
-            text-align: center;
-            padding: 10px;
-            margin-top: 20px; /* Add some space above the footer */
-        }
-
-        .buttons {
-            text-align: center;
-            margin-top: 20px;
-        }
-     
         
+        .example {
+            margin-left: 1.5rem;
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+            background-color: #f8f9ff;
+            padding: 0.8rem;
+            border-radius: 8px;
+            border-left: 3px solid #6a11cb;
+        }
+        
+        .example li {
+            margin-bottom: 0.5rem;
+            font-style: italic;
+            color: #555;
+        }
+        
+        .example strong {
+            color: #FF9A3C;
+            font-weight: bold;
+        }
+        
+        .actions {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        .btn {
+            background-color: #6a11cb;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            margin: 0.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            background-color: #5a0cb9;
+        }
+        
+        .btn-primary {
+            background-color: #FF9A3C;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #ff8921;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 1rem;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        /* Decoration elements */
+        .decoration {
+            position: absolute;
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.2);
+            user-select: none;
+            pointer-events: none;
+        }
+        
+        #s1 { top: 20%; left: 10%; }
+        #v1 { top: 15%; left: 30%; }
+        #s2 { top: 25%; left: 70%; }
+        #v2 { top: 60%; left: 15%; }
+        #s3 { top: 70%; left: 80%; }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .page-title {
+                font-size: 1.6rem;
+            }
+            
+            .tagline {
+                font-size: 1rem;
+            }
+            
+            .rule-card {
+                padding: 1.2rem;
+            }
+            
+            .example {
+                margin-left: 0.5rem;
+                padding: 0.6rem;
+            }
+        }
     </style>
 </head>
 <body>
-
+    <header class="header">
+        <div class="decoration" id="s1">S</div>
+        <div class="decoration" id="v1">V</div>
+        <div class="decoration" id="s2">S</div>
+        <div class="decoration" id="v2">V</div>
+        <div class="decoration" id="s3">S</div>
+        
+        <div class="logo">Grammar Genius</div>
+        <p class="tagline">Where Language Rules Come to Life!</p>
+        <h1 class="page-title">Subject-Verb Agreement</h1>
+    </header>
+    
     <div class="container">
-        <h1>Subject-Verb Agreement</h1>
-
-        <p>Subject-verb agreement is a fundamental grammar rule stating that the verb in a sentence must agree in number (singular or plural) with its subject. This ensures clear and grammatically correct sentences.</p>
-
-        <h2>1. Basic Agreement</h2>
-        <ul>
-            <li><strong>Rule:</strong> Singular subjects take singular verbs, and plural subjects take plural verbs.
+        <div class="intro">
+            <p>Subject-verb agreement is a fundamental grammar rule stating that the verb in a sentence must agree in number (singular or plural) with its subject. This ensures clear and grammatically correct sentences.</p>
+        </div>
+        
+        <div class="rule-card">
+            <h2 class="rule-title"><span class="rule-icon">📝</span>Basic Agreement</h2>
+            <ul>
+                <li><strong>Rule:</strong> Singular subjects take singular verbs, and plural subjects take plural verbs.</li>
                 <ul class="example">
                     <li><em>Singular:</em> The cat <strong>sits</strong> on the mat.</li>
                     <li><em>Plural:</em> The cats <strong>sit</strong> on the mat.</li>
                 </ul>
-            </li>
-        </ul>
-
-        <h2>2. Compound Subjects</h2>
-        <ul>
-            <li><strong>Rule 1 (and):</strong> When two or more subjects are joined by "and," they generally take a plural verb.
+            </ul>
+        </div>
+        
+        <div class="rule-card">
+            <h2 class="rule-title"><span class="rule-icon">🔄</span>Compound Subjects</h2>
+            <ul>
+                <li><strong>Rule 1 (and):</strong> When two or more subjects are joined by "and," they generally take a plural verb.</li>
                 <ul class="example">
                     <li>John and Mary <strong>are</strong> going to the party.</li>
                     <li>The book and the pen <strong>were</strong> on the table.</li>
                 </ul>
-            </li>
-            <li><strong>Rule 2 (or/nor):</strong> When two or more subjects are joined by "or" or "nor," the verb agrees with the subject closer to it.
+                <li><strong>Rule 2 (or/nor):</strong> When two or more subjects are joined by "or" or "nor," the verb agrees with the subject closer to it.</li>
                 <ul class="example">
                     <li>Neither the students nor the teacher <strong>was</strong> present.</li>
                     <li>Neither the teacher nor the students <strong>were</strong> present.</li>
                     <li>Either the dog or the cats <strong>are</strong> making a mess.</li>
                     <li>Either the cats or the dog <strong>is</strong> sleeping.</li>
                 </ul>
-            </li>
-        </ul>
-
-        <h2>3. Indefinite Pronouns</h2>
-        <ul>
-            <li><strong>Rule:</strong> Some indefinite pronouns are always singular, some are always plural, and some can be either depending on the context.</li>
-            <li><strong>Always Singular:</strong> each, every, everyone, everybody, someone, somebody, anyone, anybody, no one, nobody, either, neither.
+            </ul>
+        </div>
+        
+        <div class="rule-card">
+            <h2 class="rule-title"><span class="rule-icon">🙋</span>Indefinite Pronouns</h2>
+            <ul>
+                <li><strong>Rule:</strong> Some indefinite pronouns are always singular, some are always plural, and some can be either depending on the context.</li>
+                <li><strong>Always Singular:</strong> each, every, everyone, everybody, someone, somebody, anyone, anybody, no one, nobody, either, neither.</li>
                 <ul class="example">
                     <li>Each student <strong>has</strong> a textbook.</li>
                     <li>Everyone <strong>is</strong> excited about the trip.</li>
                     <li>Neither of the options <strong>is</strong> suitable.</li>
                 </ul>
-            </li>
-            <li><strong>Always Plural:</strong> several, few, both, many.
+                <li><strong>Always Plural:</strong> several, few, both, many.</li>
                 <ul class="example">
                     <li>Several students <strong>were</strong> absent.</li>
                     <li>Both of the books <strong>are</strong> interesting.</li>
                 </ul>
-            </li>
-            <li><strong>Singular or Plural:</strong> some, any, all, most, none (depending on the object of the preposition).
+                <li><strong>Singular or Plural:</strong> some, any, all, most, none (depending on the object of the preposition).</li>
                 <ul class="example">
                     <li>Some of the pie <strong>is</strong> gone.</li>
                     <li>Some of the apples <strong>are</strong> rotten.</li>
                     <li>All of the water <strong>is</strong> clean.</li>
                     <li>All of the students <strong>are</strong> present.</li>
-                    <li>None of the food <strong>was</strong> wasted.</li>
-                    <li>None of the cookies <strong>were</strong> eaten.</li>
                 </ul>
-            </li>
-        </ul>
-
-        <h2>4. Collective Nouns</h2>
-        <ul>
-            <li><strong>Rule:</strong> Collective nouns (like team, family, group, committee) can be singular or plural depending on whether they are acting as a single unit or as individual members.
+            </ul>
+        </div>
+        
+        <div class="rule-card">
+            <h2 class="rule-title"><span class="rule-icon">👪</span>Collective Nouns</h2>
+            <ul>
+                <li><strong>Rule:</strong> Collective nouns (like team, family, group, committee) can be singular or plural depending on whether they are acting as a single unit or as individual members.</li>
                 <ul class="example">
-                    <li>The team <strong>is</strong> playing well.</li>
-                    <li>The team <strong>are</strong> arguing about the strategy.</li>
-                    <li>The family <strong>is</strong> large.</li>
-                    <li>The family <strong>are</strong> discussing their plans.</li>
+                    <li>The team <strong>is</strong> playing well. (as a unit)</li>
+                    <li>The team <strong>are</strong> arguing about the strategy. (as individuals)</li>
+                    <li>The family <strong>is</strong> large. (as a unit)</li>
+                    <li>The family <strong>are</strong> discussing their plans. (as individuals)</li>
                 </ul>
-            </li>
-        </ul>
-
-        <h2>5. Intervening Phrases</h2>
-        <ul>
-            <li><strong>Rule:</strong> Phrases that come between the subject and verb do not affect subject-verb agreement.
+            </ul>
+        </div>
+        
+        <div class="rule-card">
+            <h2 class="rule-title"><span class="rule-icon">📏</span>Intervening Phrases</h2>
+            <ul>
+                <li><strong>Rule:</strong> Phrases that come between the subject and verb do not affect subject-verb agreement.</li>
                 <ul class="example">
                     <li>The book, along with the CDs, <strong>is</strong> on the shelf.</li>
                     <li>The students, including the captain, <strong>are</strong> ready for the game.</li>
                 </ul>
-            </li>
-        </ul>
-
-        <h2>6. Titles of Works</h2>
-        <ul>
-            <li><strong>Rule:</strong> Titles of books, movies, songs, etc., are treated as singular, even if they contain plural words.
+            </ul>
+        </div>
+        
+        <div class="rule-card">
+            <h2 class="rule-title"><span class="rule-icon">📚</span>Titles of Works</h2>
+            <ul>
+                <li><strong>Rule:</strong> Titles of books, movies, songs, etc., are treated as singular, even if they contain plural words.</li>
                 <ul class="example">
                     <li>"The Three Musketeers" <strong>is</strong> a classic novel.</li>
                     <li>"A Hundred Years of Solitude" <strong>is</strong> a masterpiece.</li>
                 </ul>
-            </li>
-        </ul>
-
-        <h2>7. Units of Measurement</h2>
-        <ul>
-            <li><strong>Rule:</strong> Units of measurement (like time, money, distance) are generally treated as singular when they represent a single quantity.
+            </ul>
+        </div>
+        
+        <div class="rule-card">
+            <h2 class="rule-title"><span class="rule-icon">📐</span>Units of Measurement</h2>
+            <ul>
+                <li><strong>Rule:</strong> Units of measurement (like time, money, distance) are generally treated as singular when they represent a single quantity.</li>
                 <ul class="example">
                     <li>Five dollars <strong>is</strong> too much to pay.</li>
                     <li>Ten miles <strong>is</strong> a long way to walk.</li>
                     <li>Two hours <strong>is</strong> not enough time.</li>
                 </ul>
-            </li>
-        </ul>
-
-        <h2>8. "There is/There are"</h2>
-        <ul>
-            <li><strong>Rule:</strong> The verb agrees with the noun that follows "there is/there are."
+            </ul>
+        </div>
+        
+        <div class="rule-card">
+            <h2 class="rule-title"><span class="rule-icon">👉</span>"There is/There are"</h2>
+            <ul>
+                <li><strong>Rule:</strong> The verb agrees with the noun that follows "there is/there are."</li>
                 <ul class="example">
                     <li>There <strong>is</strong> a book on the table.</li>
                     <li>There <strong>are</strong> several books on the table.</li>
                 </ul>
-            </li>
-        </ul>
-
-        <h2>9. Numbers</h2>
-        <ul>
-            <li><strong>Rule:</strong> Numbers can be tricky. Context often determines singularity or plurality.
+            </ul>
+        </div>
+        
+        <div class="rule-card">
+            <h2 class="rule-title"><span class="rule-icon">🔢</span>Numbers</h2>
+            <ul>
+                <li><strong>Rule:</strong> Numbers can be tricky. Context often determines singularity or plurality.</li>
                 <ul class="example">
                     <li>Fifty percent of the class <strong>is</strong> present.</li>
                     <li>Fifty percent of the students <strong>are</strong> present.</li>
                 </ul>
-            </li>
-        </ul>
-
-        <div class="buttons">
-            <a href="subjectverbagreementquiz.html" class="button">Take Quiz</a>
-            <a href="index.html" class="button">Back to home </a>
+            </ul>
+        </div>
+        
+        <div class="actions">
+            <a href="subjectverbagreementquiz.html" class="btn btn-primary">Take Quiz</a>
+            <a href="index.html" class="btn">Back to Home</a>
+        </div>
+        
+        <div class="footer">
+            © 2025 Grammar Genius. All grammar rules respectfully followed.
         </div>
     </div>
-
 </body>
 </html>

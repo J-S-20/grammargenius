@@ -3,261 +3,378 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Active and Passive Voice</title>
+    <title>Active and Passive Voice - Grammar Genius</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f9;
+        * {
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            color: #34495e;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
-        .content {
-            background-color: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            max-width: 900px;
-            width: 90%;
-            margin: 20px;
+        
+        body {
+            background-color: #f5f7fd;
+            color: #333;
         }
-
-        h1 {
-            color: #3366cc;
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 2.5em;
-            font-weight: 600;
-            padding-bottom: 15px;
-        }
-
-        h2 {
-            color: #2c3e50;
-            margin-top: 30px;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #e1e4e8;
-            padding-bottom: 8px;
-            font-size: 1.8em;
-            font-weight: 500;
-        }
-
-        p {
-            line-height: 1.7;
-            margin-bottom: 25px;
-            font-size: 1.1em;
-        }
-
-        .example {
-            background-color: #f8f9fa;
-            border-left: 4px solid #3366cc;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 0 5px 5px 0;
-            display: flex;
-            align-items: center;
-        }
-
-        .example-text {
-            flex-grow: 1;
-        }
-
-        .example img {
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-            margin-left: 20px;
-            border-radius: 8px;
-        }
-
-        .structure {
-            font-family: monospace;
-            background-color: #f1f5f9;
-            padding: 10px 15px;
-            border-radius: 5px;
-            display: inline-block;
-            margin: 10px 0;
-        }
-
-        .section-image {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        ul {
-            list-style-type: none;
-            padding-left: 10px;
-            margin-bottom: 25px;
-        }
-
-        ul li {
-            margin-bottom: 12px;
-            position: relative;
-            padding-left: 25px;
-            font-size: 1.1em;
-        }
-
-        ul li::before {
-            content: "•";
-            color: #3366cc;
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-            font-size: 1.2em;
-        }
-
-        ul ul {
-            margin-top: 10px;
-        }
-
-        strong {
-            font-weight: 600;
-            color: #2c3e50;
-        }
-
-        .button-container {
-            text-align: center;
-            margin-top: 40px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .button {
-            display: inline-block;
-            padding: 12px 24px;
-            background-color: #007bff;
+        
+        .header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            padding: 2rem;
             color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-            font-weight: 500;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
         }
-
-        .button:hover {
-            background-color: #0056b3;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
         }
-
-        .comparison-table {
+        
+        .tagline {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .intro {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #6a11cb;
+        }
+        
+        .intro p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .topic-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .topic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+        }
+        
+        .topic-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .topic-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        
+        .topic-desc {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 1rem;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        /* Simple floating animation for decoration */
+        .decoration {
+            position: absolute;
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.2);
+            user-select: none;
+            pointer-events: none;
+        }
+        
+        #arrow1 { top: 20%; left: 10%; }
+        #arrow2 { top: 15%; left: 30%; }
+        #voice1 { top: 25%; left: 70%; }
+        #arrow3 { top: 60%; left: 15%; }
+        #voice2 { top: 70%; left: 80%; }
+        
+        /* Compare section */
+        .compare-section {
+            margin: 3rem 0;
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        .compare-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #6a11cb;
+        }
+        
+        .compare-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 25px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
         }
-
-        .comparison-table th, .comparison-table td {
-            padding: 12px 15px;
-            border: 1px solid #e1e4e8;
+        
+        .compare-table th, .compare-table td {
+            padding: 1rem;
             text-align: left;
+            border-bottom: 1px solid #eee;
         }
-
-        .comparison-table th {
-            background-color: #f1f5f9;
-            font-weight: 600;
-            color: #2c3e50;
+        
+        .compare-table th {
+            background-color: #f0f4ff;
+            color: #6a11cb;
         }
-
-        .comparison-table tr:nth-child(even) {
-            background-color: #f8f9fa;
+        
+        .compare-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .compare-table tr:nth-child(even) {
+            background-color: #f9faff;
+        }
+        
+        /* Example section */
+        .example-section {
+            margin: 3rem 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+        
+        .example-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        .example-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #f0f4ff;
+            color: #6a11cb;
+        }
+        
+        .example-content {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .structure {
+            background-color: #f0f4ff;
+            padding: 0.8rem;
+            border-radius: 8px;
+            font-family: monospace;
+            margin: 1rem 0;
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .btn {
+            background-color: #fff;
+            color: #6a11cb;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-primary {
+            background-color: #FF9A3C;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #ff8921;
+        }
+        
+        @media (max-width: 768px) {
+            .topics-grid, .example-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .tagline {
+                font-size: 1rem;
+            }
+            
+            .compare-table {
+                font-size: 0.9rem;
+            }
+            
+            .compare-table th, .compare-table td {
+                padding: 0.8rem;
+            }
+            
+            .example-section {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="content">
-        <h1>Active and Passive Voice</h1>
-
-        <p>Understanding the difference between active and passive voice is essential for crafting clear, effective, and powerful writing. These two grammatical constructions serve different purposes and create distinct impressions on your readers.</p>
-
-        <h2>Active Voice</h2>
-        <div class="example">
-            <div class="example-text">
-                <p>In active voice, the subject of the sentence performs the action. This creates a more direct, energetic, and concise style that engages readers.</p>
-                
-                <div class="structure">Structure: Subject + Verb + Object</div>
-                
-                <strong>Example:</strong> "The chef cooked the meal."<br>
-                <em>Here, "the chef" (subject) performs the action "cooked" on "the meal" (object).</em>
-            </div>
-            <img src="/api/placeholder/100/100" alt="Active Chef Cooking" />
-        </div>
-
-        <h2>Passive Voice</h2>
-        <div class="example">
-            <div class="example-text">
-                <p>In passive voice, the subject of the sentence receives the action. This construction is useful when the action itself is more important than who performed it, or when the actor is unknown or irrelevant.</p>
-                
-                <div class="structure">Structure: Object + Verb (to be) + Past Participle + (by Subject)</div>
-                
-                <strong>Example:</strong> "The meal was cooked by the chef."<br>
-                <em>Here, "the meal" (object) receives the action of being "cooked" by "the chef" (subject).</em>
-                
-                <strong>Example with unknown actor:</strong> "The window was broken."<br>
-                <em>In this case, we don't know who broke the window, so the passive voice is appropriate.</em>
-            </div>
-            <img src="/api/placeholder/100/100" alt="Passive Scene with Meal" />
-        </div>
-
-        <h2>Comparing Active and Passive Voice</h2>
+    <header class="header">
+        <div class="decoration" id="arrow1">→</div>
+        <div class="decoration" id="arrow2">←</div>
+        <div class="decoration" id="voice1">🗣️</div>
+        <div class="decoration" id="arrow3">→</div>
+        <div class="decoration" id="voice2">🔊</div>
         
-        <table class="comparison-table">
-            <tr>
-                <th>Aspect</th>
-                <th>Active Voice</th>
-                <th>Passive Voice</th>
-            </tr>
-            <tr>
-                <td>Emphasis</td>
-                <td>On the doer (subject)</td>
-                <td>On the action or receiver</td>
-            </tr>
-            <tr>
-                <td>Clarity</td>
-                <td>Usually more clear and direct</td>
-                <td>Can be less clear or more wordy</td>
-            </tr>
-            <tr>
-                <td>Word Count</td>
-                <td>Typically uses fewer words</td>
-                <td>Often requires more words</td>
-            </tr>
-            <tr>
-                <td>Appropriate Use</td>
-                <td>Most general writing, narratives</td>
-                <td>Scientific writing, when actor is unknown</td>
-            </tr>
-        </table>
-
-        <h2>When to Use Each Voice</h2>
-        <ul>
-            <li><strong>Use active voice when:</strong>
-                <ul>
-                    <li>You want clear, direct, and concise writing</li>
-                    <li>The doer of the action is important</li>
-                    <li>You want to emphasize responsibility or agency</li>
-                </ul>
-            </li>
-            <li><strong>Use passive voice when:</strong>
-                <ul>
-                    <li>The receiver of the action is more important than the doer</li>
-                    <li>The doer is unknown, irrelevant, or obvious</li>
-                    <li>You want to be deliberately vague about who performed an action</li>
-                    <li>Writing scientific or technical documents where objectivity is valued</li>
-                </ul>
-            </li>
-        </ul>
-
-        <div class="button-container">
-            <a href="#" class="button">Practice Exercises</a>
-            <a href="#" class="button">Download Guide</a>
+        <div class="logo">Active & Passive Voice</div>
+        <p class="tagline">Master the Art of Sentence Construction</p>
+    </header>
+    
+    <div class="container">
+        <div class="intro">
+            <h2>Discover the Power of Voice in Grammar</h2>
+            <p>Understanding the difference between active and passive voice is essential for crafting clear, effective, and powerful writing. These two grammatical constructions serve different purposes and create distinct impressions on your readers. Explore our resources below to master this important grammatical concept!</p>
+        </div>
+        
+        <div class="example-section">
+            <div class="example-card">
+                <h3 class="example-title">Active Voice</h3>
+                <p class="example-content">In active voice, the subject of the sentence performs the action. This creates a more direct, energetic, and concise style that engages readers.</p>
+                <div class="structure">Structure: Subject + Verb + Object</div>
+                <p><strong>Example:</strong> "The chef cooked the meal."</p>
+                <p><em>Here, "the chef" (subject) performs the action "cooked" on "the meal" (object).</em></p>
+            </div>
+            
+            <div class="example-card">
+                <h3 class="example-title">Passive Voice</h3>
+                <p class="example-content">In passive voice, the subject of the sentence receives the action. This construction is useful when the action itself is more important than who performed it.</p>
+                <div class="structure">Structure: Object + Verb (to be) + Past Participle + (by Subject)</div>
+                <p><strong>Example:</strong> "The meal was cooked by the chef."</p>
+                <p><em>Here, "the meal" (object) receives the action of being "cooked" by "the chef" (subject).</em></p>
+            </div>
+        </div>
+        
+        <div class="compare-section">
+            <h2 class="compare-title">Comparing Active and Passive Voice</h2>
+            <table class="compare-table">
+                <tr>
+                    <th>Aspect</th>
+                    <th>Active Voice</th>
+                    <th>Passive Voice</th>
+                </tr>
+                <tr>
+                    <td>Emphasis</td>
+                    <td>On the doer (subject)</td>
+                    <td>On the action or receiver</td>
+                </tr>
+                <tr>
+                    <td>Clarity</td>
+                    <td>Usually more clear and direct</td>
+                    <td>Can be less clear or more wordy</td>
+                </tr>
+                <tr>
+                    <td>Word Count</td>
+                    <td>Typically uses fewer words</td>
+                    <td>Often requires more words</td>
+                </tr>
+                <tr>
+                    <td>Appropriate Use</td>
+                    <td>Most general writing, narratives</td>
+                    <td>Scientific writing, when actor is unknown</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="topics-grid">
+            <div class="topic-card">
+                <div class="topic-icon">📝</div>
+                <h3 class="topic-title">Identifying Voice</h3>
+                <p class="topic-desc">Learn to quickly recognize whether a sentence uses active or passive voice through our simple identification techniques.</p>
+            </div>
+            
+            <div class="topic-card">
+                <div class="topic-icon">🔄</div>
+                <h3 class="topic-title">Converting Between Voices</h3>
+                <p class="topic-desc">Master the art of transforming active sentences to passive and vice versa while maintaining meaning.</p>
+            </div>
+            
+            <div class="topic-card">
+                <div class="topic-icon">📊</div>
+                <h3 class="topic-title">When to Use Each Voice</h3>
+                <p class="topic-desc">Understand the appropriate contexts for active and passive voice to enhance your writing effectiveness.</p>
+            </div>
+            
+            <div class="topic-card">
+                <div class="topic-icon">⚠️</div>
+                <h3 class="topic-title">Common Mistakes</h3>
+                <p class="topic-desc">Avoid the typical errors writers make when using active and passive voice in their writing.</p>
+            </div>
+            
+            <div class="topic-card">
+                <div class="topic-icon">📚</div>
+                <h3 class="topic-title">Academic Writing</h3>
+                <p class="topic-desc">Learn the conventions of voice in academic and scientific contexts where passive voice is often preferred.</p>
+            </div>
+            
+            <div class="topic-card">
+                <div class="topic-icon">✍️</div>
+                <h3 class="topic-title">Creative Writing</h3>
+                <p class="topic-desc">Discover how to use both voices effectively to create impact and variation in your creative work.</p>
+            </div>
+        </div>
+        
+        <div class="action-buttons">
+            <button onclick="window.location.href='index.html'" class="btn">⬅️ Back to Home</button>
+            <button onclick="window.location.href='tensesquiz.html'" class="btn btn-primary">📝 Take Quiz</button>
+        </div>
+        
+        <div class="footer">
+            © 2025 Grammar Genius. All grammar rules respectfully followed.
         </div>
     </div>
 </body>
