@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grammar Genius - Prepositions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fd;
+            color: #333;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            padding: 2rem;
+            color: white;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .intro {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #6a11cb;
+        }
+        
+        .intro p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        .section h3 {
+            color: #6a11cb;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .section p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .example-box {
+            background-color: #f0f5ff;
+            border-left: 4px solid #6a11cb;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .example-box p {
+            margin-bottom: 0.5rem;
+        }
+        
+        .highlighted {
+            font-weight: bold;
+            color: #6a11cb;
+        }
+        
+        .preposition-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .preposition-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .preposition-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+            border-color: #FF9A3C;
+        }
+        
+        .preposition-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+            text-align: center;
+        }
+        
+        .preposition-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+            text-align: center;
+        }
+        
+        .preposition-examples {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        .interactive-scene {
+            position: relative;
+            height: 320px;
+            background-color: #e8f4ff;
+            border-radius: 8px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+        
+        .scene-object {
+            position: absolute;
+            transition: all 0.5s ease;
+        }
+        
+        #cat {
+            width: 70px;
+            height: 70px;
+            z-index: 10;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        #table {
+    width: 200px;
+    height: 140px; /* Increased to include legs */
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+        
+.table-legs {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    height: 60px;
+}
+
+.tabletop {
+    width: 100%;
+    height: 80px;
+    background-color: #8B4513;
+    border-radius: 8px 8px 0 0;
+    position: relative;
+}
+        
+.table-leg {
+    width: 15px;
+    height: 60px;
+    background-color: #8B4513;
+}
+
+
+.table-leg:first-child {
+    left: 10%; /* Position from the left edge of the table */
+}
+
+.table-leg:last-child {
+    right: 10%; /* Position from the right edge of the table */
+}
+        
+        .scene-button {
+            background-color: #FF9A3C;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 0.5rem 1rem;
+            margin: 0.5rem;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .scene-button:hover {
+            background-color: #ff8921;
+            transform: scale(1.05);
+        }
+        
+        .scene-controls {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .actions {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        .btn {
+            background-color: #6a11cb;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            margin: 0.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            background-color: #5a0cb9;
+        }
+        
+        .btn-primary {
+            background-color: #FF9A3C;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #ff8921;
+        }
+    
+        
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 1rem;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        /* Decoration floating animation */
+        .decoration {
+            position: absolute;
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.2);
+            user-select: none;
+            pointer-events: none;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        #in { top: 20%; left: 10%; animation-delay: 0s; }
+        #on { top: 15%; left: 30%; animation-delay: 1s; }
+        #under { top: 25%; left: 70%; animation-delay: 2s; }
+        #over { top: 60%; left: 15%; animation-delay: 3s; }
+        #between { top: 40%; left: 80%; animation-delay: 4s; }
+        
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+        
+        /* Cat animation */
+        @keyframes catMove {
+            0% { transform: translateX(0); }
+            50% { transform: translateX(30px); }
+            100% { transform: translateX(0); }
+        }
+        
+        .animated-cat {
+            animation: catMove 4s infinite ease-in-out;
+        }
+        
+        /* Bouncing animation for some elements */
+        .bounce {
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        /* Fade-in animation for cards */
+        .preposition-card {
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Dangle animation for hanging objects */
+        .dangle {
+            transform-origin: top center;
+            animation: dangle 3s ease-in-out infinite;
+        }
+        
+        @keyframes dangle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(5deg); }
+            75% { transform: rotate(-5deg); }
+        }
+        
+        /* Media queries for responsive design */
+        @media (max-width: 768px) {
+            .preposition-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .tagline {
+                font-size: 1rem;
+            }
+            
+            
+            
+            .scene-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .scene-button {
+                width: 80%;
+                margin: 0.3rem;
+            }
+            
+            .interactive-scene {
+                height: 400px;
+            }
+            
+            #table {
+        width: 160px;
+    }
+            
+            .table-legs {
+                width: 160px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .section {
+                padding: 1.5rem;
+            }
+            
+            h2 {
+                font-size: 1.7rem;
+            }
+            
+            .section h3 {
+                font-size: 1.3rem;
+            }
+            
+            #table {
+                width: 140px;
+            }
+            
+            .table-legs {
+                width: 140px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="decoration" id="in">in</div>
+        <div class="decoration" id="on">on</div>
+        <div class="decoration" id="under">under</div>
+        <div class="decoration" id="over">over</div>
+        <div class="decoration" id="between">between</div>
+        
+        <div class="logo">Grammar Genius</div>
+        <p class="tagline">Where Language Rules Come to Life!</p>
+    </header>
+    
+    <div class="container">
+        <div class="intro">
+            <h2>Prepositions: The Magic Words That Show How Things Connect!</h2>
+            <p>Welcome to the wonderful world of prepositions! These special words help us understand where things are, when things happen, and how things relate to each other. Join us on an adventure to learn about words like 'in', 'on', 'under', 'beside', and many more!</p>
+        </div>
+        
+        <div class="section">
+            <h3>What Are Prepositions?</h3>
+            <p>Prepositions are words that show the relationship between a noun or pronoun and other words in a sentence. They can tell us about:</p>
+            <ul style="margin-left: 2rem; line-height: 1.6;">
+                <li>Position or location (in, on, under, above)</li>
+                <li>Direction (to, toward, through)</li>
+                <li>Time (before, after, during)</li>
+                <li>Purpose or reason (for, because of)</li>
+                <li>Manner (with, without, by)</li>
+            </ul>
+            
+            <div class="example-box">
+                <p>The <span class="highlighted">cat</span> is <span class="highlighted">on</span> the <span class="highlighted">table</span>.</p>
+                <p>The <span class="highlighted">books</span> are <span class="highlighted">in</span> the <span class="highlighted">backpack</span>.</p>
+                <p>We'll meet <span class="highlighted">at</span> the <span class="highlighted">park</span> <span class="highlighted">after</span> <span class="highlighted">school</span>.</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h3>Common Types of Prepositions</h3>
+            
+            <div class="preposition-grid">
+                <div class="preposition-card">
+                    <span class="preposition-icon">📍</span>
+                    <h4 class="preposition-title">Place</h4>
+                    <div class="preposition-examples">
+                        <p>in, on, under, above, below, beside, between, among, at, by</p>
+                        <div class="example-box">
+                            <p>The puppy is <span class="highlighted">under</span> the bed.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="preposition-card">
+                    <span class="preposition-icon">⏰</span>
+                    <h4 class="preposition-title">Time</h4>
+                    <div class="preposition-examples">
+                        <p>at, on, in, during, before, after, since, until, for</p>
+                        <div class="example-box">
+                            <p>Let's meet <span class="highlighted">at</span> 3 o'clock.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="preposition-card">
+                    <span class="preposition-icon">🚶</span>
+                    <h4 class="preposition-title">Movement</h4>
+                    <div class="preposition-examples">
+                        <p>to, toward, through, across, into, onto, out of, from</p>
+                        <div class="example-box">
+                            <p>We walked <span class="highlighted">through</span> the forest.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="preposition-card">
+                    <span class="preposition-icon">🔍</span>
+                    <h4 class="preposition-title">Manner</h4>
+                    <div class="preposition-examples">
+                        <p>with, without, by, like</p>
+                        <div class="example-box">
+                            <p>She drew the picture <span class="highlighted">with</span> crayons.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="preposition-card">
+                    <span class="preposition-icon">🎯</span>
+                    <h4 class="preposition-title">Purpose</h4>
+                    <div class="preposition-examples">
+                        <p>for, to, in order to</p>
+                        <div class="example-box">
+                            <p>I brought a gift <span class="highlighted">for</span> you.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="preposition-card">
+                    <span class="preposition-icon">💬</span>
+                    <h4 class="preposition-title">Agent</h4>
+                    <div class="preposition-examples">
+                        <p>by, with</p>
+                        <div class="example-box">
+                            <p>The cake was made <span class="highlighted">by</span> my mom.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h3>Let's Play with Prepositions!</h3>
+            <p>Move the cat to different positions and see the prepositions in action!</p>
+            
+            <div class="interactive-scene">
+                <div id="cat" class="scene-object">
+                    <span style="font-size: 40px; display: block; text-align: center;">🐱</span>
+                </div>
+                <div id="table" class="scene-object">
+                    <div class="tabletop"></div>
+                    <div class="table-legs">
+                        <div class="table-leg"></div>
+                        <div class="table-leg"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scene-controls">
+                <button class="scene-button" onclick="moveCat('on')">On the table</button>
+                <button class="scene-button" onclick="moveCat('under')">Under the table</button>
+                <button class="scene-button" onclick="moveCat('beside')">Beside the table</button>
+                <button class="scene-button" onclick="moveCat('above')">Above the table</button>
+                <button class="scene-button" onclick="moveCat('behind')">Behind the table</button>
+            </div>
+            
+            <div id="preposition-display" style="text-align: center; font-size: 1.2rem; margin-top: 1rem; min-height: 2rem;">
+                Where is the cat? Click a button to find out!
+            </div>
+        </div>
+        
+        <div class="section">
+            <h3>Preposition Fun Facts!</h3>
+            <div class="preposition-grid">
+                <div class="preposition-card bounce">
+                    <span class="preposition-icon">🎮</span>
+                    <h4 class="preposition-title">Did You Know?</h4>
+                    <p>There are about 150 prepositions in English, but we only use about 70 regularly!</p>
+                </div>
+                
+                <div class="preposition-card bounce" style="animation-delay: 0.3s;">
+                    <span class="preposition-icon">📚</span>
+                    <h4 class="preposition-title">Word Magic</h4>
+                    <p>The word "preposition" comes from Latin, meaning "to place before"!</p>
+                </div>
+                
+                <div class="preposition-card bounce" style="animation-delay: 0.6s;">
+                    <span class="preposition-icon">🌍</span>
+                    <h4 class="preposition-title">Around the World</h4>
+                    <p>Some languages, like Japanese, put their prepositions AFTER nouns!</p>
+                </div>
+            </div>
+
+            <div class="actions">
+                <a href="subjectverbagreementquiz.html" class="btn btn-primary">Take Quiz</a>
+                <a href="index.html" class="btn">Back to Home</a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            © 2025 Grammar Genius. All prepositions correctly placed.
+        </div>
+    </div>
+    
+    <script>
+        // Initialize the game when the page loads
+        window.onload = function() {
+            // Add delay to card animations
+            const cards = document.querySelectorAll('.preposition-card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = (index * 0.1) + 's';
+            });
+            
+            // Set initial cat position
+            resetCatPosition();
+        }
+        
+        // Function to reset cat position
+        function resetCatPosition() {
+            const cat = document.getElementById('cat');
+            const scene = document.querySelector('.interactive-scene');
+            
+            cat.style.top = '50%';
+            cat.style.left = '50%';
+            cat.style.transform = 'translate(-50%, -50%)';
+            cat.style.opacity = '1';
+            cat.className = 'scene-object';
+            
+            document.getElementById('preposition-display').textContent = "Where is the cat? Click a button to find out!";
+        }
+        
+        // Function to move the cat based on the preposition
+        function moveCat(position) {
+            const cat = document.getElementById('cat');
+            const table = document.getElementById('table');
+            const scene = document.querySelector('.interactive-scene');
+            const display = document.getElementById('preposition-display');
+            
+            // Reset animation classes and opacity
+            cat.className = 'scene-object';
+            cat.style.opacity = '1';
+            
+            // Calculate positions relative to the table
+            const tableRect = table.getBoundingClientRect();
+            const sceneRect = scene.getBoundingClientRect();
+            
+            // Position the cat based on the selected preposition
+            if (position === 'on') {
+                cat.style.top = (tableRect.top - sceneRect.top - cat.offsetHeight + 10) + 'px';
+                cat.style.left = '50%';
+                cat.style.transform = 'translateX(-50%)';
+                display.textContent = "The cat is ON the table.";
+                cat.classList.add('dangle');
+            } 
+            else if (position === 'under') {
+                cat.style.top = (tableRect.bottom - sceneRect.top - cat.offsetHeight + 30) + 'px';
+                cat.style.left = '50%';
+                cat.style.transform = 'translateX(-50%)';
+                display.textContent = "The cat is UNDER the table.";
+                cat.classList.add('animated-cat');
+            } 
+            else if (position === 'beside') {
+                cat.style.top = (tableRect.bottom - sceneRect.top - cat.offsetHeight) + 'px';
+                cat.style.left = (tableRect.right - sceneRect.left + 30) + 'px';
+                cat.style.transform = 'translateX(0)';
+                display.textContent = "The cat is BESIDE the table.";
+                cat.classList.add('bounce');
+            } 
+            else if (position === 'above') {
+                cat.style.top = (tableRect.top - sceneRect.top - cat.offsetHeight - 40) + 'px';
+                cat.style.left = '50%';
+                cat.style.transform = 'translateX(-50%)';
+                display.textContent = "The cat is ABOVE the table.";
+                cat.classList.add('bounce');
+            } 
+            else if (position === 'behind') {
+                cat.style.top = (tableRect.top - sceneRect.top + tableRect.height/4) + 'px';
+                cat.style.left = '50%';
+                cat.style.transform = 'translateX(-50%)';
+                cat.style.opacity = '0.5';
+                display.textContent = "The cat is BEHIND the table.";
+            }
+        }
+        
+    </script>
+</body>
+</html>

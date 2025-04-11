@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grammar Genius - Punctuation Playground</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fd;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            padding: 2rem;
+            color: white;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            animation: fadeInDown 1s ease-out;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .intro {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeIn 1.5s ease;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #6a11cb;
+        }
+        
+        .intro p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .punctuation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .punctuation-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .punctuation-card:hover {
+            transform: translateY(-5px) rotate(1deg);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .punctuation-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .punctuation-card:hover .punctuation-icon {
+            transform: scale(1.2) rotate(-5deg);
+        }
+        
+        .punctuation-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        
+        .punctuation-desc {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        .example-box {
+            background-color: #f0f4ff;
+            border-left: 4px solid #6a11cb;
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .example-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #6a11cb;
+        }
+        
+        .example-text {
+            font-size: 0.95rem;
+        }
+        
+        .correct {
+            color: #2ecc71;
+        }
+        
+        .incorrect {
+            color: #e74c3c;
+            text-decoration: line-through;
+        }
+        
+        .fun-fact {
+            background-color: #fff3e0;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            position: relative;
+        }
+        
+        .fun-fact::before {
+            content: "✨ Fun Fact";
+            display: block;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #ff9a3c;
+        }
+        
+        .interactive-section {
+            background: linear-gradient(135deg, #f8e9ff 0%, #e3efff 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 3rem 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        
+        .interactive-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #6a11cb;
+        }
+        
+        .game-display {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+        }
+        
+        .game-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+        
+        .btn {
+            background-color: #FF9A3C;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            margin: 0 0.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            background-color: #ff8921;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 1rem;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        /* Animated punctuation characters */
+        .floating {
+            position: absolute;
+            font-size: 3rem;
+            color: rgba(255, 255, 255, 0.3);
+            animation: float 6s ease-in-out infinite;
+            user-select: none;
+            pointer-events: none;
+        }
+        
+        #period { top: 20%; left: 10%; animation-delay: 0s; }
+        #comma { top: 15%; left: 30%; animation-delay: 1s; }
+        #exclamation { top: 25%; left: 70%; animation-delay: 0.5s; }
+        #question { top: 60%; left: 15%; animation-delay: 1.5s; }
+        #semicolon { top: 30%; left: 80%; animation-delay: 2s; }
+        #colon { top: 70%; left: 60%; animation-delay: 2.5s; }
+        #quotes { top: 40%; left: 5%; animation-delay: 3s; }
+        #parenthesis { top: 55%; left: 90%; animation-delay: 3.5s; }
+        
+        /* Animation keyframes */
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .punctuation-card {
+            animation: fadeIn 0.8s ease forwards;
+            opacity: 0;
+        }
+        
+        .punctuation-card:nth-child(1) { animation-delay: 0.1s; }
+        .punctuation-card:nth-child(2) { animation-delay: 0.2s; }
+        .punctuation-card:nth-child(3) { animation-delay: 0.3s; }
+        .punctuation-card:nth-child(4) { animation-delay: 0.4s; }
+        .punctuation-card:nth-child(5) { animation-delay: 0.5s; }
+        .punctuation-card:nth-child(6) { animation-delay: 0.6s; }
+        .punctuation-card:nth-child(7) { animation-delay: 0.7s; }
+        .punctuation-card:nth-child(8) { animation-delay: 0.8s; }
+        
+        /* Character animations */
+        .character {
+            display: inline-block;
+            position: relative;
+            animation: bounce 2s infinite;
+            font-size: 2.5rem;
+            margin: 0 0.5rem;
+        }
+        
+        .character:nth-child(1) { animation-delay: 0s; }
+        .character:nth-child(2) { animation-delay: 0.1s; }
+        .character:nth-child(3) { animation-delay: 0.2s; }
+        .character:nth-child(4) { animation-delay: 0.3s; }
+        .character:nth-child(5) { animation-delay: 0.4s; }
+        .character:nth-child(6) { animation-delay: 0.5s; }
+        .character:nth-child(7) { animation-delay: 0.6s; }
+        
+        .highlight-section {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-top: 3rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        .challenge-section {
+            background: linear-gradient(135deg, #fff6e5 0%, #ffedcc 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-top: 3rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        .challenge-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #ff9a3c;
+        }
+        
+        .challenge-desc {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .punctuation-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .tagline {
+                font-size: 1rem;
+            }
+            
+            .character {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="floating" id="period">.</div>
+        <div class="floating" id="comma">,</div>
+        <div class="floating" id="exclamation">!</div>
+        <div class="floating" id="question">?</div>
+        <div class="floating" id="semicolon">;</div>
+        <div class="floating" id="colon">:</div>
+        <div class="floating" id="quotes">"</div>
+        <div class="floating" id="parenthesis">()</div>
+        
+        <div class="logo">Grammar Genius</div>
+        <p class="tagline">Punctuation Playground</p>
+        
+        <div style="margin-top: 1.5rem;">
+            <span class="character">!</span>
+            <span class="character">?</span>
+            <span class="character">.</span>
+            <span class="character">,</span>
+            <span class="character">;</span>
+            <span class="character">:</span>
+            <span class="character">"</span>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="intro">
+            <h2>The Magic of Punctuation</h2>
+            <p>Welcome to the exciting world of punctuation! These tiny marks make a BIG difference in how we read and understand sentences. They're like the traffic signals of writing, telling us when to stop, slow down, or get excited! Let's explore these powerful little symbols and learn how to use them to make your writing clear, correct, and fun!</p>
+        </div>
+        
+        <div class="punctuation-grid">
+            <div class="punctuation-card">
+                <div class="punctuation-icon">.</div>
+                <h3 class="punctuation-title">The Period</h3>
+                <p class="punctuation-desc">The period (or full stop) tells us to stop completely. It ends a sentence that makes a statement.</p>
+                <div class="example-box">
+                    <p class="example-title">Examples:</p>
+                    <p class="example-text">The cat slept on the windowsill.</p>
+                    <p class="example-text">I love to eat ice cream.</p>
+                </div>
+                <div class="fun-fact">
+                    The word "period" comes from the Greek word "periodos," which means "going around" or "way around."
+                </div>
+            </div>
+            
+            <div class="punctuation-card">
+                <div class="punctuation-icon">?</div>
+                <h3 class="punctuation-title">The Question Mark</h3>
+                <p class="punctuation-desc">The question mark shows that a sentence is asking something. It helps your reader know that you expect an answer!</p>
+                <div class="example-box">
+                    <p class="example-title">Examples:</p>
+                    <p class="example-text">Where is your homework?</p>
+                    <p class="example-text">Did you see that shooting star?</p>
+                </div>
+                <div class="fun-fact">
+                    The question mark design may have come from the Latin word "quaestio" (meaning "question"), which was abbreviated as "qo." The "q" was written above the "o" and eventually evolved into our modern question mark!
+                </div>
+            </div>
+            
+            <div class="punctuation-card">
+                <div class="punctuation-icon">!</div>
+                <h3 class="punctuation-title">The Exclamation Point</h3>
+                <p class="punctuation-desc">The exclamation point shows strong feeling like excitement, surprise, or anger. It adds energy to your writing!</p>
+                <div class="example-box">
+                    <p class="example-title">Examples:</p>
+                    <p class="example-text">Watch out for that puddle!</p>
+                    <p class="example-text">We won the championship!</p>
+                </div>
+                <div class="fun-fact">
+                    The exclamation point was once called the "note of admiration." Printers used to call it a "screamer," "gasper," or "startler"!
+                </div>
+            </div>
+            
+            <div class="punctuation-card">
+                <div class="punctuation-icon">,</div>
+                <h3 class="punctuation-title">The Comma</h3>
+                <p class="punctuation-desc">The comma is like a short pause in a sentence. It helps separate ideas and items in a list.</p>
+                <div class="example-box">
+                    <p class="example-title">Examples:</p>
+                    <p class="example-text">I need eggs, milk, bread, and cheese from the store.</p>
+                    <p class="example-text">After you finish your homework, you can play outside.</p>
+                </div>
+                <div class="fun-fact">
+                    The word "comma" comes from the Greek word "komma," which means "something cut off" or "a short clause."
+                </div>
+            </div>
+            
+            <div class="punctuation-card">
+                <div class="punctuation-icon">;</div>
+                <h3 class="punctuation-title">The Semicolon</h3>
+                <p class="punctuation-desc">The semicolon is stronger than a comma but not as final as a period. It connects closely related independent clauses.</p>
+                <div class="example-box">
+                    <p class="example-title">Examples:</p>
+                    <p class="example-text">I finished my homework; now I can watch TV.</p>
+                    <p class="example-text">Some people like cats; others prefer dogs.</p>
+                </div>
+                <div class="fun-fact">
+                    The semicolon was first used in Italian printing in 1494! It's like the superhero of punctuation marks - not used as often but very powerful when needed.
+                </div>
+            </div>
+            
+            <div class="punctuation-card">
+                <div class="punctuation-icon">:</div>
+                <h3 class="punctuation-title">The Colon</h3>
+                <p class="punctuation-desc">The colon introduces something that explains, describes, or expands on what came before it. It often introduces a list.</p>
+                <div class="example-box">
+                    <p class="example-title">Examples:</p>
+                    <p class="example-text">I need three things for the party: balloons, cake, and presents.</p>
+                    <p class="example-text">The rule is simple: always do your best.</p>
+                </div>
+                <div class="fun-fact">
+                    The word "colon" comes from the Greek word "kolon," which means "limb" or "member" - because it introduces members of a list or parts of an idea!
+                </div>
+            </div>
+            
+            <div class="punctuation-card">
+                <div class="punctuation-icon">" "</div>
+                <h3 class="punctuation-title">Quotation Marks</h3>
+                <p class="punctuation-desc">Quotation marks show the exact words someone says, thinks, or writes. They're like little speech bubbles in your writing!</p>
+                <div class="example-box">
+                    <p class="example-title">Examples:</p>
+                    <p class="example-text">"I love pizza," said Maria.</p>
+                    <p class="example-text">The sign reads, "No swimming allowed."</p>
+                </div>
+                <div class="fun-fact">
+                    Different languages use different types of quotation marks! In French, they use « guillemets », and in German, they often use „these marks" for dialogue.
+                </div>
+            </div>
+            
+            <div class="punctuation-card">
+                <div class="punctuation-icon">-</div>
+                <h3 class="punctuation-title">The Hyphen & Dash</h3>
+                <p class="punctuation-desc">Hyphens join words together, while dashes separate parts of a sentence—like this!</p>
+                <div class="example-box">
+                    <p class="example-title">Examples:</p>
+                    <p class="example-text">My six-year-old brother loves dinosaurs.</p>
+                    <p class="example-text">I love all fruits—especially strawberries—in the summer.</p>
+                </div>
+                <div class="fun-fact">
+                    There are actually three different lengths of lines used in punctuation: the hyphen (-), the en dash (–), and the em dash (—)!
+                </div>
+            </div>
+        </div>
+        
+        <div class="interactive-section">
+            <h3 class="interactive-title">Punctuation Practice Game</h3>
+            <div class="game-display">
+                <p class="game-text" id="game-text">Click the button to start the game!</p>
+            </div>
+            <button class="btn" id="game-button">Start Practice Game</button>
+        </div>
+        
+        <div class="highlight-section">
+            <h3 style="color: #6a11cb; margin-bottom: 1rem;">Why Punctuation Matters</h3>
+            <p style="margin-bottom: 1rem;">Punctuation does more than just make your writing look nice—it completely changes meaning! Look at these examples:</p>
+            
+            <div style="background-color: #f0f4ff; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                <p style="font-weight: bold">Example 1:</p>
+                <p class="correct">"Let's eat, Grandma!" (We're inviting Grandma to eat with us)</p>
+                <p class="incorrect">"Let's eat Grandma!" (Oh no! We're going to eat Grandma!)</p>
+            </div>
+            
+            <div style="background-color: #f0f4ff; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                <p style="font-weight: bold">Example 2:</p>
+                <p class="correct">"The panda eats, shoots, and leaves." (The panda eats some food, then shoots something, then leaves)</p>
+                <p class="incorrect">"The panda eats shoots and leaves." (The panda's diet consists of shoots and leaves)</p>
+            </div>
+            
+            <div style="background-color: #f0f4ff; padding: 1rem; border-radius: 8px;">
+                <p style="font-weight: bold">Example 3:</p>
+                <p class="correct">"Woman, without her man, is nothing." (This sentence is about a woman who needs a man)</p>
+                <p class="correct">"Woman: without her, man is nothing." (This sentence is about a man who needs a woman)</p>
+            </div>
+        </div>
+        
+        <div class="challenge-section">
+            <h3 class="challenge-title">Punctuation Challenge!</h3>
+            <p class="challenge-desc">Can you add the correct punctuation to these sentences?</p>
+            
+            <div style="text-align: left; margin-bottom: 1.5rem;">
+                <p>1. where are you going</p>
+                <p>2. wow that was amazing</p>
+                <p>3. my favorite fruits are apples oranges and bananas</p>
+                <p>4. she said i dont want to go</p>
+                <p>5. after we finish dinner we will watch a movie</p>
+            </div>
+            
+            <button class="btn" id="challenge-button">Show Answers</button>
+            <div id="challenge-answers" style="display: none; text-align: left; margin-top: 1.5rem; background-color: #fff; padding: 1rem; border-radius: 8px;">
+                <p>1. Where are you going?</p>
+                <p>2. Wow! That was amazing!</p>
+                <p>3. My favorite fruits are apples, oranges, and bananas.</p>
+                <p>4. She said, "I don't want to go."</p>
+                <p>5. After we finish dinner, we will watch a movie.</p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            © 2025 Grammar Genius. All punctuation marks properly placed.
+        </div>
+    </div>
+    
+    <script>
+        // Wait for the DOM to be fully loaded before running the script
+        document.addEventListener('DOMContentLoaded', function() {
+            // Game sentences
+            const sentences = [
+                {text: "Add a period to complete this sentence", answer: "Add a period to complete this sentence."},
+                {text: "Where are you going", answer: "Where are you going?"},
+                {text: "Wow that was amazing", answer: "Wow! That was amazing!"},
+                {text: "I need eggs milk and cheese", answer: "I need eggs, milk, and cheese."},
+                {text: "She said I love pizza", answer: "She said, \"I love pizza.\""},
+                {text: "After school I go home", answer: "After school, I go home."}
+            ];
+            
+            let currentSentence = 0;
+            
+            // Get elements by ID with error checking
+            const gameText = document.getElementById('game-text');
+            const gameButton = document.getElementById('game-button');
+            const challengeButton = document.getElementById('challenge-button');
+            const challengeAnswers = document.getElementById('challenge-answers');
+            
+            // Make sure elements exist before adding event listeners
+            if (gameButton) {
+                gameButton.addEventListener('click', function() {
+                    if (gameButton.textContent === 'Start Practice Game' || gameButton.textContent === 'Play Again') {
+                        currentSentence = 0;
+                        showSentence();
+                        gameButton.textContent = 'Show Answer';
+                    } else if (gameButton.textContent === 'Show Answer') {
+                        showAnswer();
+                        gameButton.textContent = 'Next Sentence';
+                    } else if (gameButton.textContent === 'Next Sentence') {
+                        currentSentence++;
+                        if (currentSentence < sentences.length) {
+                            showSentence();
+                            gameButton.textContent = 'Show Answer';
+                        } else {
+                            gameText.textContent = 'Great job! You\'ve completed all the sentences!';
+                            gameButton.textContent = 'Play Again';
+                        }
+                    }
+                });
+            }
+            
+            function showSentence() {
+                gameText.textContent = sentences[currentSentence].text;
+            }
+            
+            function showAnswer() {
+                gameText.innerHTML = `
+                    <p><strong>Original:</strong> ${sentences[currentSentence].text}</p>
+                    <p><strong>Correct:</strong> <span style="color: #2ecc71">${sentences[currentSentence].answer}</span></p>
+                `;
+            }
+            
+            if (challengeButton && challengeAnswers) {
+                challengeButton.addEventListener('click', function() {
+                    if (challengeAnswers.style.display === 'none') {
+                        challengeAnswers.style.display = 'block';
+                        challengeButton.textContent = 'Hide Answers';
+                    } else {
+                        challengeAnswers.style.display = 'none';
+                        challengeButton.textContent = 'Show Answers';
+                    }
+                });
+            }
+            
+            // Scroll animation for cards
+            const cards = document.querySelectorAll('.punctuation-card');
+            
+            function isElementInViewport(el) {
+                const rect = el.getBoundingClientRect();
+                return (
+                    rect.top >= 0 &&
+                    rect.left >= 0 &&
+                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                );
+            }
+            
+            function handleScroll() {
+                cards.forEach(card => {
+                    if (isElementInViewport(card)) {
+                        card.style.opacity = '1';
+                    }
+                });
+            }
+            
+            // Initial check and add event listener
+            handleScroll();
+            window.addEventListener('scroll', handleScroll);
+            
+            // Log to console to confirm script is running
+            console.log("Punctuation game script initialized!");
+        });
+    </script>
+</body>
+</html>
