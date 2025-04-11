@@ -3,131 +3,287 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grammar Guide</title>
+    <title>Grammar Genius - Articles</title>
     <style>
-        :root {
-            --primary-blue: #1e88e5;
-            --light-blue: #bbdefb;
-            --lighter-blue: #e3f2fd;
-            --dark-blue: #1565c0;
-            --text-color: #333;
-            --white: #fff;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--lighter-blue);
-            color: var(--text-color);
-            line-height: 1.6;
+            background-color: #f5f7fd;
+            color: #333;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            padding: 2rem;
+            color: white;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            animation: pulse 2s infinite alternate;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
         }
         
         .container {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 20px;
-            text-align: center;
+            padding: 2rem;
         }
         
-        header {
-            background-color: var(--dark-blue);
-            color: var(--white);
-            padding: 20px 0;
-            text-align: center;
-        }
-        
-        header h1 {
-            color: var(--white);
-            margin: 0;
-        }
-        
-        h1, h2, h3, h4 {
-            color: var(--dark-blue);
-            text-align: center;
-        }
-        
-        .grammar-section {
-            background-color: var(--white);
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px;
-            padding: 25px;
-            text-align: left;
+        h2, h3, h4 {
+            color: #6a11cb;
+            margin-bottom: 1rem;
         }
         
         .section-title {
-            border-bottom: 2px solid var(--light-blue);
-            padding-bottom: 10px;
-            margin-top: 0;
             text-align: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid rgba(106, 17, 203, 0.3);
+            padding-bottom: 0.8rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: "📝";
+            position: absolute;
+            right: 0;
+            top: 0;
+            font-size: 1.8rem;
+            animation: bounce 2s infinite alternate;
+        }
+        
+        @keyframes bounce {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-10px); }
+        }
+        
+        .grammar-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            margin-bottom: 2rem;
+            animation: fadeIn 0.8s ease-out forwards;
+            position: relative;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .grammar-explanation {
-            margin-bottom: 20px;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            font-size: 1.1rem;
         }
         
         .grammar-types {
-            background-color: var(--lighter-blue);
-            padding: 15px;
+            background-color: rgba(106, 17, 203, 0.05);
+            padding: 1.5rem;
             border-radius: 8px;
-            margin-bottom: 20px;
-            border-left: 4px solid var(--primary-blue);
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #6a11cb;
+            transition: transform 0.3s ease;
+        }
+        
+        .grammar-types:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(106, 17, 203, 0.2);
         }
         
         .example-box {
-            border: 1px solid var(--light-blue);
-            background-color: var(--white);
-            padding: 15px;
-            margin: 15px 0;
+            border: 1px solid rgba(106, 17, 203, 0.2);
+            background-color: white;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
             border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .example-box:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
         }
         
         .example-sentence {
             font-style: italic;
             display: flex;
             align-items: center;
-            margin-bottom: 10px;
+            margin-bottom: 1rem;
             justify-content: center;
+            font-size: 1.2rem;
+            padding: 15px;
+            background-color: #f8f5ff;
+            border-radius: 10px;
+            position: relative;
         }
         
-        .example-image {
-            text-align: center;
-            margin: 15px 0;
+        .example-sentence::before {
+            content: "👉";
+            position: absolute;
+            left: 10px;
+            animation: pointRight 1s infinite alternate;
         }
         
-        .example-image img {
-            max-width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        @keyframes pointRight {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(5px); }
         }
         
         .grammar-rule {
-            background-color: var(--light-blue);
+            background-color: rgba(106, 17, 203, 0.08);
             border-radius: 8px;
-            padding: 15px;
-            margin: 20px 0;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        
+        .grammar-rule:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(106, 17, 203, 0.15);
         }
         
         .rule-title {
-            color: var(--dark-blue);
+            color: #6a11cb;
             font-weight: bold;
             margin-top: 0;
             text-align: center;
+            font-size: 1.3rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .rule-title::before {
+            content: "✨";
+            margin-right: 8px;
+            animation: sparkle 1.5s infinite alternate;
+        }
+        
+        .rule-title::after {
+            content: "✨";
+            margin-left: 8px;
+            animation: sparkle 1.5s infinite alternate;
+            animation-delay: 0.75s;
+        }
+        
+        @keyframes sparkle {
+            0% { opacity: 0.3; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1.2); }
         }
         
         .situation-box {
-            background-color: var(--white);
-            border: 1px solid var(--light-blue);
+            background-color: white;
+            border: 1px solid rgba(106, 17, 203, 0.2);
             border-radius: 8px;
-            padding: 15px;
-            margin: 15px 0;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .situation-box:hover {
+            transform: rotate(1deg);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
         
         .situation-title {
-            color: var(--primary-blue);
+            color: #6a11cb;
             font-weight: bold;
             text-align: center;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: inline-block;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .example-item {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f8f9fd;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .example-item:hover {
+            background-color: #eef1ff;
+            transform: scale(1.01);
+        }
+        
+        .btn {
+            background-color: #6a11cb;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            margin: 0 0.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(45deg);
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn:hover::after {
+            opacity: 1;
+            transform: rotate(45deg) translateX(30%);
+        }
+        
+        .btn-primary {
+            background-color: #FF9A3C;
+        }
+        
+        .btn-primary:hover {
+            background-color: #ff8921;
         }
         
         .navigation-buttons {
@@ -137,118 +293,335 @@
             margin-top: 30px;
         }
         
-        .btn {
-            display: inline-block;
-            background-color: var(--primary-blue);
-            color: var(--white);
-            padding: 12px 24px;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: bold;
-            transition: background-color 0.3s;
-            border: none;
-            cursor: pointer;
-        }
-        
-        .btn:hover {
-            background-color: var(--dark-blue);
-        }
-        
         .highlight {
-            background-color: rgba(30, 136, 229, 0.2);
-            padding: 0 3px;
+            background-color: rgba(106, 17, 203, 0.15);
+            padding: 2px 5px;
             border-radius: 3px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .highlight:hover {
+            background-color: rgba(106, 17, 203, 0.25);
+            transform: scale(1.1);
+        }
+        
+        /* Floating decorations like on homepage but more animated for kids */
+        .decoration {
+            position: absolute;
+            font-size: 2.5rem;
+            color: rgba(255, 255, 255, 0.3);
+            user-select: none;
+            pointer-events: none;
+            font-weight: bold;
+        }
+        
+        #comma1 { 
+            top: 20%; 
+            left: 10%; 
+            animation: float 4s ease-in-out infinite alternate;
+        }
+        
+        #question1 { 
+            top: 15%; 
+            left: 30%; 
+            animation: float 5s ease-in-out infinite alternate;
+            animation-delay: 0.5s;
+        }
+        
+        #exclamation1 { 
+            top: 25%; 
+            left: 70%; 
+            animation: float 3.5s ease-in-out infinite alternate;
+            animation-delay: 1s;
+        }
+        
+        #comma2 { 
+            top: 60%; 
+            left: 15%; 
+            animation: floatRotate 6s ease-in-out infinite alternate;
+            animation-delay: 1.5s;
+        }
+        
+        #question2 { 
+            top: 70%; 
+            left: 80%; 
+            animation: float 4.5s ease-in-out infinite alternate;
+            animation-delay: 2s;
+        }
+        
+        #a1 { 
+            top: 35%; 
+            left: 5%; 
+            animation: dance 4s ease-in-out infinite;
+            font-size: 3rem;
+        }
+        
+        #an1 { 
+            top: 40%; 
+            left: 85%; 
+            animation: dance 4s ease-in-out infinite;
+            animation-delay: 0.7s;
+            font-size: 3rem;
+        }
+        
+        #the1 { 
+            top: 50%; 
+            left: 50%; 
+            animation: dance 4s ease-in-out infinite;
+            animation-delay: 1.4s;
+            font-size: 3rem;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(5px); }
+        }
+        
+        @keyframes floatRotate {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(10deg); }
+            100% { transform: translateY(5px) rotate(-10deg); }
+        }
+        
+        @keyframes dance {
+            0% { transform: translateY(0) scale(1); }
+            25% { transform: translateY(-15px) scale(1.1); }
+            50% { transform: translateY(0) scale(1); }
+            75% { transform: translateY(-7px) scale(1.05); }
+            100% { transform: translateY(0) scale(1); }
+        }
+        
+        /* Fun animations for list items */
+        li {
+            position: relative;
+            padding-left: 25px;
+            margin: 10px 0;
+            list-style-type: none;
+        }
+        
+        li::before {
+            content: "🔹";
+            position: absolute;
+            left: 0;
+            transition: all 0.3s ease;
+        }
+        
+        li:hover::before {
+            content: "🔸";
+            transform: scale(1.2);
+        }
+        
+        .fun-fact {
+            background: linear-gradient(135deg, #ffdfba 0%, #ffffba 100%);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            position: relative;
+            border: 2px dashed #FF9A3C;
+        }
+        
+        .fun-fact::before {
+            content: "Fun Fact!";
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: #FF9A3C;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+        
+        
+        
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 1rem;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .tagline {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 <body>
+    <header class="header">
+        <div class="decoration" id="comma1">,</div>
+        <div class="decoration" id="question1">?</div>
+        <div class="decoration" id="exclamation1">!</div>
+        <div class="decoration" id="comma2">,</div>
+        <div class="decoration" id="question2">?</div>
+        <div class="decoration" id="a1">a</div>
+        <div class="decoration" id="an1">an</div>
+        <div class="decoration" id="the1">the</div>
+        
+        <div class="logo">Grammar Genius</div>
+        <p class="tagline">Where Language Rules Come to Life!</p>
+    </header>
     
     <div class="container">
-        <!-- Sample Grammar Section: Articles -->
-        <header>
-            <h1>English Grammar Guide</h1>
-        </header>
         <div class="grammar-section">
-            <h2 class="section-title">Articles</h2>
+            <h2 class="section-title">The Magic of Articles: A, An, The</h2>
             
             <div class="grammar-explanation">
-                <p>Articles are determiners that define a noun as specific or unspecific. English employs three articles: <span class="highlight">a</span>, <span class="highlight">an</span>, and <span class="highlight">the</span>. These functional words precede nouns or noun equivalents and play a crucial role in establishing context.</p>
+                <p>Welcome, young language explorers! Today we're going to learn about three tiny but super important words in English: <span class="highlight">a</span>, <span class="highlight">an</span>, and <span class="highlight">the</span>. These special words are called <strong>articles</strong>, and they help us understand whether we're talking about something specific or just any old thing. Let's discover how to use them correctly!</p>
             </div>
             
             <div class="grammar-types">
-                <h3>Types of Articles</h3>
+                <h3>The Two Types of Articles</h3>
                 <ul>
-                    <li><strong>Definite Article:</strong> "The" - indicates specific or particular nouns</li>
-                    <li><strong>Indefinite Articles:</strong> "A" and "An" - denote nonspecific or general nouns</li>
+                    <li><strong>Definite Article:</strong> "The" - we use this when talking about something specific that both you and your friend know about</li>
+                    <li><strong>Indefinite Articles:</strong> "A" and "An" - we use these when talking about something for the first time or any one of a group</li>
                 </ul>
             </div>
             
-            <h3>Examples of Articles</h3>
+            <div class="fun-fact">
+                Even though English has thousands of words, we only have three articles: "a," "an," and "the." But these three little words are used more often than almost any other words in English!
+            </div>
+            
+            <h3>Articles in Action: Let's See How They Work!</h3>
             
             <div class="example-box">
-                <h4>Definite Article (The)</h4>
+                <h4>The Definite Article: "The"</h4>
                 <div class="example-sentence">
-                    <p>"<span class="highlight">The</span> book on the table belongs to Sarah."</p>
+                    <p>"Can you pass me <span class="highlight">the</span> red pencil?"</p>
                 </div>
-                <div class="example-image">
-                    <img src="/api/placeholder/500/300" alt="A specific book on a table" />
-                    <p><em>The definite article "the" refers to a specific, identifiable book.</em></p>
+                <p>Here, we use "the" because we're talking about <strong>one specific pencil</strong> that both people can see or know about.</p>
+                
+                <div class="example-sentence">
+                    <p>"<span class="highlight">The</span> Moon orbits around Earth."</p>
                 </div>
+                <p>We use "the" with Moon because there's only <strong>one moon</strong> that orbits Earth, so it's specific and unique.</p>
             </div>
             
             <div class="example-box">
-                <h4>Indefinite Articles (A/An)</h4>
+                <h4>The Indefinite Articles: "A" and "An"</h4>
                 <div class="example-sentence">
-                    <p>"I need <span class="highlight">a</span> pencil to complete this form."</p>
+                    <p>"I need <span class="highlight">a</span> pencil to write my homework."</p>
                 </div>
-                <div class="example-image">
-                    <img src="/api/placeholder/500/300" alt="Any pencil among many pencils" />
-                    <p><em>The indefinite article "a" indicates any pencil, not a particular one.</em></p>
-                </div>
+                <p>Here, we use "a" because the person needs <strong>any pencil</strong>, not a specific one. Any pencil will do!</p>
                 
                 <div class="example-sentence">
-                    <p>She observed <span class="highlight">an</span> elephant at the zoo yesterday.</p>
+                    <p>"My brother is <span class="highlight">an</span> excellent swimmer."</p>
                 </div>
-                <div class="example-image">
-                    <img src="/api/placeholder/500/300" alt="An elephant at the zoo" />
-                    <p><em>The indefinite article "an" is utilized before words beginning with vowel sounds.</em></p>
-                </div>
+                <p>We use "an" here because "excellent" starts with a vowel sound. Remember, it's about the <strong>sound</strong>, not just the letter!</p>
             </div>
             
             <div class="grammar-rule">
-                <h4 class="rule-title">Rules for Using Articles</h4>
+                <h4 class="rule-title">Fun Rules for Using Articles</h4>
                 <ol>
-                    <li>Use "the" when the noun is specific, previously mentioned, or understood contextually.</li>
-                    <li>Use "a" before nouns that begin with a consonant sound.</li>
-                    <li>Use "an" before nouns that begin with a vowel sound.</li>
-                    <li>Certain nouns do not require articles, such as general plural nouns or abstract uncountable nouns.</li>
+                    <li>Use "<span class="highlight">the</span>" when talking about something specific that everyone knows about.</li>
+                    <li>Use "<span class="highlight">a</span>" before words that start with consonant sounds (like b, c, d, f).</li>
+                    <li>Use "<span class="highlight">an</span>" before words that start with vowel sounds (like a, e, i, o, u).</li>
+                    <li>Sometimes we don't need any article at all! Especially with names of people, countries, meals, and general plural nouns.</li>
                 </ol>
             </div>
             
             <div class="situation-box">
-                <h4 class="situation-title">Common Applications</h4>
-                <p><strong>Use "The" when:</strong></p>
-                <ul>
-                    <li>Referring to unique entities: <em>the Earth, the Prime Minister</em></li>
-                    <li>With superlative adjectives: <em>the most efficient, the highest quality</em></li>
-                    <li>With ordinal numbers: <em>the first quarter, the third option</em></li>
-                </ul>
+                <h4 class="situation-title">When to Use "The"</h4>
+                <div class="example-item">
+                    <strong>For things that are one-of-a-kind:</strong>
+                    <p><span class="highlight">The</span> sun is shining brightly today.</p>
+                    <p><span class="highlight">The</span> Earth is our home planet.</p>
+                </div>
                 
-                <p><strong>No Article required when:</strong></p>
-                <ul>
-                    <li>Discussing general categories: <em>Business professionals often work late hours.</em></li>
-                    <li>With most proper nouns: <em>Professor Johnson will lecture at Stanford University.</em></li>
-                    <li>With abstract uncountable nouns in general statements: <em>Leadership requires empathy.</em></li>
-                </ul>
+                <div class="example-item">
+                    <strong>For things we've already mentioned:</strong>
+                    <p>I saw a dog in the park. <span class="highlight">The</span> dog was playing with a ball.</p>
+                </div>
+                
+                <div class="example-item">
+                    <strong>For things that are clear from the context:</strong>
+                    <p>Please close <span class="highlight">the</span> door. (the door of the room we're in)</p>
+                    <p>She's in <span class="highlight">the</span> kitchen. (the kitchen of her house)</p>
+                </div>
+            </div>
+            
+            <div class="situation-box">
+                <h4 class="situation-title">When to Use "A" or "An"</h4>
+                <div class="example-item">
+                    <strong>To introduce something new:</strong>
+                    <p>I saw <span class="highlight">a</span> funny squirrel in my backyard.</p>
+                </div>
+                
+                <div class="example-item">
+                    <strong>To talk about one of many:</strong>
+                    <p>Can I have <span class="highlight">an</span> apple, please?</p>
+                </div>
+                
+                <div class="example-item">
+                    <strong>When talking about jobs:</strong>
+                    <p>My aunt is <span class="highlight">a</span> firefighter.</p>
+                    <p>He wants to be <span class="highlight">an</span> astronaut when he grows up.</p>
+                </div>
+                
+                <div class="example-item">
+                    <strong>Remember the vowel sound rule:</strong>
+                    <p><span class="highlight">A</span> unicorn (starts with 'y' sound, which is a consonant sound)</p>
+                    <p><span class="highlight">An</span> hour (the 'h' is silent, so it starts with an 'ou' sound)</p>
+                </div>
+            </div>
+            
+            <div class="situation-box">
+                <h4 class="situation-title">When to Use No Article</h4>
+                <div class="example-item">
+                    <strong>With names of people:</strong>
+                    <p><span class="highlight">❌</span> The Maria went to school.</p>
+                    <p><span class="highlight">✓</span> Maria went to school.</p>
+                </div>
+                
+                <div class="example-item">
+                    <strong>With names of most countries:</strong>
+                    <p><span class="highlight">❌</span> We visited the Canada last summer.</p>
+                    <p><span class="highlight">✓</span> We visited Canada last summer.</p>
+                </div>
+                
+                <div class="example-item">
+                    <strong>With meals:</strong>
+                    <p><span class="highlight">❌</span> We had the dinner at 7 pm.</p>
+                    <p><span class="highlight">✓</span> We had dinner at 7 pm.</p>
+                </div>
+                
+                <div class="example-item">
+                    <strong>With plural nouns when talking generally:</strong>
+                    <p><span class="highlight">❌</span> The tigers are endangered animals.</p>
+                    <p><span class="highlight">✓</span> Tigers are endangered animals.</p>
+                </div>
             </div> 
+            
+            <div class="fun-fact">
+                Some countries DO use "the" - ones that are groups of islands or states, or have "republic," "kingdom," etc. in their name: the United States, the United Kingdom, the Philippines, the Czech Republic!
+            </div>
+            
+           
             <div class="navigation-buttons">
-            <a href="articles-quiz.html" class="btn">Take Quiz</a>
-            <a href="index.html" class="btn">Back to home</a>
-        </div>
+                <a href="articles-quiz.html" class="btn btn-primary">Take Quiz</a>
+                <a href="index.html" class="btn">Back to home</a>
+            </div>
         </div>
         
-        <!-- Navigation Buttons -->
-       
+        <div class="footer">
+            © 2025 Grammar Genius. All grammar rules respectfully followed.
+        </div>
     </div>
 </body>
 </html>

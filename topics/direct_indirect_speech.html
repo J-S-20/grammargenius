@@ -3,221 +3,328 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Direct and Indirect Speech</title>
+    <title>Direct and Indirect Speech - Grammar Genius</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f9;
+        * {
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            color: #34495e;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
-        .content {
-            background-color: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            max-width: 800px;
-            width: 90%;
-            margin: 20px;
+        
+        body {
+            background-color: #f5f7fd;
+            color: #333;
         }
-
-        h1 {
-            color: #3366cc;
+        
+        .header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            padding: 2rem;
+            color: white;
             text-align: center;
-            margin-bottom: 30px;
-            font-size: 2.5em;
-            font-weight: 600;
-            padding-bottom: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: #eef2f7;
         }
 
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            color: #6a11cb;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
         h2 {
-            color: #2c3e50;
-            margin-top: 30px;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #e1e4e8;
-            padding-bottom: 8px;
-            font-size: 1.8em;
-            font-weight: 500;
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem;
+            color: #6a11cb;
         }
-
+        
         h3 {
-            color: #3366cc;
-            margin-top: 25px;
-            margin-bottom: 15px;
-            font-size: 1.4em;
-            font-weight: 500;
+            font-size: 1.4rem;
+            margin: 1.5rem 0 0.8rem;
+            color: #2575fc;
         }
-
+        
         p {
-            line-height: 1.7;
-            margin-bottom: 25px;
-            font-size: 1.1em;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            color: #555;
         }
-
+        
         .example {
             background-color: #f8f9fa;
-            border-left: 4px solid #3366cc;
+            border-left: 4px solid #6a11cb;
             padding: 15px;
-            margin: 20px 0;
+            margin: 15px 0;
             border-radius: 0 5px 5px 0;
+            transition: transform 0.3s ease;
         }
-
+        
+        .example:hover {
+            transform: translateX(5px);
+        }
+        
         .rule {
             background-color: #eef2f7;
             padding: 15px;
-            margin: 20px 0;
+            margin: 15px 0;
             border-radius: 5px;
             border-left: 4px solid #5d9cec;
+            transition: transform 0.3s ease;
         }
-
-        .direct-box {
-            background-color: #e6f3ff;
-            border: 1px solid #b3d7ff;
-            border-radius: 5px;
-            padding: 15px;
-            margin: 15px 0;
+        
+        .rule:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
-
-        .indirect-box {
-            background-color: #e8f0e8;
-            border: 1px solid #b7d4b7;
-            border-radius: 5px;
-            padding: 15px;
-            margin: 15px 0;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 25px 0;
-        }
-
-        th, td {
-            padding: 12px 15px;
-            border: 1px solid #e1e4e8;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f1f5f9;
-            font-weight: 600;
-            color: #2c3e50;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f8f9fa;
-        }
-
-        ul {
-            list-style-type: none;
-            padding-left: 10px;
-            margin-bottom: 25px;
-        }
-
-        ul li {
-            margin-bottom: 12px;
-            position: relative;
-            padding-left: 25px;
-            font-size: 1.1em;
-        }
-
-        ul li::before {
-            content: "•";
-            color: #3366cc;
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-            font-size: 1.2em;
-        }
-
-        .button-container {
-            text-align: center;
-            margin-top: 40px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .button {
-            display: inline-block;
-            padding: 12px 24px;
-            background-color: #007bff;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-            font-weight: 500;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .button:hover {
-            background-color: #0056b3;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-        }
-
+        
         .key-differences {
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
             margin: 30px 0;
         }
-
+        
         .key-box {
             flex: 1;
-            min-width: 300px;
+            min-width: 250px;
             padding: 20px;
             border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
         }
-
+        
+        .key-box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        
         .direct-key {
             background-color: #e6f3ff;
             border: 1px solid #b3d7ff;
         }
-
+        
         .indirect-key {
-            background-color: #f0e6ff;  /* Changed to purple-ish color */
-            border: 1px solid #d4b3ff;  /* Changed to match the background */
+            background-color: #f0e6ff;
+            border: 1px solid #d4b3ff;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            border: 1px solid #e1e4e8;
+            text-align: left;
+        }
+        
+        th {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr {
+            transition: background-color 0.3s ease;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        tr:hover {
+            background-color: #f0f4f8;
+        }
+        
+        ul {
+            list-style-type: none;
+            padding-left: 10px;
+            margin-bottom: 25px;
+        }
+        
+        ul li {
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 25px;
+            font-size: 1.1rem;
+            transition: transform 0.2s ease;
+        }
+        
+        ul li:hover {
+            transform: translateX(5px);
+        }
+        
+        ul li::before {
+            content: "•";
+            color: #6a11cb;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+        
+        .buttons-bottom {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 3rem;
         }
 
+        .btn {
+            background-color: #fff;
+            color: #6a11cb;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-primary {
+            background-color: #FF9A3C;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #ff8921;
+        }
+        
         .note {
             background-color: #fff8e1;
             border-left: 4px solid #ffca28;
             padding: 15px;
             margin: 20px 0;
             border-radius: 0 5px 5px 0;
+            transition: transform 0.3s ease;
         }
+        
+        .note:hover {
+            transform: translateX(5px);
+        }
+        
+        .decoration {
+            position: absolute;
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.2);
+            user-select: none;
+            pointer-events: none;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        #quotation1 { top: 20%; left: 10%; animation-delay: 0s; }
+        #quotation2 { top: 15%; left: 30%; animation-delay: 1s; }
+        #quotation3 { top: 25%; left: 70%; animation-delay: 2s; }
+        #quotation4 { top: 60%; left: 15%; animation-delay: 1.5s; }
+        #quotation5 { top: 70%; left: 80%; animation-delay: 2.5s; }
+        
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+        
+       
+        
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 1rem;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .key-differences {
+                flex-direction: column;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .tagline {
+                font-size: 1rem;
+            }
 
-        code {
-            font-family: Consolas, Monaco, 'Andale Mono', monospace;
-            background-color: #f5f5f5;
-            padding: 2px 4px;
-            border-radius: 3px;
-            font-size: 0.9em;
+            .buttons-bottom {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+            
+            .container {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+            
+            table {
+                display: block;
+                overflow-x: auto;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="content">
+    <header class="header">
+        <div class="decoration" id="quotation1">"</div>
+        <div class="decoration" id="quotation2">"</div>
+        <div class="decoration" id="quotation3">"</div>
+        <div class="decoration" id="quotation4">"</div>
+        <div class="decoration" id="quotation5">"</div>
+        
+        <div class="logo">Grammar Genius</div>
+        <p class="tagline">Direct and Indirect Speech - Master the Art of Reporting</p>
+    </header>
+    
+    <div class="container">
         <h1>Direct and Indirect Speech</h1>
 
-        <p>When we communicate what someone else has said, we can use either direct speech or indirect speech (also called reported speech). Understanding the rules and differences between these two forms is essential for clear and accurate communication.</p>
+        <p>When we communicate what someone else has said, we can use either direct speech or indirect speech (also called reported speech). Understanding the rules and differences between these two forms is essential for clear and accurate communication in English.</p>
 
         <h2>What is Direct Speech?</h2>
-        <p>Direct speech repeats the exact words spoken by someone, using quotation marks. It presents the speaker's words exactly as they were spoken.</p>
+        <p>Direct speech repeats the exact words spoken by someone, using quotation marks. It presents the speaker's words exactly as they were spoken, preserving the original tone and immediacy of the statement.</p>
         
         <div class="example">
             <strong>Example:</strong> Sarah said, "I am going to the store."
         </div>
 
         <h2>What is Indirect Speech?</h2>
-        <p>Indirect speech (or reported speech) reports what someone said without using their exact words and without quotation marks. It involves changes in pronouns, verb tenses, and time or place references.</p>
+        <p>Indirect speech (or reported speech) reports what someone said without using their exact words and without quotation marks. It involves changes in pronouns, verb tenses, and time or place references to accurately reflect the reporting context.</p>
         
         <div class="example">
             <strong>Example:</strong> Sarah said (that) she was going to the store.
@@ -228,21 +335,23 @@
             <div class="key-box direct-key">
                 <h3>Direct Speech</h3>
                 <ul>
-                    <li>Uses quotation marks</li>
-                    <li>Reports exact words spoken</li>
-                    <li>Uses present tense if that was used originally</li>
-                    <li>Preserves original pronouns (I, you, etc.)</li>
-                    <li>Keeps original time and place references (now, here, etc.)</li>
+                    <li>Uses quotation marks to enclose the exact words</li>
+                    <li>Reports exact words as originally spoken</li>
+                    <li>Preserves the original tense used by the speaker</li>
+                    <li>Maintains original pronouns (I, you, we, etc.)</li>
+                    <li>Keeps original time and place references (now, here, this, etc.)</li>
+                    <li>Preserves the emotion and immediacy of the original statement</li>
                 </ul>
             </div>
             <div class="key-box indirect-key">
                 <h3>Indirect Speech</h3>
                 <ul>
-                    <li>No quotation marks</li>
-                    <li>Paraphrases what was said</li>
-                    <li>Generally shifts verb tenses backward</li>
-                    <li>Changes pronouns as needed</li>
-                    <li>Adjusts time and place references</li>
+                    <li>No quotation marks are used</li>
+                    <li>Paraphrases or summarizes what was said</li>
+                    <li>Generally shifts verb tenses backward in time</li>
+                    <li>Changes pronouns according to the reporting context</li>
+                    <li>Adjusts time and place references (then, there, that, etc.)</li>
+                    <li>Often includes a reporting clause with "that" (which can be omitted)</li>
                 </ul>
             </div>
         </div>
@@ -250,10 +359,10 @@
         <h2>Rules for Converting Direct to Indirect Speech</h2>
 
         <h3>1. Pronoun Changes</h3>
-        <p>When converting from direct to indirect speech, pronouns often need to change based on the context and the reporter.</p>
+        <p>When converting from direct to indirect speech, pronouns often need to change based on the context and the reporter's perspective.</p>
         
         <div class="rule">
-            <p><strong>Rule:</strong> Pronouns change according to the context of the reporting.</p>
+            <p><strong>Rule:</strong> Pronouns change according to the context of the reporting and the relationship between the speaker and the listener.</p>
         </div>
         
         <table>
@@ -283,7 +392,7 @@
         <p>One of the most important aspects of indirect speech is the backshift of tenses. When the reporting verb (said, told, asked, etc.) is in the past tense, the verb in the reported speech typically moves one tense back in time.</p>
         
         <div class="rule">
-            <p><strong>Rule:</strong> When the reporting verb is in the past tense, shift the tense of the reported verb backward.</p>
+            <p><strong>Rule:</strong> When the reporting verb is in the past tense, shift the tense of the reported verb backward in time.</p>
         </div>
         
         <table>
@@ -330,10 +439,10 @@
         </div>
 
         <h3>3. Time and Place Reference Changes</h3>
-        <p>Words that refer to time and place often need to change in indirect speech to reflect the different context.</p>
+        <p>Words that refer to time and place often need to change in indirect speech to reflect the different context of reporting.</p>
         
         <div class="rule">
-            <p><strong>Rule:</strong> Adjust time and place references to reflect the perspective of the reporter.</p>
+            <p><strong>Rule:</strong> Adjust time and place references to reflect the perspective of the reporter at the time of reporting.</p>
         </div>
         
         <table>
@@ -389,7 +498,7 @@
         </div>
 
         <h3>4. Modal Verb Changes</h3>
-        <p>Modal verbs also follow specific patterns when changing from direct to indirect speech.</p>
+        <p>Modal verbs follow specific patterns when changing from direct to indirect speech, typically shifting to their past forms.</p>
         
         <table>
             <tr>
@@ -424,11 +533,11 @@
         </div>
 
         <div class="note">
-            <p><strong>Note:</strong> 'Could', 'might', 'should', 'would', 'ought to', and 'used to' remain the same in indirect speech.</p>
+            <p><strong>Note:</strong> 'Could', 'might', 'should', 'would', 'ought to', and 'used to' remain the same in indirect speech as they are already past forms.</p>
         </div>
 
         <h3>5. Reporting Questions</h3>
-        <p>When reporting questions, we use 'asked', 'inquired', 'wanted to know', etc., instead of 'said'. The word order changes to that of a statement, and we do not use question marks.</p>
+        <p>When reporting questions, we use verbs like 'asked', 'inquired', 'wanted to know', etc., instead of 'said'. The word order changes to that of a statement, and question marks are removed.</p>
         
         <div class="rule">
             <p><strong>Rule for Yes/No Questions:</strong> Use 'if' or 'whether' to introduce the reported question.</p>
@@ -485,28 +594,26 @@
 
         <h2>Common Mistakes to Avoid</h2>
         <ul>
-            <li>Forgetting to change pronouns appropriately</li>
-            <li>Not shifting tenses when reporting past events</li>
+            <li>Forgetting to change pronouns appropriately based on the context</li>
+            <li>Not shifting tenses when reporting past events (backshift rule)</li>
             <li>Neglecting to change time and place references</li>
             <li>Keeping question word order in reported questions</li>
             <li>Using quotation marks in indirect speech</li>
             <li>Using 'said to' instead of 'told' when mentioning the listener</li>
+            <li>Forgetting that 'say' is used without an indirect object, while 'tell' requires one</li>
         </ul>
 
-        <h2>Practice Exercises</h2>
-        <p>Convert the following direct speech sentences into indirect speech:</p>
+        <div class="note">
+            <p><strong>Pro Tip:</strong> When in doubt about whether to use backshift in tenses, consider whether the reported statement is still true or relevant at the time of reporting. If it expresses a general truth or a continuing situation, the backshift may be optional.</p>
+        </div>
         
-        <ol>
-            <li>"I am feeling sick today," Mary said.</li>
-            <li>"Where did you put my keys?" John asked his wife.</li>
-            <li>"Please don't touch that vase," Mom warned.</li>
-            <li>"I will call you tomorrow," she promised.</li>
-            <li>"We have been waiting here for two hours," they complained.</li>
-        </ol>
-
-        <div class="button-container">
-            <a href="speechquiz.html" class="button">Take Quiz</a>
-            <a href="index.html" class="button">Back to Home</a>
+        <div class="buttons-bottom">
+            <button class="btn"onclick="window.location.href='index.html'">⬅️ Back to Home</button>
+            <button class="btn btn-primary" onclick="window.location.href='partsofspeechquiz.html'">📝 Take Quiz</button>
+        </div>
+        
+        <div class="footer">
+            © 2025 Grammar Genius. All grammar rules respectfully followed.
         </div>
     </div>
 </body>
