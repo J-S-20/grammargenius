@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grammar Genius - Sentence Structure</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fd;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            padding: 2rem;
+            color: white;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .intro {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: slideInFromTop 1s ease-out;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #6a11cb;
+        }
+        
+        .intro p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .sentence-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        
+        .sentence-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .sentence-card:hover {
+            transform: translateY(-5px) rotate(1deg);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+        }
+        
+        .sentence-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            animation: pulse 2s infinite;
+        }
+        
+        .sentence-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        
+        .sentence-desc {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .sentence-example {
+            margin-top: 1rem;
+            padding: 0.8rem;
+            background-color: #f0f4ff;
+            border-radius: 8px;
+            font-style: italic;
+            color: #5557a5;
+        }
+        
+        .interactive-section {
+            background: linear-gradient(135deg, #FFF4E6 0%, #FFE8D6 100%);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 3rem 0;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+            animation: slideInFromLeft 1s ease-out;
+        }
+
+        .game-container {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 400px;
+        }
+
+
+
+        .tips-section {
+            margin: 3rem 0;
+            animation: slideInFromRight 1s ease-out;
+        }
+
+        .tips-container {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .tip-item {
+            padding: 1rem 0;
+            border-bottom: 1px dashed #e0e0ff;
+        }
+
+        .tip-item:last-child {
+            border-bottom: none;
+        }
+
+        .tip-title {
+            font-weight: bold;
+            color: #6a11cb;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .tip-title::before {
+            content: "💡";
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .common-errors {
+            margin: 3rem 0;
+            animation: slideInFromBottom 1s ease-out;
+        }
+
+        .error-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .incorrect-example, .correct-example {
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        .incorrect-example {
+            background-color: #ffeeee;
+            border-left: 4px solid #ff7777;
+        }
+
+        .correct-example {
+            background-color: #eeffee;
+            border-left: 4px solid #77dd77;
+        }
+
+        .example-label {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .incorrect-label::before {
+            content: "❌";
+            margin-right: 0.5rem;
+        }
+
+        .correct-label::before {
+            content: "✅";
+            margin-right: 0.5rem;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 1rem;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        /* Floating decorations */
+        .decoration {
+            position: absolute;
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.2);
+            user-select: none;
+            pointer-events: none;
+            animation: float 10s infinite ease-in-out;
+        }
+        
+        #comma1 { top: 20%; left: 10%; animation-delay: 0s; }
+        #question1 { top: 15%; left: 30%; animation-delay: 1s; }
+        #exclamation1 { top: 25%; left: 70%; animation-delay: 2s; }
+        #comma2 { top: 60%; left: 15%; animation-delay: 3s; }
+        #question2 { top: 70%; left: 80%; animation-delay: 4s; }
+
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .sentence-types {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .tagline {
+                font-size: 1rem;
+            }
+
+            .error-comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        h1 {
+      color: #333;
+    }
+
+    .word-bank, .sentence-area {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px;
+      min-height: 60px;
+      padding: 10px;
+      background: #fff8dc;
+      border: 2px dashed #aaa;
+      border-radius: 10px;
+      min-width: 300px;
+      justify-content: center;
+    }
+
+    .word {
+      background: #add8e6;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: grab;
+      font-weight: bold;
+      user-select: none;
+      transition: transform 0.2s;
+    }
+
+    .word.dragging {
+      opacity: 0.5;
+    }
+
+    .buttons {
+      margin: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 0 10px;
+      cursor: pointer;
+      border-radius: 8px;
+      border: none;
+      background-color: #4caf50;
+      color: white;
+    }
+
+    .score {
+      font-size: 18px;
+      margin-top: 10px;
+    }
+
+    .correct {
+      background-color: #c8f7c5 !important;
+    }
+
+    .incorrect {
+      background-color: #f7c5c5 !important;
+    }
+
+    .hidden {
+      display: none;
+    }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="decoration" id="comma1">,</div>
+        <div class="decoration" id="question1">?</div>
+        <div class="decoration" id="exclamation1">!</div>
+        <div class="decoration" id="comma2">,</div>
+        <div class="decoration" id="question2">?</div>
+        
+        <div class="logo">Grammar Genius</div>
+        <p class="tagline">Where Sentence Structure Comes to Life!</p>
+    </header>
+    
+    <div class="container">
+        <div class="intro">
+            <h2>Sentence Structure 🏗️</h2>
+            <p>Welcome to the exciting world of sentence structure! Understanding how to build different types of sentences is like having a superpower in language. You can create simple, compound, complex, or even compound-complex sentences to express your ideas in many different ways. Let's explore how to build powerful sentences and make your writing shine!</p>
+        </div>
+        
+        <div class="sentence-types">
+            <div class="sentence-card">
+                <div class="sentence-icon">🔨</div>
+                <h3 class="sentence-title">Simple Sentences</h3>
+                <p class="sentence-desc">A simple sentence has just one independent clause with a subject and a verb. It expresses a complete thought.</p>
+                <p class="sentence-example">The cat sleeps. | My brother plays soccer. | Sarah loves ice cream.</p>
+            </div>
+            
+            <div class="sentence-card">
+                <div class="sentence-icon">⛓️</div>
+                <h3 class="sentence-title">Compound Sentences</h3>
+                <p class="sentence-desc">A compound sentence contains two or more independent clauses joined by a coordinating conjunction (FANBOYS: for, and, nor, but, or, yet, so).</p>
+                <p class="sentence-example">I like chocolate, but my sister prefers vanilla. | He plays piano, and she dances.</p>
+            </div>
+            
+            <div class="sentence-card">
+                <div class="sentence-icon">🧩</div>
+                <h3 class="sentence-title">Complex Sentences</h3>
+                <p class="sentence-desc">A complex sentence has one independent clause and at least one dependent clause. The dependent clause starts with words like because, since, after, although, or when.</p>
+                <p class="sentence-example">When it rains, the streets get wet. | Because he was late, he missed the bus.</p>
+            </div>
+            
+            <div class="sentence-card">
+                <div class="sentence-icon">🌟</div>
+                <h3 class="sentence-title">Compound-Complex Sentences</h3>
+                <p class="sentence-desc">These sentences have at least two independent clauses and at least one dependent clause. They're the most sophisticated sentence type!</p>
+                <p class="sentence-example">While I was sleeping, the cat knocked over a vase, and my mom cleaned up the mess.</p>
+            </div>
+            
+            <div class="sentence-card">
+                <div class="sentence-icon">❓</div>
+                <h3 class="sentence-title">Interrogative Sentences</h3>
+                <p class="sentence-desc">Interrogative sentences ask questions and end with a question mark.</p>
+                <p class="sentence-example">Where is your backpack? | Have you finished your homework yet?</p>
+            </div>
+            
+            <div class="sentence-card">
+                <div class="sentence-icon">❗</div>
+                <h3 class="sentence-title">Exclamatory Sentences</h3>
+                <p class="sentence-desc">Exclamatory sentences express strong emotion and end with an exclamation point.</p>
+                <p class="sentence-example">What a beautiful sunset! | That was an amazing game!</p>
+            </div>
+        </div>
+
+        <div class="interactive-section">
+            <h2>Sentence Builder Game</h2>
+            <p>Time to play Sentence Blast! Click on the correct sentence parts to build perfect sentences and score points. Can you become a sentence structure champion?</p>
+            
+            <div class="game-container">
+                <h1>🧠 Build the Sentence!</h1>
+                <div class="word-bank" id="wordBank"></div>
+                <div class="sentence-area" id="sentenceArea"></div>
+              
+                <div class="buttons">
+                  <button onclick="checkSentence()" id="checkBtn">Check Sentence</button>
+                  <button onclick="loadNextSentence()" id="nextBtn" class="hidden">Next Sentence</button>
+                  <button onclick="restartGame()" id="restartBtn" class="hidden">Play Again</button>
+                </div>
+              
+                <div class="score" id="scoreDisplay">Score: 0</div>
+
+            </div>
+        </div>
+
+        <div class="tips-section">
+            <h2>Top Tips for Sentence Structure Mastery</h2>
+            <div class="tips-container">
+                <div class="tip-item">
+                    <div class="tip-title">Vary Your Sentence Types</div>
+                    <p>Use a mix of simple, compound, and complex sentences to make your writing more interesting. Using only one type can make your writing sound monotonous.</p>
+                </div>
+                <div class="tip-item">
+                    <div class="tip-title">Watch Your Sentence Length</div>
+                    <p>Short sentences pack a punch. Longer sentences allow for more detail. Alternate between them for rhythm in your writing.</p>
+                </div>
+                <div class="tip-item">
+                    <div class="tip-title">Be Careful with Fragments</div>
+                    <p>Sentence fragments don't express a complete thought. They might be missing a subject or verb. Use them for effect in creative writing, but avoid them in formal writing.</p>
+                </div>
+                <div class="tip-item">
+                    <div class="tip-title">Use Parallel Structure</div>
+                    <p>When you list items in a sentence, keep them in the same grammatical form: "I enjoy swimming, hiking, and reading" (all -ing verbs).</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="common-errors">
+            <h2>Common Sentence Structure Errors</h2>
+            <div class="error-comparison">
+                <div class="incorrect-example">
+                    <div class="example-label incorrect-label">Incorrect</div>
+                    <p>Although it was raining. We went to the park.</p>
+                    <p><em>Problem: This is a sentence fragment followed by a complete sentence.</em></p>
+                </div>
+                <div class="correct-example">
+                    <div class="example-label correct-label">Correct</div>
+                    <p>Although it was raining, we went to the park.</p>
+                    <p><em>Fix: Join the dependent clause with the independent clause.</em></p>
+                </div>
+            </div>
+            <br>
+            <div class="error-comparison">
+                <div class="incorrect-example">
+                    <div class="example-label incorrect-label">Incorrect</div>
+                    <p>I love chocolate cake, my sister prefers ice cream.</p>
+                    <p><em>Problem: This is a comma splice - two independent clauses joined only by a comma.</em></p>
+                </div>
+                <div class="correct-example">
+                    <div class="example-label correct-label">Correct</div>
+                    <p>I love chocolate cake, and my sister prefers ice cream.</p>
+                    <p><em>Fix: Add a coordinating conjunction after the comma.</em></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            © 2025 Grammar Genius. All sentences structured properly.
+        </div>
+    </div>
+
+    <script>
+        // Game functionality
+        const sentenceData = [
+      {
+        sentence: "I am eating an apple",
+        words: ["eating", "I", "apple", "am", "an"]
+      },
+      {
+        sentence: "She plays in the park",
+        words: ["the", "park", "She", "plays", "in"]
+      },
+      {
+        sentence: "The sun is shining brightly",
+        words: ["is", "shining", "brightly", "The", "sun"]
+      },
+      {
+        sentence: "We are going to school",
+        words: ["school", "We", "to", "going", "are"]
+      }
+    ];
+
+    let shuffledSentences = [];
+    let currentSentenceIndex = 0;
+    let score = 0;
+    let currentSentence = {};
+
+    function shuffle(array) {
+      return array.sort(() => Math.random() - 0.5);
+    }
+
+    function startGame() {
+      shuffledSentences = shuffle([...sentenceData]);
+      currentSentenceIndex = 0;
+      score = 0;
+      document.getElementById("scoreDisplay").textContent = `Score: ${score}`;
+      document.getElementById("restartBtn").classList.add("hidden");
+      loadNextSentence();
+    }
+
+    function loadNextSentence() {
+      document.getElementById("checkBtn").classList.remove("hidden");
+      document.getElementById("nextBtn").classList.add("hidden");
+
+      if (currentSentenceIndex >= shuffledSentences.length) {
+        endGame();
+        return;
+      }
+
+      currentSentence = shuffledSentences[currentSentenceIndex];
+      document.getElementById("wordBank").innerHTML = "";
+      document.getElementById("sentenceArea").innerHTML = "";
+
+      const shuffledWords = shuffle([...currentSentence.words]);
+      shuffledWords.forEach(word => {
+        const span = document.createElement("span");
+        span.textContent = word;
+        span.className = "word";
+        span.draggable = true;
+        span.addEventListener("dragstart", handleDragStart);
+        span.addEventListener("dragend", handleDragEnd);
+        document.getElementById("wordBank").appendChild(span);
+      });
+    }
+
+    function handleDragStart(e) {
+      e.dataTransfer.setData("text/plain", e.target.textContent);
+      e.target.classList.add("dragging");
+    }
+
+    function handleDragEnd(e) {
+      e.target.classList.remove("dragging");
+    }
+
+    [document.getElementById("wordBank"), document.getElementById("sentenceArea")].forEach(area => {
+      area.addEventListener("dragover", e => {
+        e.preventDefault();
+      });
+
+      area.addEventListener("drop", e => {
+        e.preventDefault();
+        const word = e.dataTransfer.getData("text/plain");
+        const draggedElem = [...document.querySelectorAll(".word")].find(w => w.textContent === word);
+        if (draggedElem) area.appendChild(draggedElem);
+      });
+    });
+
+    function checkSentence() {
+      const wordsInSentence = [...document.getElementById("sentenceArea").children].map(e => e.textContent);
+      const formedSentence = wordsInSentence.join(" ");
+      const correct = formedSentence.trim().toLowerCase() === currentSentence.sentence.toLowerCase();
+
+      if (correct) {
+        score += 10;
+        document.getElementById("scoreDisplay").textContent = `Score: ${score}`;
+        document.getElementById("sentenceArea").classList.add("correct");
+      } else {
+        document.getElementById("sentenceArea").classList.add("incorrect");
+      }
+
+      document.getElementById("checkBtn").classList.add("hidden");
+      document.getElementById("nextBtn").classList.remove("hidden");
+      currentSentenceIndex++;
+
+      setTimeout(() => {
+        document.getElementById("sentenceArea").classList.remove("correct", "incorrect");
+      }, 1000);
+    }
+
+    function endGame() {
+      document.getElementById("wordBank").innerHTML = "";
+      document.getElementById("sentenceArea").innerHTML = "<h2>🎉 Game Over! Final Score: " + score + "</h2>";
+      document.getElementById("checkBtn").classList.add("hidden");
+      document.getElementById("nextBtn").classList.add("hidden");
+      document.getElementById("restartBtn").classList.remove("hidden");
+    }
+
+    function restartGame() {
+      startGame();
+    }
+
+    startGame(); // start on load
+    </script>
+</body>
+</html>

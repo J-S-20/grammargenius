@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Build the Sentence Game</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: #f0f8ff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    .word-bank, .sentence-area {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px;
+      min-height: 60px;
+      padding: 10px;
+      background: #fff8dc;
+      border: 2px dashed #aaa;
+      border-radius: 10px;
+      min-width: 300px;
+      justify-content: center;
+    }
+
+    .word {
+      background: #add8e6;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: grab;
+      font-weight: bold;
+      user-select: none;
+      transition: transform 0.2s;
+    }
+
+    .word.dragging {
+      opacity: 0.5;
+    }
+
+    .buttons {
+      margin: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 0 10px;
+      cursor: pointer;
+      border-radius: 8px;
+      border: none;
+      background-color: #4caf50;
+      color: white;
+    }
+
+    .score {
+      font-size: 18px;
+      margin-top: 10px;
+    }
+
+    .correct {
+      background-color: #c8f7c5 !important;
+    }
+
+    .incorrect {
+      background-color: #f7c5c5 !important;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🧠 Build the Sentence!</h1>
+  <div class="word-bank" id="wordBank"></div>
+  <div class="sentence-area" id="sentenceArea"></div>
+
+  <div class="buttons">
+    <button onclick="checkSentence()">Check Sentence</button>
+    <button onclick="loadSentence()">Next Sentence</button>
+  </div>
+
+  <div class="score" id="scoreDisplay">Score: 0</div>
+
+  <script>
+    const sentenceData = [
+      {
+        sentence: "I am eating an apple",
+        words: ["eating", "I", "apple", "am", "an"]
+      },
+      {
+        sentence: "She plays in the park",
+        words: ["the", "park", "She", "plays", "in"]
+      },
+      {
+        sentence: "The sun is shining brightly",
+        words: ["is", "shining", "brightly", "The", "sun"]
+      },
+      {
+        sentence: "We are going to school",
+        words: ["school", "We", "to", "going", "are"]
+      }
+    ];
+
+    let currentSentence = {};
+    let score = 0;
+
+    function shuffle(array) {
+      return array.sort(() => Math.random() - 0.5);
+    }
+
+    function loadSentence() {
+      // Clear previous
+      document.getElementById("wordBank").innerHTML = "";
+      document.getElementById("sentenceArea").innerHTML = "";
+
+      // Pick random sentence
+      currentSentence = sentenceData[Math.floor(Math.random() * sentenceData.length)];
+      const shuffledWords = shuffle([...currentSentence.words]);
+
+      // Create word elements
+      shuffledWords.forEach(word => {
+        const span = document.createElement("span");
+        span.textContent = word;
+        span.className = "word";
+        span.draggable = true;
+        span.addEventListener("dragstart", handleDragStart);
+        span.addEventListener("dragend", handleDragEnd);
+        document.getElementById("wordBank").appendChild(span);
+      });
+    }
+
+    function handleDragStart(e) {
+      e.dataTransfer.setData("text/plain", e.target.textContent);
+      e.target.classList.add("dragging");
+    }
+
+    function handleDragEnd(e) {
+      e.target.classList.remove("dragging");
+    }
+
+    // Drop zone logic
+    const sentenceArea = document.getElementById("sentenceArea");
+    const wordBank = document.getElementById("wordBank");
+
+    [sentenceArea, wordBank].forEach(area => {
+      area.addEventListener("dragover", e => {
+        e.preventDefault();
+      });
+
+      area.addEventListener("drop", e => {
+        e.preventDefault();
+        const word = e.dataTransfer.getData("text/plain");
+        const draggedElem = [...document.querySelectorAll(".word")].find(w => w.textContent === word);
+        if (draggedElem) area.appendChild(draggedElem);
+      });
+    });
+
+    function checkSentence() {
+      const wordsInSentence = [...document.getElementById("sentenceArea").children].map(e => e.textContent);
+      const formedSentence = wordsInSentence.join(" ");
+      const correct = formedSentence.trim().toLowerCase() === currentSentence.sentence.toLowerCase();
+
+      if (correct) {
+        score += 10;
+        document.getElementById("scoreDisplay").textContent = `Score: ${score}`;
+        document.getElementById("sentenceArea").classList.add("correct");
+        setTimeout(() => {
+          document.getElementById("sentenceArea").classList.remove("correct");
+          loadSentence();
+        }, 1000);
+      } else {
+        document.getElementById("sentenceArea").classList.add("incorrect");
+        setTimeout(() => {
+          document.getElementById("sentenceArea").classList.remove("incorrect");
+        }, 1000);
+      }
+    }
+
+    loadSentence(); // Load first sentence
+  </script>
+</body>
+</html>
