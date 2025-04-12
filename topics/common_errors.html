@@ -1,191 +1,657 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Build the Sentence Game</title>
-  <style>
-    body {
-      font-family: 'Comic Sans MS', cursive, sans-serif;
-      background: #f0f8ff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      margin: 0;
-    }
-
-    h1 {
-      color: #333;
-    }
-
-    .word-bank, .sentence-area {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin: 20px;
-      min-height: 60px;
-      padding: 10px;
-      background: #fff8dc;
-      border: 2px dashed #aaa;
-      border-radius: 10px;
-      min-width: 300px;
-      justify-content: center;
-    }
-
-    .word {
-      background: #add8e6;
-      padding: 8px 12px;
-      border-radius: 8px;
-      cursor: grab;
-      font-weight: bold;
-      user-select: none;
-      transition: transform 0.2s;
-    }
-
-    .word.dragging {
-      opacity: 0.5;
-    }
-
-    .buttons {
-      margin: 10px;
-    }
-
-    button {
-      padding: 10px 20px;
-      font-size: 16px;
-      margin: 0 10px;
-      cursor: pointer;
-      border-radius: 8px;
-      border: none;
-      background-color: #4caf50;
-      color: white;
-    }
-
-    .score {
-      font-size: 18px;
-      margin-top: 10px;
-    }
-
-    .correct {
-      background-color: #c8f7c5 !important;
-    }
-
-    .incorrect {
-      background-color: #f7c5c5 !important;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Common Errors in English - Grammar Genius</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fd;
+            color: #333;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            padding: 2rem;
+            color: white;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            animation: fadeIn 2s;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .intro {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: slideUp 1s;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #6a11cb;
+        }
+        
+        .intro p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .error-categories {
+            margin-bottom: 2rem;
+            animation: fadeIn 1.5s;
+        }
+        
+        .category-title {
+            font-size: 1.6rem;
+            color: #6a11cb;
+            margin: 2rem 0 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .category-title span {
+            margin-left: 10px;
+        }
+        
+        .error-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .error-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .error-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+        }
+        
+        .error-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, #6a11cb, #2575fc);
+        }
+        
+        .error-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            color: #444;
+        }
+        
+        .wrong {
+            color: #e74c3c;
+            text-decoration: line-through;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        
+        .correct {
+            color: #27ae60;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        
+        .explanation {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.5;
+            margin-top: 0.5rem;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 1rem;
+            color: #777;
+            font-size: 0.9rem;
+            animation: fadeIn 2s;
+        }
+        
+        /* Decorations */
+        .decoration {
+            position: absolute;
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.2);
+            user-select: none;
+            pointer-events: none;
+            animation: floatingSlow 8s infinite ease-in-out;
+        }
+        
+        #comma1 { top: 20%; left: 10%; animation-delay: 0s; }
+        #question1 { top: 15%; left: 30%; animation-delay: 1s; }
+        #exclamation1 { top: 25%; left: 70%; animation-delay: 2s; }
+        #comma2 { top: 60%; left: 15%; animation-delay: 1.5s; }
+        #question2 { top: 70%; left: 80%; animation-delay: 0.5s; }
+        #x1 { top: 40%; left: 40%; animation-delay: 2.5s; }
+        #x2 { top: 30%; left: 85%; animation-delay: 3s; }
+        
+        .interactive-element {
+            display: inline-block;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .interactive-element:hover {
+            transform: scale(1.2);
+            color: #FF9A3C;
+        }
+        
+        .actions {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        .btn {
+            background-color: #6a11cb;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            margin: 0.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            background-color: #5a0cb9;
+        }
+        
+        .btn-primary {
+            background-color: #FF9A3C;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #ff8921;
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes floatingSlow {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(10px, -10px) rotate(5deg); }
+            66% { transform: translate(-10px, 10px) rotate(-5deg); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .pop-in {
+            animation: popIn 0.5s ease forwards;
+            opacity: 0;
+            transform: scale(0.8);
+        }
+        
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        .highlight-text {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .highlight-text::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            background-color: rgba(255, 154, 60, 0.3);
+            z-index: -1;
+            transform: rotate(-2deg);
+        }
+        
+        @media (max-width: 768px) {
+            .error-examples {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .tagline {
+                font-size: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
+    <header class="header">
+        <div class="decoration" id="comma1">,</div>
+        <div class="decoration" id="question1">?</div>
+        <div class="decoration" id="exclamation1">!</div>
+        <div class="decoration" id="comma2">,</div>
+        <div class="decoration" id="question2">?</div>
+        <div class="decoration" id="x1">✗</div>
+        <div class="decoration" id="x2">✗</div>
+        
+        <div class="logo">Grammar Genius</div>
+        <p class="tagline">Fixing Common Errors, One Word at a Time!</p>
+    </header>
+    
+    <div class="container">
+        <div class="intro">
+            <h2>Common <span class="highlight-text">English Errors</span> Made Simple</h2>
+            <p>Everyone makes mistakes! Even native English speakers get confused by the tricky rules of the language. On this page, we'll explore some of the most common errors people make when speaking or writing English, and learn how to fix them. Ready to become a grammar detective? Let's spot those mistakes together!</p>
+        </div>
+        
+        <div class="error-categories">
+            <div class="category-title">
+                <span class="interactive-element">🔤</span>
+                <span>Confusing Word Pairs</span>
+            </div>
+            
+            <div class="error-examples">
+                <div class="error-card" onmouseover="this.classList.add('pop-in')">
+                    <h4>Their, There, They're</h4>
+                    <span class="wrong">I left my book over their.</span>
+                    <span class="correct">I left my book over there.</span>
+                    <p class="explanation"><strong>Their</strong> shows possession (their book). <strong>There</strong> refers to a place. <strong>They're</strong> is short for "they are."</p>
+                </div>
+                
+                <div class="error-card" onmouseover="this.classList.add('pop-in')">
+                    <h4>Your vs. You're</h4>
+                    <span class="wrong">Your going to love this game!</span>
+                    <span class="correct">You're going to love this game!</span>
+                    <p class="explanation"><strong>Your</strong> shows possession (your toy). <strong>You're</strong> is short for "you are."</p>
+                </div>
+                
+                <div class="error-card" onmouseover="this.classList.add('pop-in')">
+                    <h4>Its vs. It's</h4>
+                    <span class="wrong">The dog wagged it's tail.</span>
+                    <span class="correct">The dog wagged its tail.</span>
+                    <p class="explanation"><strong>Its</strong> shows possession (belonging to it). <strong>It's</strong> is short for "it is" or "it has."</p>
+                </div>
+                
+                <div class="error-card" onmouseover="this.classList.add('pop-in')">
+                    <h4>Affect vs. Effect</h4>
+                    <span class="wrong">The medicine had a positive affect.</span>
+                    <span class="correct">The medicine had a positive effect.</span>
+                    <p class="explanation"><strong>Affect</strong> is usually a verb (to influence). <strong>Effect</strong> is usually a noun (a result).</p>
+                </div>
 
-  <h1>🧠 Build the Sentence!</h1>
-  <div class="word-bank" id="wordBank"></div>
-  <div class="sentence-area" id="sentenceArea"></div>
+                <div class="error-card" onmouseover="this.classList.add('pop-in')">
+                  <h4>To, Too, Two</h4>
+                  <span class="wrong">I want to go to the movies to.</span>
+                  <span class="correct">I want to go to the movies too.</span>
+                  <p class="explanation"><strong>To</strong> is a preposition or part of an infinitive. <strong>Too</strong> means "also" or "excessively." <strong>Two</strong> is the number 2.</p>
+              </div>
+              
+              <div class="error-card" onmouseover="this.classList.add('pop-in')">
+                  <h4>Weather vs. Whether</h4>
+                  <span class="wrong">I don't know weather I should go outside.</span>
+                  <span class="correct">I don't know whether I should go outside.</span>
+                  <p class="explanation"><strong>Weather</strong> refers to atmospheric conditions. <strong>Whether</strong> introduces alternatives or possibilities.</p>
+              </div>
+              
+            </div>
+        </div>
+        
+        <div class="error-categories">
+            <div class="category-title">
+                <span class="interactive-element">📝</span>
+                <span>Subject-Verb Agreement</span>
+            </div>
+            
+            <div class="error-examples">
+                <div class="error-card" onmouseover="this.classList.add('pop-in')">
+                    <h4>Singular Subjects</h4>
+                    <span class="wrong">The dog with all the toys were excited.</span>
+                    <span class="correct">The dog with all the toys was excited.</span>
+                    <p class="explanation">The subject is "dog" (singular), so use "was" (singular verb), not "were."</p>
+                </div>
+                
+                <div class="error-card" onmouseover="this.classList.add('pop-in')">
+                    <h4>Everyone/Everybody</h4>
+                    <span class="wrong">Everyone are ready for the party.</span>
+                    <span class="correct">Everyone is ready for the party.</span>
+                    <p class="explanation">"Everyone" is singular and needs a singular verb ("is"), even though it refers to multiple people.</p>
+                </div>
+                
+                <div class="error-card" onmouseover="this.classList.add('pop-in')">
+                    <h4>Either/Neither</h4>
+                    <span class="wrong">Neither of the cats are eating.</span>
+                    <span class="correct">Neither of the cats is eating.</span>
+                    <p class="explanation">"Neither" is singular and takes a singular verb ("is"), even when followed by a plural.</p>
+                </div>
+                
+                <div class="error-card" onmouseover="this.classList.add('pop-in')">
+                    <h4>Collective Nouns</h4>
+                    <span class="wrong">The team are playing well today.</span>
+                    <span class="correct">The team is playing well today.</span>
+                    <p class="explanation">In American English, collective nouns like "team" are usually treated as singular.</p>
+                </div>
 
-  <div class="buttons">
-    <button onclick="checkSentence()">Check Sentence</button>
-    <button onclick="loadSentence()">Next Sentence</button>
-  </div>
+                <div class="error-card" onmouseover="this.classList.add('pop-in')">
+                  <h4>Compound Subjects with "and"</h4>
+                  <span class="wrong">Jack and Jill is going up the hill.</span>
+                  <span class="correct">Jack and Jill are going up the hill.</span>
+                  <p class="explanation">When two subjects are joined by "and," use a plural verb ("are"), unless they form a single unit.</p>
+              </div>
+              
+              <div class="error-card" onmouseover="this.classList.add('pop-in')">
+                  <h4>Subjects with "or" or "nor"</h4>
+                  <span class="wrong">Either the dog or the cats is making that noise.</span>
+                  <span class="correct">Either the dog or the cats are making that noise.</span>
+                  <p class="explanation">When subjects are joined by "or/nor," the verb agrees with the subject closest to it.</p>
+              </div>
+            </div>
+        </div>
+        
+        <div class="error-categories">
+            <div class="category-title">
+                <span class="interactive-element">❗</span>
+                <span>Punctuation Problems</span>
+            </div>
+            
+            <div class="error-examples">
+                <div class="error-card" onmouseover="this.classList.add('pop-in')">
+                    <h4>Comma Splices</h4>
+                    <span class="wrong">I love chocolate, it's my favorite dessert.</span>
+                    <span class="correct">I love chocolate. It's my favorite dessert.</span>
+                    <p class="explanation">Don't join two complete sentences with just a comma. Use a period, semicolon, or add a conjunction.</p>
+                </div>
+                
+                <div class="error-card" onmouseover="this.classList.add('pop-in')">
+                    <h4>Apostrophe Errors</h4>
+                    <span class="wrong">The book's were on the shelf.</span>
+                    <span class="correct">The books were on the shelf.</span>
+                    <p class="explanation">Don't use apostrophes to make words plural. Use apostrophes for possession or contractions.</p>
+                </div>
+                
+                <div class="error-card" onmouseover="this.classList.add('pop-in')">
+                    <h4>Missing Commas in Series</h4>
+                    <span class="wrong">I need to buy apples oranges and bananas.</span>
+                    <span class="correct">I need to buy apples, oranges, and bananas.</span>
+                    <p class="explanation">Use commas to separate items in a series. The final comma (Oxford comma) is often recommended for clarity.</p>
+                </div>
+                
+                <div class="error-card" onmouseover="this.classList.add('pop-in')">
+                    <h4>Quotation Marks</h4>
+                    <span class="wrong">She said "I'm hungry".</span>
+                    <span class="correct">She said, "I'm hungry."</span>
+                    <p class="explanation">In American English, periods and commas go inside quotation marks. Add a comma before quoted speech.</p>
+                </div>
 
-  <div class="score" id="scoreDisplay">Score: 0</div>
+                <div class="error-card" onmouseover="this.classList.add('pop-in')">
+                  <h4>Run-on Sentences</h4>
+                  <span class="wrong">I ran to the store I needed some milk.</span>
+                  <span class="correct">I ran to the store. I needed some milk.</span>
+                  <p class="explanation">Don't run two complete sentences together without proper punctuation. Use a period, semicolon, or conjunction.</p>
+              </div>
+              
+              <div class="error-card" onmouseover="this.classList.add('pop-in')">
+                  <h4>Colon vs. Semicolon</h4>
+                  <span class="wrong">I have one goal in life; to be happy.</span>
+                  <span class="correct">I have one goal in life: to be happy.</span>
+                  <p class="explanation">Use a <strong>colon</strong> to introduce examples or explanations. Use a <strong>semicolon</strong> to join related independent clauses.</p>
+              </div>
+            </div>
+        </div>
+        
+        <div class="error-categories">
+            <div class="category-title">
+                <span class="interactive-element">🌟</span>
+                <span>Misused Words</span>
+            </div>
+            
+            <div class="error-examples">
+                <div class="error-card" onmouseover="this.classList.add('pop-in')">
+                    <h4>Accept vs. Except</h4>
+                    <span class="wrong">I will except your gift.</span>
+                    <span class="correct">I will accept your gift.</span>
+                    <p class="explanation"><strong>Accept</strong> means to receive. <strong>Except</strong> means to exclude.</p>
+                </div>
+                
+                <div class="error-card" onmouseover="this.classList.add('pop-in')">
+                    <h4>Fewer vs. Less</h4>
+                    <span class="wrong">There are less cookies in the jar now.</span>
+                    <span class="correct">There are fewer cookies in the jar now.</span>
+                    <p class="explanation">Use <strong>fewer</strong> for countable items (cookies). Use <strong>less</strong> for uncountable things (sugar, time).</p>
+                </div>
+                
+                <div class="error-card" onmouseover="this.classList.add('pop-in')">
+                    <h4>Loose vs. Lose</h4>
+                    <span class="wrong">Don't loose your keys again!</span>
+                    <span class="correct">Don't lose your keys again!</span>
+                    <p class="explanation"><strong>Loose</strong> means not tight. <strong>Lose</strong> means to misplace something or not win.</p>
+                </div>
+                
+                <div class="error-card" onmouseover="this.classList.add('pop-in')">
+                    <h4>Then vs. Than</h4>
+                    <span class="wrong">She is taller then her brother.</span>
+                    <span class="correct">She is taller than her brother.</span>
+                    <p class="explanation"><strong>Then</strong> relates to time. <strong>Than</strong> is used for comparisons.</p>
+                </div>
 
-  <script>
-    const sentenceData = [
-      {
-        sentence: "I am eating an apple",
-        words: ["eating", "I", "apple", "am", "an"]
-      },
-      {
-        sentence: "She plays in the park",
-        words: ["the", "park", "She", "plays", "in"]
-      },
-      {
-        sentence: "The sun is shining brightly",
-        words: ["is", "shining", "brightly", "The", "sun"]
-      },
-      {
-        sentence: "We are going to school",
-        words: ["school", "We", "to", "going", "are"]
-      }
-    ];
+                <div class="error-card" onmouseover="this.classList.add('pop-in')">
+                  <h4>Lie vs. Lay</h4>
+                  <span class="wrong">I'm going to lay down for a nap.</span>
+                  <span class="correct">I'm going to lie down for a nap.</span>
+                  <p class="explanation"><strong>Lie</strong> means to recline (no object). <strong>Lay</strong> means to put something down (needs an object).</p>
+              </div>
+              
+              <div class="error-card" onmouseover="this.classList.add('pop-in')">
+                  <h4>Who vs. Whom</h4>
+                  <span class="wrong">Who did you give the present to?</span>
+                  <span class="correct">Whom did you give the present to?</span>
+                  <p class="explanation">Use <strong>who</strong> for the subject of a verb. Use <strong>whom</strong> for the object of a verb or preposition.</p>
+              </div>
+            </div>
+        </div>
+        
+        <div class="error-categories">
+            <div class="category-title">
+                <span class="interactive-element">⏱️</span>
+                <span>Verb Tense Errors</span>
+            </div>
+            
+            <div class="error-examples">
+                <div class="error-card" onmouseover="this.classList.add('pop-in')">
+                    <h4>Inconsistent Tenses</h4>
+                    <span class="wrong">Yesterday I go to the store and bought some candy.</span>
+                    <span class="correct">Yesterday I went to the store and bought some candy.</span>
+                    <p class="explanation">Keep your tenses consistent. If you start in the past tense, stay in the past tense.</p>
+                </div>
+                
+                <div class="error-card" onmouseover="this.classList.add('pop-in')">
+                    <h4>Present Perfect vs. Simple Past</h4>
+                    <span class="wrong">I never seen that movie before.</span>
+                    <span class="correct">I have never seen that movie before.</span>
+                    <p class="explanation">Use present perfect (have/has + past participle) for experiences with no specific time.</p>
+                </div>
+                
+                <div class="error-card" onmouseover="this.classList.add('pop-in')">
+                    <h4>Conditional Sentences</h4>
+                    <span class="wrong">If I would have known, I would came earlier.</span>
+                    <span class="correct">If I had known, I would have come earlier.</span>
+                    <p class="explanation">For past conditionals, use "if + had + past participle" and "would have + past participle."</p>
+                </div>
+                
+                <div class="error-card" onmouseover="this.classList.add('pop-in')">
+                    <h4>Irregular Verbs</h4>
+                    <span class="wrong">She teached me how to swim.</span>
+                    <span class="correct">She taught me how to swim.</span>
+                    <p class="explanation">Many common verbs have irregular past forms that must be memorized (teach → taught).</p>
+                </div>
+                
+                <div class="error-card" onmouseover="this.classList.add('pop-in')">
+                  <h4>Past Participles</h4>
+                  <span class="wrong">I have wrote a letter to my friend.</span>
+                  <span class="correct">I have written a letter to my friend.</span>
+                  <p class="explanation">With "have/has/had," use the past participle form of the verb (written, not wrote).</p>
+              </div>
+              
+              <div class="error-card" onmouseover="this.classList.add('pop-in')">
+                  <h4>Would of / Could of</h4>
+                  <span class="wrong">I would of helped if I had known.</span>
+                  <span class="correct">I would have helped if I had known.</span>
+                  <p class="explanation">"Would of" is incorrect. The proper form is "would have" (often contracted to "would've").</p>
+              </div>
+            </div>
+        </div>
+        
+        <div class="error-categories">
+            <div class="category-title">
+                <span class="interactive-element">🌈</span>
+                <span>Fun Grammar Challenges</span>
+            </div>
+            
+            <div class="error-examples">
+                <div class="error-card" onmouseover="this.classList.add('pop-in')">
+                    <h4>Spot the Errors!</h4>
+                    <span class="wrong">Their going to they're house after school to play with there new puppy.</span>
+                    <span class="correct">They're going to their house after school to play with their new puppy.</span>
+                    <p class="explanation">Can you explain why each correction was made? Try finding more sentences like this to practice!</p>
+                </div>
+                
+                <div class="error-card" onmouseover="this.classList.add('pop-in')">
+                    <h4>Fix This Paragraph</h4>
+                    <span class="wrong">Yesterday me and my friend was walking in the park when we seen a squirrel it was very cute and it runned up a tree.</span>
+                    <span class="correct">Yesterday my friend and I were walking in the park when we saw a squirrel. It was very cute, and it ran up a tree.</span>
+                    <p class="explanation">How many errors did you spot? Subject-verb agreement, pronouns, irregular verbs, and punctuation all fixed!</p>
+                </div>
+                
+                <div class="error-card" onmouseover="this.classList.add('pop-in')">
+                    <h4>Grammar Detective Game</h4>
+                    <span class="wrong">Can you find all five errors in this sentense. alot of people make mistakes when they write fast, but its important to check you're work.</span>
+                    <span class="correct">Can you find all five errors in this sentence? A lot of people make mistakes when they write fast, but it's important to check your work.</span>
+                    <p class="explanation">Errors: "sentense" → "sentence", missing question mark, "alot" → "a lot", "its" → "it's", "you're" → "your"</p>
+                </div>
+                
+                <div class="error-card" onmouseover="this.classList.add('pop-in')">
+                    <h4>Word Mix-Up Challenge</h4>
+                    <span class="wrong">I bought to books from the store, and their both great to read.</span>
+                    <span class="correct">I bought two books from the store, and they're both great to read.</span>
+                    <p class="explanation">Homophones (words that sound the same) can be tricky! Practice with "to/too/two", "their/there/they're", and others.</p>
+                </div>
 
-    let currentSentence = {};
-    let score = 0;
-
-    function shuffle(array) {
-      return array.sort(() => Math.random() - 0.5);
-    }
-
-    function loadSentence() {
-      // Clear previous
-      document.getElementById("wordBank").innerHTML = "";
-      document.getElementById("sentenceArea").innerHTML = "";
-
-      // Pick random sentence
-      currentSentence = sentenceData[Math.floor(Math.random() * sentenceData.length)];
-      const shuffledWords = shuffle([...currentSentence.words]);
-
-      // Create word elements
-      shuffledWords.forEach(word => {
-        const span = document.createElement("span");
-        span.textContent = word;
-        span.className = "word";
-        span.draggable = true;
-        span.addEventListener("dragstart", handleDragStart);
-        span.addEventListener("dragend", handleDragEnd);
-        document.getElementById("wordBank").appendChild(span);
-      });
-    }
-
-    function handleDragStart(e) {
-      e.dataTransfer.setData("text/plain", e.target.textContent);
-      e.target.classList.add("dragging");
-    }
-
-    function handleDragEnd(e) {
-      e.target.classList.remove("dragging");
-    }
-
-    // Drop zone logic
-    const sentenceArea = document.getElementById("sentenceArea");
-    const wordBank = document.getElementById("wordBank");
-
-    [sentenceArea, wordBank].forEach(area => {
-      area.addEventListener("dragover", e => {
-        e.preventDefault();
-      });
-
-      area.addEventListener("drop", e => {
-        e.preventDefault();
-        const word = e.dataTransfer.getData("text/plain");
-        const draggedElem = [...document.querySelectorAll(".word")].find(w => w.textContent === word);
-        if (draggedElem) area.appendChild(draggedElem);
-      });
-    });
-
-    function checkSentence() {
-      const wordsInSentence = [...document.getElementById("sentenceArea").children].map(e => e.textContent);
-      const formedSentence = wordsInSentence.join(" ");
-      const correct = formedSentence.trim().toLowerCase() === currentSentence.sentence.toLowerCase();
-
-      if (correct) {
-        score += 10;
-        document.getElementById("scoreDisplay").textContent = `Score: ${score}`;
-        document.getElementById("sentenceArea").classList.add("correct");
-        setTimeout(() => {
-          document.getElementById("sentenceArea").classList.remove("correct");
-          loadSentence();
-        }, 1000);
-      } else {
-        document.getElementById("sentenceArea").classList.add("incorrect");
-        setTimeout(() => {
-          document.getElementById("sentenceArea").classList.remove("incorrect");
-        }, 1000);
-      }
-    }
-
-    loadSentence(); // Load first sentence
-  </script>
+                <div class="error-card" onmouseover="this.classList.add('pop-in')">
+                  <h4>Emoji Grammar!</h4>
+                  <span class="wrong">The child 🏃 very fast and then 🍽️ dinner.</span>
+                  <span class="correct">The child ran very fast and then ate dinner.</span>
+                  <p class="explanation">Can you replace emojis with the correct verb forms? This is a fun way to practice irregular verbs!</p>
+              </div>
+              
+              <div class="error-card" onmouseover="this.classList.add('pop-in')">
+                  <h4>Punctuation Puzzle</h4>
+                  <span class="wrong">Help Sally find her cat dog bird and fish</span>
+                  <span class="correct">Help Sally find her cat, dog, bird, and fish.</span>
+                  <p class="explanation">Add commas to this sentence to make it clear. How many pets does Sally have? Without commas, it's confusing!</p>
+              </div>
+            </div>
+            <div class="actions">
+              <a href="subjectverbagreementquiz.html" class="btn btn-primary">Take Quiz</a>
+              <a href="index.html" class="btn">Back to Home</a>
+          </div>
+        </div>
+        
+        <div class="footer">
+            © 2025 Grammar Genius. All grammar rules respectfully followed.
+        </div>
+    </div>
+    
+    <script>
+        // Add animation to error cards on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.error-card');
+            
+            function isElementInViewport(el) {
+                const rect = el.getBoundingClientRect();
+                return (
+                    rect.top >= 0 &&
+                    rect.left >= 0 &&
+                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                );
+            }
+            
+            function animateCardsInView() {
+                cards.forEach(card => {
+                    if (isElementInViewport(card) && !card.classList.contains('pop-in')) {
+                        card.classList.add('pop-in');
+                    }
+                });
+            }
+            
+            // Initial check
+            animateCardsInView();
+            
+            // Check on scroll
+            window.addEventListener('scroll', animateCardsInView);
+        });
+    </script>
 </body>
 </html>
