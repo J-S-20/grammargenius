@@ -238,7 +238,7 @@
 <body>
     <div class="container">
         <h2>Parts of Speech Quiz</h2>
-        <div class="quiz-info">Test your knowledge of the different parts of speech in English.</div>
+        <div class="quiz-info">Test your knowledge of the different parts of speech and how to identify them correctly.</div>
         <div class="progress-container">
             <div class="progress-bar" id="progressBar"></div>
         </div>
@@ -247,7 +247,7 @@
             <div id="result"></div>
             <div class="buttons">
                 <button type="button" class="submit-btn" onclick="submitQuiz()">Check Answers</button>
-                <button type="button" class="cancel-btn" onclick="window.location.href = 'parts_of_speech.html'">Back to the lesson</button>
+                <button type="button" class="cancel-btn" onclick="window.location.href = 'parts-of-speech.html'">Back to the lesson</button>
             </div>
         </form>
     </div>
@@ -257,340 +257,338 @@
     </div>
 
     <script>
-        const questions = 
-        [
-    {
-        q: "Identify the part of speech of the word 'quickly' in the sentence: 'She quickly finished her homework.'",
-        options: [
-            "Adjective",
-            "Adverb",
-            "Verb",
-            "Noun"
-        ],
-        answer: "Adverb",
-        explanation: "Adverbs modify verbs, adjectives, or other adverbs. Here, 'quickly' describes how she finished her homework, modifying the verb 'finished'."
-    },
-    {
-        q: "Which part of speech is the word 'beautiful' in the sentence: 'The beautiful painting was displayed in the gallery.'",
-        options: [
-            "Noun",
-            "Verb",
-            "Adjective",
-            "Preposition"
-        ],
-        answer: "Adjective",
-        explanation: "Adjectives modify or describe nouns. Here, 'beautiful' describes the noun 'painting'."
-    },
-    {
-        q: "Identify the part of speech of the word 'under' in the sentence: 'The cat is hiding under the bed.'",
-        options: [
-            "Conjunction",
-            "Adverb",
-            "Preposition",
-            "Pronoun"
-        ],
-        answer: "Preposition",
-        explanation: "Prepositions show relationships between other words in a sentence. 'Under' shows the relationship between 'hiding' and 'the bed'."
-    },
-    {
-        q: "What part of speech is the word 'they' in the sentence: 'They went to the park yesterday.'",
-        options: [
-            "Noun",
-            "Pronoun",
-            "Adjective",
-            "Verb"
-        ],
-        answer: "Pronoun",
-        explanation: "Pronouns replace nouns. 'They' is taking the place of specific people who went to the park."
-    },
-    {
-        q: "Identify the part of speech of the word 'happiness' in the sentence: 'Happiness is important for a good life.'",
-        options: [
-            "Noun",
-            "Verb",
-            "Adjective",
-            "Adverb"
-        ],
-        answer: "Noun",
-        explanation: "Nouns name people, places, things, or ideas. 'Happiness' is an abstract noun that names a feeling or state."
-    },
-    {
-        q: "What part of speech is the word 'jumped' in the sentence: 'The frog jumped into the pond.'",
-        options: [
-            "Noun",
-            "Pronoun",
-            "Verb",
-            "Conjunction"
-        ],
-        answer: "Verb",
-        explanation: "Verbs express action or state of being. 'Jumped' is an action verb that tells what the frog did."
-    },
-    {
-        q: "Identify the part of speech of the word 'and' in the sentence: 'Jack and Jill went up the hill.'",
-        options: [
-            "Preposition",
-            "Conjunction",
-            "Interjection",
-            "Adverb"
-        ],
-        answer: "Conjunction",
-        explanation: "Conjunctions connect words, phrases, or clauses. 'And' connects the nouns 'Jack' and 'Jill'."
-    },
-    {
-        q: "What part of speech is the word 'wow' in the sentence: 'Wow! That was an amazing performance!'",
-        options: [
-            "Pronoun",
-            "Adverb",
-            "Interjection",
-            "Preposition"
-        ],
-        answer: "Interjection",
-        explanation: "Interjections express strong emotion and are grammatically independent from the rest of the sentence. 'Wow' expresses surprise or amazement."
-    },
-    {
-        q: "Identify the part of speech of the word 'his' in the sentence: 'John forgot his keys at home.'",
-        options: [
-            "Adjective",
-            "Pronoun",
-            "Adverb",
-            "Conjunction"
-        ],
-        answer: "Adjective",
-        explanation: "In this sentence, 'his' is a possessive adjective that modifies the noun 'keys', showing ownership or relationship."
-    },
-    {
-        q: "What part of speech is the word 'very' in the sentence: 'The movie was very entertaining.'",
-        options: [
-            "Noun",
-            "Adjective",
-            "Adverb",
-            "Pronoun"
-        ],
-        answer: "Adverb",
-        explanation: "Here, 'very' is an adverb that modifies the adjective 'entertaining', indicating degree or intensity."
-    },
-    {
-        q: "Identify the part of speech of the word 'between' in the sentence: 'The secret lies between truth and fiction.'",
-        options: [
-            "Noun",
-            "Adjective",
-            "Conjunction",
-            "Preposition"
-        ],
-        answer: "Preposition",
-        explanation: "Prepositions show relationships in time, space, or logic. 'Between' shows the relationship of 'the secret' to 'truth and fiction'."
-    },
-    {
-        q: "What part of speech is the word 'whom' in the sentence: 'To whom did you give the letter?'",
-        options: [
-            "Preposition",
-            "Conjunction",
-            "Pronoun",
-            "Adverb"
-        ],
-        answer: "Pronoun",
-        explanation: "Interrogative pronouns like 'whom' are used to ask questions. 'Whom' is the object of the preposition 'to'."
-    },
-    {
-        q: "Identify the part of speech of the word 'but' in the sentence: 'She tried her best but failed the test.'",
-        options: [
-            "Preposition",
-            "Conjunction",
-            "Adverb",
-            "Interjection"
-        ],
-        answer: "Conjunction",
-        explanation: "Coordinating conjunctions like 'but' connect words, phrases, or clauses of equal rank. Here it connects two independent clauses."
-    },
-    {
-        q: "What part of speech is the word 'seven' in the sentence: 'I need seven apples for the recipe.'",
-        options: [
-            "Noun",
-            "Pronoun",
-            "Adjective",
-            "Determiner"
-        ],
-        answer: "Adjective",
-        explanation: "Numbers functioning as adjectives modify nouns. 'Seven' tells how many 'apples', making it a numeral adjective."
-    },
-    {
-        q: "Identify the part of speech of the underlined word in the sentence: '<u>Reading</u> is my favorite hobby.'",
-        options: [
-            "Verb",
-            "Noun",
-            "Adjective",
-            "Adverb"
-        ],
-        answer: "Noun",
-        explanation: "Although 'reading' can be a verb, in this sentence it functions as a gerund (a verb form used as a noun). It's the subject of the sentence, making it a noun."
-    },
-    {
-        q: "What part of speech is the word 'the' in the sentence: 'The car is parked outside.'",
-        options: [
-            "Noun",
-            "Adverb",
-            "Article",
-            "Pronoun"
-        ],
-        answer: "Article",
-        explanation: "Articles are a type of determiner that specify whether a noun is specific ('the') or nonspecific ('a' or 'an'). 'The' is a definite article."
-    },
-    {
-        q: "Identify the part of speech of the word 'sleeping' in the sentence: 'The sleeping baby looks peaceful.'",
-        options: [
-            "Verb",
-            "Noun",
-            "Adjective",
-            "Adverb"
-        ],
-        answer: "Adjective",
-        explanation: "Here, 'sleeping' is a participle (verb form) functioning as an adjective, describing the noun 'baby'."
-    },
-    {
-        q: "What part of speech is the word 'themselves' in the sentence: 'They built the treehouse themselves.'",
-        options: [
-            "Pronoun",
-            "Noun",
-            "Adverb",
-            "Adjective"
-        ],
-        answer: "Pronoun",
-        explanation: "Reflexive pronouns like 'themselves' refer back to the subject of the sentence. This is a type of intensive pronoun emphasizing that 'they' did the building."
-    },
-    {
-        q: "Identify the part of speech of the word 'whenever' in the sentence: 'Call me whenever you need help.'",
-        options: [
-            "Adverb",
-            "Preposition",
-            "Conjunction",
-            "Pronoun"
-        ],
-        answer: "Conjunction",
-        explanation: "Subordinating conjunctions like 'whenever' connect dependent clauses to independent clauses. Here, it connects 'you need help' to 'Call me'."
-    },
-    {
-        q: "What part of speech is the word 'running' in the sentence: 'Running daily improves your health.'",
-        options: [
-            "Verb",
-            "Adjective",
-            "Adverb",
-            "Noun"
-        ],
-        answer: "Noun",
-        explanation: "Although 'running' can be a verb, in this sentence it functions as a gerund (verb + ing) used as a noun. It's the subject of the sentence."
-    },
-    {
-        q: "Identify the part of speech of the word 'after' in the sentence: 'We'll discuss it after the meeting.'",
-        options: [
-            "Conjunction",
-            "Preposition",
-            "Adverb",
-            "Adjective"
-        ],
-        answer: "Preposition",
-        explanation: "Here, 'after' is a preposition that establishes the time relationship between 'discuss' and 'the meeting'."
-    },
-    {
-        q: "What part of speech is the word 'carefully' in the sentence: 'He carefully examined each document.'",
-        options: [
-            "Noun",
-            "Adjective",
-            "Adverb",
-            "Pronoun"
-        ],
-        answer: "Adverb",
-        explanation: "Adverbs typically describe how an action is performed. 'Carefully' describes how he examined the documents, modifying the verb 'examined'."
-    },
-    {
-        q: "Identify the part of speech of the word 'near' in the sentence: 'The school is near the library.'",
-        options: [
-            "Conjunction",
-            "Adverb",
-            "Preposition",
-            "Adjective"
-        ],
-        answer: "Preposition",
-        explanation: "In this context, 'near' functions as a preposition showing the spatial relationship between 'school' and 'library'."
-    },
-    {
-        q: "What part of speech is the word 'twenty' in the sentence: 'She has twenty dollars in her wallet.'",
-        options: [
-            "Pronoun",
-            "Noun",
-            "Adjective",
-            "Adverb"
-        ],
-        answer: "Adjective",
-        explanation: "Numbers used to describe quantity function as adjectives. 'Twenty' modifies the noun 'dollars', specifying how many."
-    },
-    {
-        q: "Identify the part of speech of the word 'quietly' in the sentence: 'Please speak quietly in the library.'",
-        options: [
-            "Noun",
-            "Verb",
-            "Adjective",
-            "Adverb"
-        ],
-        answer: "Adverb",
-        explanation: "Adverbs can modify verbs, adjectives, or other adverbs. 'Quietly' describes how to speak, modifying the verb 'speak'."
-    },
-    {
-        q: "Which part of speech is the word 'although' in the sentence: 'Although it was raining, we went for a walk.'",
-        options: [
-            "Preposition",
-            "Conjunction",
-            "Adverb",
-            "Pronoun"
-        ],
-        answer: "Conjunction",
-        explanation: "Subordinating conjunctions like 'although' connect dependent clauses to independent clauses, showing contrast or exception."
-    },
-    {
-        q: "Identify the part of speech of the word 'whose' in the sentence: 'Whose jacket is this?'",
-        options: [
-            "Adverb",
-            "Adjective",
-            "Pronoun",
-            "Conjunction"
-        ],
-        answer: "Pronoun",
-        explanation: "Interrogative pronouns like 'whose' are used to ask questions. In this case, it's asking about possession or ownership."
-    },
-    {
-        q: "What part of speech is the word 'oh' in the sentence: 'Oh, I forgot my keys again!'",
-        options: [
-            "Conjunction",
-            "Interjection",
-            "Adverb",
-            "Preposition"
-        ],
-        answer: "Interjection",
-        explanation: "Interjections express emotion and are grammatically separate from the rest of the sentence. 'Oh' expresses surprise or realization."
-    },
-    {
-        q: "Identify the part of speech of the word 'her' in the sentence: 'I gave her the book.'",
-        options: [
-            "Adjective",
-            "Adverb",
-            "Pronoun",
-            "Preposition"
-        ],
-        answer: "Pronoun",
-        explanation: "In this sentence, 'her' is an object pronoun that receives the action of the verb 'gave'."
-    },
-    {
-        q: "What part of speech is the word 'above' in the sentence: 'Look at the picture above the fireplace.'",
-        options: [
-            "Adverb",
-            "Preposition",
-            "Adjective",
-            "Conjunction"
-        ],
-        answer: "Preposition",
-        explanation: "Prepositions show relationships in space, time, or logic. 'Above' shows the spatial relationship between 'picture' and 'fireplace'."
-    }
-];
-
+        const questions = [
+            {
+                q: "In the sentence 'The cat jumped over the fence', which word is a noun?",
+                options: [
+                    "The",
+                    "cat",
+                    "jumped",
+                    "over"
+                ],
+                answer: "cat",
+                explanation: "A noun is a person, place, thing, or idea. In this sentence, 'cat' is a thing, making it a noun."
+            },
+            {
+                q: "Identify the verb in this sentence: 'She quickly ran to the store.'",
+                options: [
+                    "She",
+                    "quickly",
+                    "ran",
+                    "store"
+                ],
+                answer: "ran",
+                explanation: "A verb shows action or state of being. 'Ran' describes the action being performed."
+            },
+            {
+                q: "Which of the following is an adjective in the sentence: 'The beautiful flower bloomed in spring.'",
+                options: [
+                    "The",
+                    "beautiful",
+                    "bloomed",
+                    "spring"
+                ],
+                answer: "beautiful",
+                explanation: "An adjective describes or modifies a noun. 'Beautiful' describes the noun 'flower'."
+            },
+            {
+                q: "In the sentence 'He walked very slowly', which word is an adverb?",
+                options: [
+                    "He",
+                    "walked",
+                    "very",
+                    "slowly"
+                ],
+                answer: "slowly",
+                explanation: "An adverb modifies a verb, adjective, or another adverb. 'Slowly' describes how he walked (the verb)."
+            },
+            {
+                q: "Which word is a pronoun in the sentence: 'They went to the movies yesterday.'",
+                options: [
+                    "They",
+                    "went",
+                    "movies",
+                    "yesterday"
+                ],
+                answer: "They",
+                explanation: "A pronoun replaces a noun. 'They' is used instead of naming specific people."
+            },
+            {
+                q: "Identify the preposition in this sentence: 'The book is on the table.'",
+                options: [
+                    "The",
+                    "book",
+                    "is",
+                    "on"
+                ],
+                answer: "on",
+                explanation: "A preposition shows the relationship between a noun/pronoun and other words in the sentence. 'On' shows the relationship between the book and the table."
+            },
+            {
+                q: "Which of the following is a conjunction in the sentence: 'I wanted to go, but I was too tired.'",
+                options: [
+                    "wanted",
+                    "go",
+                    "but",
+                    "too"
+                ],
+                answer: "but",
+                explanation: "A conjunction connects words, phrases, or clauses. 'But' connects the two independent clauses in this sentence."
+            },
+            {
+                q: "In the sentence 'Wow! That was amazing!', which word is an interjection?",
+                options: [
+                    "Wow",
+                    "That",
+                    "was",
+                    "amazing"
+                ],
+                answer: "Wow",
+                explanation: "An interjection expresses strong emotion and is usually followed by an exclamation mark. 'Wow!' shows surprise or excitement."
+            },
+            {
+                q: "Which option contains only nouns?",
+                options: [
+                    "happy, quickly, jump",
+                    "cat, house, teacher",
+                    "run, swim, fly",
+                    "beautiful, ugly, smart"
+                ],
+                answer: "cat, house, teacher",
+                explanation: "Nouns are people, places, things, or ideas. 'Cat' (animal), 'house' (place), and 'teacher' (person) are all nouns."
+            },
+            {
+                q: "In the sentence 'The extremely talented musician performed brilliantly', which word is an adjective?",
+                options: [
+                    "extremely",
+                    "talented",
+                    "musician",
+                    "brilliantly"
+                ],
+                answer: "talented",
+                explanation: "An adjective describes a noun. 'Talented' describes the noun 'musician'."
+            },
+            {
+                q: "Which of the following is a proper noun?",
+                options: [
+                    "city",
+                    "river",
+                    "London",
+                    "mountain"
+                ],
+                answer: "London",
+                explanation: "A proper noun names a specific person, place, or thing and begins with a capital letter. 'London' is a specific city."
+            },
+            {
+                q: "Identify the helping verb in this sentence: 'She has completed her assignment.'",
+                options: [
+                    "She",
+                    "has",
+                    "completed",
+                    "assignment"
+                ],
+                answer: "has",
+                explanation: "A helping (auxiliary) verb helps the main verb express action or state of being. 'Has' helps the main verb 'completed'."
+            },
+            {
+                q: "Which sentence uses a personal pronoun correctly?",
+                options: [
+                    "Give the book to John and I.",
+                    "Give the book to John and me.",
+                    "Give the book to John and myself.",
+                    "Give the book to John and mines."
+                ],
+                answer: "Give the book to John and me.",
+                explanation: "In this case, 'me' is the correct objective pronoun to use when it's the object of the preposition 'to'."
+            },
+            {
+                q: "In the sentence 'The dog barked loudly at the mailman', which part of speech is 'loudly'?",
+                options: [
+                    "Noun",
+                    "Adjective",
+                    "Adverb",
+                    "Verb"
+                ],
+                answer: "Adverb",
+                explanation: "An adverb modifies a verb, adjective, or another adverb. 'Loudly' tells how the dog barked (modifies the verb)."
+            },
+            {
+                q: "Identify the preposition in this sentence: 'The cat hid under the bed during the thunderstorm.'",
+                options: [
+                    "hid",
+                    "under",
+                    "the",
+                    "thunderstorm"
+                ],
+                answer: "under",
+                explanation: "A preposition shows the relationship between a noun/pronoun and other words. 'Under' shows the relationship between the cat and the bed."
+            },
+            {
+                q: "Which of the following is a compound noun?",
+                options: [
+                    "beautiful",
+                    "quickly",
+                    "bedroom",
+                    "jump"
+                ],
+                answer: "bedroom",
+                explanation: "A compound noun is formed when two or more words are joined to form a new noun. 'Bedroom' combines 'bed' and 'room'."
+            },
+            {
+                q: "What part of speech is 'because' in the sentence: 'She stayed home because she was sick.'?",
+                options: [
+                    "Conjunction",
+                    "Preposition",
+                    "Adverb", 
+                    "Pronoun"
+                ],
+                answer: "Conjunction",
+                explanation: "A conjunction connects words, phrases, or clauses. 'Because' connects the two clauses by showing a reason."
+            },
+            {
+                q: "Identify the verb phrase in this sentence: 'The students have been studying for hours.'",
+                options: [
+                    "The students",
+                    "have been studying",
+                    "for hours",
+                    "students have"
+                ],
+                answer: "have been studying",
+                explanation: "A verb phrase consists of a main verb and its helping verbs. 'Have been studying' includes the helping verbs 'have been' and the main verb 'studying'."
+            },
+            {
+                q: "Which word in this sentence is an article: 'An apple a day keeps the doctor away.'?",
+                options: [
+                    "apple",
+                    "day",
+                    "An",
+                    "keeps"
+                ],
+                answer: "An",
+                explanation: "Articles are special adjectives that precede nouns. There are three articles: 'a,' 'an,' and 'the'. 'An' is the indefinite article used before 'apple'."
+            },
+            {
+                q: "In the sentence 'She speaks very fluently in Spanish', what is the part of speech of 'fluently'?",
+                options: [
+                    "Adverb",
+                    "Adjective",
+                    "Noun",
+                    "Verb"
+                ],
+                answer: "Adverb",
+                explanation: "An adverb modifies a verb, adjective, or another adverb. 'Fluently' tells how she speaks (modifies the verb 'speaks')."
+            },
+            {
+                q: "Which of these is a linking verb?",
+                options: [
+                    "run",
+                    "build",
+                    "seem",
+                    "destroy"
+                ],
+                answer: "seem",
+                explanation: "A linking verb connects a subject to a subject complement. Common linking verbs include be, seem, appear, feel, and become. 'Seem' links subjects to their complements rather than showing action."
+            },
+            {
+                q: "What type of pronoun is 'myself' in the sentence: 'I made it myself'?",
+                options: [
+                    "Personal pronoun",
+                    "Reflexive pronoun",
+                    "Possessive pronoun",
+                    "Relative pronoun"
+                ],
+                answer: "Reflexive pronoun",
+                explanation: "A reflexive pronoun reflects back to the subject. 'Myself' refers back to 'I' in this sentence."
+            },
+            {
+                q: "What part of speech is the underlined word in: 'Running is good exercise'?",
+                options: [
+                    "Verb",
+                    "Gerund (noun)",
+                    "Adjective",
+                    "Adverb"
+                ],
+                answer: "Gerund (noun)",
+                explanation: "A gerund is a verb form ending in -ing that functions as a noun. Here 'Running' acts as the subject of the sentence, making it a gerund."
+            },
+            {
+                q: "Identify the conjunction in: 'She likes neither coffee nor tea.'",
+                options: [
+                    "She",
+                    "likes",
+                    "neither...nor",
+                    "coffee"
+                ],
+                answer: "neither...nor",
+                explanation: "Correlative conjunctions work in pairs to join words or groups of words of equal importance. 'Neither...nor' is a correlative conjunction pair."
+            },
+            {
+                q: "Which of the following is a demonstrative pronoun?",
+                options: [
+                    "me",
+                    "this",
+                    "who",
+                    "his"
+                ],
+                answer: "this",
+                explanation: "Demonstrative pronouns point to specific things. They include this, that, these, and those. 'This' specifies something close by."
+            },
+            {
+                q: "In the sentence 'Surprisingly, he finished the race first', what part of speech is 'surprisingly'?",
+                options: [
+                    "Adjective",
+                    "Adverb",
+                    "Preposition",
+                    "Interjection"
+                ],
+                answer: "Adverb",
+                explanation: "An adverb can modify a whole sentence to express the speaker's attitude. 'Surprisingly' shows the speaker's attitude about the entire statement."
+            },
+            {
+                q: "Which word is a collective noun?",
+                options: [
+                    "person",
+                    "animal",
+                    "flock",
+                    "mountain"
+                ],
+                answer: "flock",
+                explanation: "A collective noun refers to a group of people, animals, or things. 'Flock' refers to a group of birds or sheep."
+            },
+            {
+                q: "What part of speech is the underlined word in: 'That is where I live'?",
+                options: [
+                    "Adverb",
+                    "Preposition",
+                    "Pronoun",
+                    "Conjunction"
+                ],
+                answer: "Adverb",
+                explanation: "In this sentence, 'where' functions as an adverb because it modifies the verb 'live' by telling the location."
+            },
+            {
+                q: "Which sentence contains an infinitive phrase?",
+                options: [
+                    "She was running quickly.",
+                    "He wants to travel abroad.",
+                    "The broken vase cannot be fixed.",
+                    "They ate dinner at seven."
+                ],
+                answer: "He wants to travel abroad.",
+                explanation: "An infinitive phrase consists of 'to' plus a verb and any modifiers or complements. 'To travel abroad' is an infinitive phrase."
+            },
+            {
+                q: "What type of noun is 'honesty'?",
+                options: [
+                    "Common noun",
+                    "Proper noun",
+                    "Abstract noun",
+                    "Concrete noun"
+                ],
+                answer: "Abstract noun",
+                explanation: "An abstract noun names something that cannot be perceived with the five senses. 'Honesty' is a concept or quality that cannot be seen, touched, heard, smelled, or tasted."
+            }
+        ];
 
         function loadQuestions() {
             const container = document.getElementById("questionsContainer");
