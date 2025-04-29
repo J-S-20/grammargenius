@@ -1,9 +1,9 @@
 <?php
 // Database config
-$servername = "localhost";
-$db_username = "root";      // Change this if needed
-$db_password = "";          // Set your MySQL password
-$dbname = "user_db";
+$servername = "sql301.infinityfree.com";
+$username = "if0_38272767";
+$password = "ftpproject123"; 
+$dbname = "if0_38272767_grammargenius";
 
 // Create DB connection
 $conn = new mysqli($servername, $db_username, $db_password, $dbname);
