@@ -4,17 +4,7 @@ include ("db.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = trim($_POST["username"]);
     $password = $_POST["password"];
-    $confirm = $_POST["confirm_password"];
 
-    // Step 1: Check for empty fields
-    if (empty($username) || empty($password) || empty($confirm)) {
-        die("All fields are required.");
-    }
-
-    // Step 2: Confirm password match
-    if ($password !== $confirm) {
-        die("Passwords do not match.");
-    }
 
     // Step 3: Check if user already exists
     $stmt = $conn->prepare("SELECT id FROM users WHERE username = ?");
@@ -33,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("ss", $username, $hashed_password);
 
     if ($stmt->execute()) {
-        echo "Registration successful. <a href='login.html'>Log in now</a>.";
+        echo "Registration successful. <a href='../topics/login.html'>Log in now</a>.";
     } else {
         echo "Something went wrong. Try again later.";
     }
