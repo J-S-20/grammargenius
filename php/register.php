@@ -1,30 +1,44 @@
 <?php
-$servername = "sql301.infinityfree.com";
-$username = "if0_38272767";
-$password = "ftpproject123"; 
-$dbname = "if0_38272767_grammargenius";
+include ("db.php");
 
-$conn = new mysqli($servername, $db_username, $db_password, $dbname);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = trim($_POST["username"]);
+    $password = $_POST["password"];
+    $confirm = $_POST["confirm_password"];
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    // Step 1: Check for empty fields
+    if (empty($username) || empty($password) || empty($confirm)) {
+        die("All fields are required.");
+    }
+
+    // Step 2: Confirm password match
+    if ($password !== $confirm) {
+        die("Passwords do not match.");
+    }
+
+    // Step 3: Check if user already exists
+    $stmt = $conn->prepare("SELECT id FROM users WHERE username = ?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $stmt->store_result();
+    if ($stmt->num_rows > 0) {
+        die("Username already taken. Try something cooler.");
+    }
+
+    // Step 4: Hash the password
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+    // Step 5: Insert new user
+    $stmt = $conn->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
+    $stmt->bind_param("ss", $username, $hashed_password);
+
+    if ($stmt->execute()) {
+        echo "Registration successful. <a href='login.html'>Log in now</a>.";
+    } else {
+        echo "Something went wrong. Try again later.";
+    }
+
+    $stmt->close();
+    $conn->close();
 }
-
-$username = $_POST['username'];
-$password = $_POST['password'];
-
-$hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-$sql = "INSERT INTO users (username, password) VALUES (?, ?)";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("ss", $username, $hashed_password);
-
-if ($stmt->execute()) {
-    echo "<h2 style='text-align:center; color:green;'>Registration successful!</h2>";
-} else {
-    echo "<h2 style='text-align:center; color:red;'>Error: " . $stmt->error . "</h2>";
-}
-
-$stmt->close();
-$conn->close();
 ?>

@@ -6,7 +6,7 @@ $password = "ftpproject123";
 $dbname = "if0_38272767_grammargenius";
 
 // Create DB connection
-$conn = new mysqli($servername, $db_username, $db_password, $dbname);
+$conn = new mysqli(hostname: $servername, username: $db_username, password: $db_password, database: $dbname);
 
 // Check connection
 if ($conn->connect_error) {
