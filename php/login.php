@@ -1,43 +1,33 @@
 <?php
-// Database config
-$servername = "sql301.infinityfree.com";
-$username = "if0_38272767";
-$password = "ftpproject123"; 
-$dbname = "if0_38272767_grammargenius";
+session_start();
+include("db.php");
 
-// Create DB connection
-$conn = new mysqli(hostname: $servername, username: $db_username, password: $db_password, database: $dbname);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST["username"];
+    $password = $_POST["password"];
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+    $stmt = $conn->prepare("SELECT id, password FROM users WHERE username = ?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
 
-// Get user input
-$username = $_POST['username'];
-$password = $_POST['password'];
+    $stmt->store_result();
+    if ($stmt->num_rows === 1) {
+        $stmt->bind_result($id, $hashed_password);
+        $stmt->fetch();
 
-// Fetch user from DB
-$sql = "SELECT * FROM users WHERE username = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $username);
-$stmt->execute();
-$result = $stmt->get_result();
-
-// Check if user exists
-if ($result->num_rows === 1) {
-    $user = $result->fetch_assoc();
-
-    // Verify hashed password
-    if (password_verify($password, $user['password'])) {
-        echo "<h2 style='text-align:center; color:green;'>Login successful! Welcome, " . htmlspecialchars($username) . ".</h2>";
+        if (password_verify($password, $hashed_password)) {
+            $_SESSION["user_id"] = $id;
+            $_SESSION["username"] = $username;
+            header("Location: dashboard.php");
+            exit;
+        } else {
+            $error = "Invalid password.";
+        }
     } else {
-        echo "<h2 style='text-align:center; color:red;'>Incorrect password.</h2>";
+        $error = "No user found.";
     }
-} else {
-    echo "<h2 style='text-align:center; color:red;'>User not found.</h2>";
-}
 
-$stmt->close();
-$conn->close();
+    $stmt->close();
+    $conn->close();
+}
 ?>
