@@ -210,28 +210,29 @@ body {
         
         <form id="registerForm" action="../php/register.php" method="POST">
             <div class="input-group">
-                <input type="text" id="fullName" placeholder="Full Name" required>
+                <input type="text" id="fullName" name="fullName" placeholder="Full Name" required>
             </div>
-            
+        
             <div class="input-group">
-                <input type="email" id="email" placeholder="Email" required>
+                <input type="email" id="email" name="email" placeholder="Email" required>
             </div>
-            
+        
             <div class="input-group">
-                <input type="text" id="username" placeholder="Username" required>
+                <input type="text" id="username" name="username" placeholder="Username" required>
             </div>
-            
+        
             <div class="input-group">
-                <input type="password" id="password" placeholder="Password" required>
+                <input type="password" id="password" name="password" placeholder="Password" required>
                 <span id="passwordToggle" class="password-toggle">Show</span>
             </div>
-            
+        
             <div class="input-group">
-                <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
             </div>
-            
+        
             <button type="submit" class="register-btn">Sign Up</button>
         </form>
+        
         
         <div class="divider">
             <span>or</span>
@@ -249,7 +250,7 @@ body {
             <a href="login.html">Login</a>
         </div>
 
-        <button class="back-home-btn" onclick="window.location.href='home.html'">Back to Home</button>
+        <button class="back-home-btn" onclick="window.location.href='home.php'">Back to Home</button>
 
 
     </div>

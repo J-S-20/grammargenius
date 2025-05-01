@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -180,10 +183,21 @@
         
         <div class="logo">Grammar Genius</div>
         <p class="tagline">Where Language Rules Come to Life!</p>
-        <div class="buttons" >
-            <button class="btn" onclick="window.location.href='login.html'">Login</button>
-            <button class="btn btn-primary" onclick="window.location.href='register.html'">Get Started</button>
+        
+        <div class="buttons">
+            <?php
+            if (isset($_SESSION["username"])) {
+                echo "<p style='font-size: 1.2rem;'>Hello, <strong>" . htmlspecialchars($_SESSION["username"]) . "</strong>!</p>";
+                echo "<br>";
+                echo "<button class='btn btn-primary' onclick=\"window.location.href='../php/logout.php'\">Logout</button>";
+
+            } else {
+                echo "<button class='btn' onclick=\"window.location.href='login.html'\">Login</button>";
+                echo "<button class='btn btn-primary' onclick=\"window.location.href='register.html'\">Get Started</button>";
+            }
+            ?>
         </div>
+        
     </header>
     
     <div class="container">

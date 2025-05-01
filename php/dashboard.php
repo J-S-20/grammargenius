@@ -5,5 +5,5 @@ if (!isset($_SESSION["user_id"])) {
     exit;
 }
 echo "Welcome, " . htmlspecialchars($_SESSION["username"]) . "!";
-header("Location: ../topics/home.html");
+header("Location: ../topics/home.php");
 ?>
